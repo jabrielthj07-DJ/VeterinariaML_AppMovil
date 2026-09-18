@@ -1,0 +1,27 @@
+Jefferson Hernandez / Login
+Requisitos:
+1- Interfaz coherente e intuitiva
+2- Utilizar Paleta de colores predeterminada para el proyecto
+3- Hacerlo Funcional
+4- Pensar en futuras implemantaciones u funcionalidades a agregar (Escalabilidad)
+
+Jonathan Nicoya / Inicio
+Requisitos:
+1- Interfaz coherente e intuitiva
+2- Utilizar Paleta de colores predeterminada para el proyecto
+3- Hacerlo Funcional
+4- Pensar en futuras implemantaciones u funcionalidades a agregar (Escalabilidad)
+
+Axel Lopez / Perfil Usuario
+Requisitos:
+1- Interfaz coherente e intuitiva
+2- Utilizar Paleta de colores predeterminada para el proyecto
+3- Hacerlo Funcional
+4- Pensar en futuras implemantaciones u funcionalidades a agregar (Escalabilidad)
+
+Darell Jimenez / Inventario u/o Ventas
+Requisitos:
+1- Interfaz coherente e intuitiva
+2- Utilizar Paleta de colores predeterminada para el proyecto
+3- Hacerlo Funcional
+4- Pensar en futuras implemantaciones u funcionalidades a agregar (Escalabilidad)
