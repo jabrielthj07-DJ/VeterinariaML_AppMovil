@@ -29,3 +29,10 @@ se la coman con todo y pelo jajaja
 Att: DJDA
 
 Por cierto, Acuerdense de ir subiendo info en Trello, no me queden mal con los sprint, pueden aregar tambien Tarjetas.
+
+// Iconos 
+leading: const Icon(
+  Icons.pets,
+  size: 40,
+  color: Color(0xFF1E3A5F),
+),

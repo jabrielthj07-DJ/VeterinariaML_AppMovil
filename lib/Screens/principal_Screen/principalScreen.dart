@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../inventario/inventario_screen.dart';
-import '../../widgets/menu.dart';
+import '../Inventario/inventario_screen.dart';
+import '../../Widgets/menu.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class PrincipalScreen extends StatefulWidget {
+  const PrincipalScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<PrincipalScreen> createState() => _PrincipalScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _PrincipalScreenState extends State<PrincipalScreen> {
   int currentPageIndex = 0;
 
   final List<Widget> pages = const [
