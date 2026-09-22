@@ -16,6 +16,10 @@ https://dribbble.com/shots/26838096-Inventory-Dashboard-Mobile
 
 https://dribbble.com/shots/26437151-Inventory-Sales-Tracking-Mobile-App-UI?utm_source=chatgpt.com
 
+# Menu de navegacion
+
+https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
+
 # Comentarios
 
 Nota: No dejen que la IA los use a ustedes, si no ustedes usenla con fin de aprender, por ejemplo aqui en los links Sales q es IA
