@@ -23,6 +23,7 @@ class loginScreen extends StatelessWidget {
                 image: DecorationImage(
                   image: AssetImage('assets/fondo_veterinaria.jpg.png'),
                   fit: BoxFit.cover,
+                  alignment: Alignment(0, -1.2),
                 ),
               ),
             ),
@@ -96,7 +97,7 @@ class loginScreen extends StatelessWidget {
                 Column(
                   children: [
                     const Text(
-                      'Cuidamos a quienes/nte dan felicidad',
+                      'Cuidamos a quienes \n te dan felicidad',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
