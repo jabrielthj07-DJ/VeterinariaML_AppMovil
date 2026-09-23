@@ -36,3 +36,13 @@ leading: const Icon(
   size: 40,
   color: Color(0xFF1E3A5F),
 ),
+
+# Links Cupertino pa ver si lo implementamos
+
+https://api.flutter.dev/flutter/cupertino/CupertinoSlidingSegmentedControl-class.html
+
+https://api.flutter.dev/flutter/cupertino/CupertinoAlertDialog-class.html
+
+https://api.flutter.dev/flutter/cupertino/CupertinoColors-class.html
+
+https://api.flutter.dev/flutter/cupertino/CupertinoNavigationBarBackButton-class.html
