@@ -34,22 +34,6 @@ class loginScreen extends StatelessWidget {
               color: const Color.fromARGB(255, 134, 209, 247).withOpacity(0.25),
             ),
 
-            // Column(
-            //   children: [
-            //     const SizedBox(height: 40),
-
-            //     const Text(
-            //       'Bienvenido a Veterinaria M&L',
-            //       textAlign: TextAlign.center,
-            //       style: TextStyle(
-            //         fontSize: 28,
-            //         fontWeight: FontWeight.bold,
-            //         color: Colors.white,
-            //         shadows: [Shadow(color: Colors.black26, blurRadius: 10)],
-            //       ),
-            //     ),
-            //   ],
-            // ),
             const SizedBox(height: 20),
 
             Column(
@@ -241,17 +225,6 @@ class loginScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          // const Text(
-                          //   'Cuidamos a quienes\nte dan felicidad',
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 18,
-                          //     fontStyle: FontStyle.italic,
-                          //     color: Color.fromARGB(255, 30, 21, 17),
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 8),
                           Row(
                             children: [
                               Container(
