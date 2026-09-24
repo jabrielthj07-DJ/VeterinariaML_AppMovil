@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+=======
+import './Core/rutas_navegacion.dart';
+import './Widgets/menu.dart';
+
+// Pantallas de Interfaces
+import './Screens/Inventario/inventario_screen.dart';
+import './Screens/principal_Screen/principalScreen.dart';
+import './Screens/login/login_Screen.dart';
+>>>>>>> origin/develop
 
 //importar pantallas
 import 'Screens/perfil/perfil_screen.dart';
@@ -13,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< HEAD
       title: 'Veterinaria App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -125,6 +136,17 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+=======
+      initialRoute: RutasNavegacion.principal, // luego cambiar to a como es 
+      routes: {
+        //RutasNavegacion.login: (context) => const LoginScreen(),  // revisar 
+        //RutasNavegacion.inicio: (context) => const InicioScreen(),
+        RutasNavegacion.principal: (context) => const PrincipalScreen(),
+        RutasNavegacion.inventario: (context) => const InventarioScreen(),
+        //RutasNavegacion.ventas: (context) => const VentasScreen(),
+        //RutasNavegacion.perfil: (context) => const PerfilScreen(),
+      },
+>>>>>>> origin/develop
     );
   }
 }
