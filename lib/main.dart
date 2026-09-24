@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-
-import 'Screens/inicio_screem.dart';
+import './Core/rutas_navegacion.dart';
+import 'Screens/login/widget/w_login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App_Veterinaria());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App_Veterinaria extends StatelessWidget {
+  const App_Veterinaria({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Veterinaria ML',
-      debugShowCheckedModeBanner: false,
-      
-      home: const InicioScreen(),
+      initialRoute: RutasNavegacion.login,
+      routes: {
+        RutasNavegacion.login: (context) => loginScreen(),
+        //RutasNavegacion.inicio: (context) => const InicioScreen(),
+        //RutasNavegacion.inventario: (context) => const InventarioScreen(),
+        //RutasNavegacion.ventas: (context) => const VentasScreen(),
+        //RutasNavegacion.perfil: (context) => const PerfilScreen(),
+      },
     );
   }
 }
-
-
