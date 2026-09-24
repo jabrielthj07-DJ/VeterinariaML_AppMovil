@@ -7,8 +7,6 @@ import './Screens/Inventario/inventario_screen.dart';
 import './Screens/principal_Screen/principalScreen.dart';
 import './Screens/login/login_Screen.dart';
 
-//importar pantallas
-import 'Screens/perfil/perfil_screen.dart';
 void main() {
   runApp(const MyApp());
 }
