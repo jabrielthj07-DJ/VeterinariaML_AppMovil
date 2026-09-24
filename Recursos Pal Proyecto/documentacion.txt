@@ -16,6 +16,10 @@ https://dribbble.com/shots/26838096-Inventory-Dashboard-Mobile
 
 https://dribbble.com/shots/26437151-Inventory-Sales-Tracking-Mobile-App-UI?utm_source=chatgpt.com
 
+# Menu de navegacion
+
+https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
+
 # Comentarios
 
 Nota: No dejen que la IA los use a ustedes, si no ustedes usenla con fin de aprender, por ejemplo aqui en los links Sales q es IA
@@ -25,3 +29,20 @@ se la coman con todo y pelo jajaja
 Att: DJDA
 
 Por cierto, Acuerdense de ir subiendo info en Trello, no me queden mal con los sprint, pueden aregar tambien Tarjetas.
+
+// Iconos 
+leading: const Icon(
+  Icons.pets,
+  size: 40,
+  color: Color(0xFF1E3A5F),
+),
+
+# Links Cupertino pa ver si lo implementamos
+
+https://api.flutter.dev/flutter/cupertino/CupertinoSlidingSegmentedControl-class.html
+
+https://api.flutter.dev/flutter/cupertino/CupertinoAlertDialog-class.html
+
+https://api.flutter.dev/flutter/cupertino/CupertinoColors-class.html
+
+https://api.flutter.dev/flutter/cupertino/CupertinoNavigationBarBackButton-class.html
