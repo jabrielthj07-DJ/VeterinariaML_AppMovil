@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './Core/rutas_navegacion.dart';
 import './Widgets/menu.dart';
 
 // Pantallas de Interfaces
