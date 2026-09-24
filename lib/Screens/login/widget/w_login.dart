@@ -31,7 +31,7 @@ class loginScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: size.height,
-              color: const Color.fromARGB(255, 134, 209, 247).withOpacity(0.25),
+              color: const Color.fromARGB(255, 134, 209, 247).withValues(alpha: 0.25),
             ),
 
             // Column(
@@ -68,7 +68,7 @@ class loginScreen extends StatelessWidget {
                           6,
                           136,
                           169,
-                        ).withOpacity(0.2),
+                        ).withValues(alpha: 0.2),
                         blurRadius: 20,
                         offset: const Offset(0, 5),
                       ),
@@ -236,7 +236,7 @@ class loginScreen extends StatelessWidget {
                           2,
                           168,
                           193,
-                        ).withOpacity(0.2),
+                        ).withValues(alpha: 0.2),
                         size: 40,
                       ),
                       Column(
@@ -262,7 +262,7 @@ class loginScreen extends StatelessWidget {
                                   8,
                                   196,
                                   224,
-                                ).withOpacity(0.5),
+                                ).withValues(alpha: 0.5),
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -280,7 +280,7 @@ class loginScreen extends StatelessWidget {
                                   8,
                                   211,
                                   225,
-                                ).withOpacity(0.5),
+                                ).withValues(alpha: 0.5),
                               ),
                             ],
                           ),
@@ -309,7 +309,7 @@ class loginScreen extends StatelessWidget {
                           7,
                           161,
                           218,
-                        ).withOpacity(0.2),
+                        ).withValues(alpha: 0.2),
                         size: 40,
                       ),
                     ],
