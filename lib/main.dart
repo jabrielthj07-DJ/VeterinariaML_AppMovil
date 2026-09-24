@@ -5,7 +5,9 @@ import './Widgets/menu.dart';
 // Pantallas de Interfaces
 import './Screens/Inventario/inventario_screen.dart';
 import './Screens/principal_Screen/principalScreen.dart';
-import './Screens/login/login_Screen.dart';
+import './Screens/login/widget/w_login.dart';
+import 'Screens/perfil/perfil_screen.dart';
+import 'Screens/Inicio/inicio_Screen.dart';
 
 void main() {
   runApp(const App_Veterinaria());
@@ -19,7 +21,7 @@ class App_Veterinaria extends StatelessWidget {
     return MaterialApp(
       initialRoute: RutasNavegacion.principal, // luego cambiar to a como es 
       routes: {
-        //RutasNavegacion.login: (context) => const LoginScreen(),  // revisar 
+        //RutasNavegacion.login: (context) => const loginScreen(),  // revisar 
         //RutasNavegacion.inicio: (context) => const InicioScreen(),
         RutasNavegacion.principal: (context) => const PrincipalScreen(),
         RutasNavegacion.inventario: (context) => const InventarioScreen(),
