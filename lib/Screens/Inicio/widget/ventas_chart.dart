@@ -30,7 +30,6 @@ class _VentasCharState extends State<VentasChar> {
     )
    ]
 
-
   ),
 
   child: Column(
@@ -50,7 +49,6 @@ class _VentasCharState extends State<VentasChar> {
   padding: const EdgeInsets.symmetric(
   horizontal: 12,
   vertical: 8,
-
 
   ),
   
@@ -97,8 +95,6 @@ class _VentasCharState extends State<VentasChar> {
     borderRadius: BorderRadius.only(
       topLeft: Radius.circular(7),
       topRight: Radius.circular(7),
-
-
     ),
    ),
 
@@ -109,30 +105,16 @@ class _VentasCharState extends State<VentasChar> {
    style: TextStyle(
     color: Colors.grey,
     fontSize: 12,
-
    )
    )
 
    ],
   );
     }
-
-
     )
-
-
     )
-    
-    
-    
     ),
-  
-
-
-
   ]
-
-
   ),
   
   );

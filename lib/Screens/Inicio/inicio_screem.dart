@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'Inicio/widget/dashboard_header.dart';
-import 'Inicio/widget/estadistica_cart.dart';
-import 'Inicio/widget/tendencia_agosto.dart';
-import 'Inicio/widget/ventas_chart.dart';
+import 'widget/dashboard_header.dart';
+import 'widget/estadistica_cart.dart';
+import 'widget/tendencia_agosto.dart';
+import 'widget/ventas_chart.dart';
 
 class InicioScreen extends StatefulWidget {
   const InicioScreen({super.key});
