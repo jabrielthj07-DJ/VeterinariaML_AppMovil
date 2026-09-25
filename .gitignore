@@ -43,3 +43,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Archivo de pruebas local no subir nada al repositorio..
+lib/test_main.dart
