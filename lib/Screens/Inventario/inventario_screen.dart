@@ -39,6 +39,9 @@ class InventarioScreen extends StatelessWidget {
         const TarjetaProduct(),//p3
         const SizedBox(height: 10),
         const TarjetaProduct(),//p4
+        const SizedBox(height: 10,),
+        const TarjetaProduct(),//p5
+
       ],
       )
     );
