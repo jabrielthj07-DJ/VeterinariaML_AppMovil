@@ -10,10 +10,10 @@ class TarjetaProduct extends StatelessWidget {
       
       child: ListTile(
 
-leading: Image.asset(
-  './image/DJ_2_Logo.png',
-  width: 50,
-  height: 50,
+leading: const Icon(
+  Icons.pets_rounded,
+  size: 35,
+  color: Color(0xFF1E3A5F),
 ),
 
         title: Text('Shampoo para perros',
@@ -48,11 +48,7 @@ leading: Image.asset(
   }
 }
 
-// Nota: Tener en cuenta esto, preguntar que cual recomienda
 
-// snackbar u Alerta u mensaje
-//https://api.flutter.dev/flutter/material/SnackBar-class.html
-// Ocupar la tercera opcion de los tres ejemplos
 
 // Divider class
 //https://api.flutter.dev/flutter/material/Divider-class.html

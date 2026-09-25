@@ -1,61 +1,42 @@
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [ChoiceChip].
-
-void main() => runApp(const ChipApp());
-
-class ChipApp extends StatelessWidget {
-  const ChipApp({super.key});
+// Mejorar y hacerlo que cambie el nombre, o tengan nombres individuales
+class Filtro extends StatefulWidget {
+  const Filtro ({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(colorSchemeSeed: const Color(0xff6750a4)),
-      home: const ActionChoiceExample(),
-    );
-  }
+  State<Filtro> createState() => _FiltroState();
 }
 
-class ActionChoiceExample extends StatefulWidget {
-  const ActionChoiceExample({super.key});
-
-  @override
-  State<ActionChoiceExample> createState() => _ActionChoiceExampleState();
-}
-
-class _ActionChoiceExampleState extends State<ActionChoiceExample> {
+class _FiltroState extends State<Filtro> {
   int? _value = 1;
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('ActionChoice Sample')),
-      body: Center(
-        child: Column(
+    return Row(
           crossAxisAlignment: .start,
           mainAxisAlignment: .center,
+
           children: <Widget>[
-            Text('Choose an item', style: textTheme.labelLarge),
-            const SizedBox(height: 10.0),
             Wrap(
-              spacing: 5.0,
+              spacing: 10.0, //entre ellos
               children: List<Widget>.generate(3, (int index) {
                 return ChoiceChip(
-                  label: Text('Item $index'),
+                  label: Text('Stock'
+                  ),
                   selected: _value == index,
                   onSelected: (bool selected) {
                     setState(() {
                       _value = selected ? index : null;
+
+            
                     });
                   },
                 );
               }).toList(),
             ),
           ],
-        ),
-      ),
     );
   }
 }

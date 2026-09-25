@@ -21,6 +21,7 @@ class App_Veterinaria extends StatelessWidget {
       routes: {
         //RutasNavegacion.login: (context) => const LoginScreen(),  // revisar 
         //RutasNavegacion.inicio: (context) => const InicioScreen(),
+        RutasNavegacion.principal: (context) => const PrincipalScreen(),
         RutasNavegacion.inventario: (context) => const InventarioScreen(),
         //RutasNavegacion.ventas: (context) => const VentasScreen(),
         //RutasNavegacion.perfil: (context) => const PerfilScreen(),
