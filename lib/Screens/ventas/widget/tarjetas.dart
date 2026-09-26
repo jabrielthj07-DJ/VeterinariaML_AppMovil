@@ -35,14 +35,53 @@ leading: const Icon(
         ),
         ),
         
-        trailing: Text('Total: \C\$200',
+        trailing: Text('Total: \C\$550',
 
         style: TextStyle(
         color: const Color.fromARGB(155, 18, 52, 79),
         fontFamily: 'sans-serif',
         fontSize: 14,
         fontWeight: FontWeight.bold,
+
+        
         ),),
+        onTap: () {
+          showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Detalle de venta'),
+        content: const Column(
+  mainAxisSize: MainAxisSize.min,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text('Fecha: 26/09/2026'),
+    Text('Hora: 10:35 AM'),
+    Text('Cantidad de productos: 4'),
+    SizedBox(height: 12),
+    Text(
+      'Productos',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    SizedBox(height: 6),
+    Text('Shampoo para perros - C\$180'),
+    Text('Collar para perro - C\$120'),
+    Text('Alimento para perros - C\$250'),
+    SizedBox(height: 12),
+    Text(
+      'Total: C\$550',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ],
+),
+      );
+    },
+  );
+        },
       ),
     );
   }

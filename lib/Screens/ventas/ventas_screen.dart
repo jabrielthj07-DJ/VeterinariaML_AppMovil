@@ -56,29 +56,29 @@ class _VentasScreenState extends State<VentasScreen> {
       },
     ),
 
+
         const SizedBox(height: 8),
        
         if (vistaSeleccionada == 0)
-        const Text('Dashboard prueba') // Aqui recordar agregar power bi Reporte, acordarse que esta en trelo dise;o de figma
+        const SizedBox() // Aqui recordar agregar power bi Reporte, acordarse que esta en trelo dise;o de figma
         else
-        const BuscadorVenta(),
 
-      
-    
-
-        const SizedBox(height: 8),
-        const Filtro(),
-        const SizedBox(height: 8),
-        const Tarjetaventa(), //p1 prueba
-        const SizedBox(height: 8),
-        const Tarjetaventa(), //p2
-        const SizedBox(height: 8),
-        const Tarjetaventa(),//p3
-        const SizedBox(height: 8),
-        const Tarjetaventa(),//p4
-        const SizedBox(height: 8,),
-        const Tarjetaventa(),//p5
-
+       Column(
+    children: [
+      const BuscadorVenta(),
+      const SizedBox(height: 8),
+      const Filtro(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+    ],
+  ),
       ],
       )
     );
