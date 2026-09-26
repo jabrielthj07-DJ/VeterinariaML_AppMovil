@@ -13,7 +13,7 @@ class VentasScreen extends StatelessWidget {
     return Scaffold(
   appBar: AppBar (
        
-        title: const Text('                                Ventas',
+        title: const Text('                           Historial Ventas',
         style: TextStyle(
         color: const Color.fromARGB(155, 18, 52, 79),
         fontFamily: 'sans-serif',
@@ -28,17 +28,17 @@ class VentasScreen extends StatelessWidget {
 
         const SizedBox(height: 14),
         const BuscadorVenta(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const Filtro(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const Tarjetaventa(), //p1 prueba
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const Tarjetaventa(), //p2
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const Tarjetaventa(),//p3
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const Tarjetaventa(),//p4
-        const SizedBox(height: 10,),
+        const SizedBox(height: 8,),
         const Tarjetaventa(),//p5
 
       ],

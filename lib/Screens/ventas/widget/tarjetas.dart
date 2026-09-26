@@ -6,8 +6,7 @@ class Tarjetaventa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(223, 237, 244, 248),
-      
+      color: const Color.fromARGB(255, 255, 255, 255),      
       child: ListTile(
 
 leading: const Icon(
