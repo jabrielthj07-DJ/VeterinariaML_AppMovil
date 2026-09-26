@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../Inventario/inventario_screen.dart';
+import '../Inicio/inicio_screem.dart';
+import '../ventas/ventas_screen.dart';
+import '../perfil/perfil_screen.dart';
 import '../../Widgets/menu.dart';
 
 class PrincipalScreen extends StatefulWidget {
@@ -14,10 +17,11 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
   int currentPageIndex = 0;
 
   final List<Widget> pages = const [
-    //InicioScreen(),
-   // VentasScreen(),
+    InicioScreen(),
+    VentasScreen(),
     InventarioScreen(),
-    //PerfilScreen(),
+    PerfilScreen(),
+    //configuracionScreen(),
   ];
 
   @override
