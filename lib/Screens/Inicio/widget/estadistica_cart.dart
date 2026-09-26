@@ -19,7 +19,7 @@ class EstadisticaCart extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF2D755D),
+        color: Colors.white.withOpacity(0.12),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: Colors.white.withOpacity(0.15)
         ),

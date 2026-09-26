@@ -40,7 +40,6 @@ class _VentasCharState extends State<VentasChar> {
     children: [
   const Text('Analisis de ventas - 2026',
     style: TextStyle(
-    color: Color(0xFF164D3C),
     fontWeight: FontWeight.bold,
     fontSize: 16,
     ),
@@ -59,9 +58,8 @@ class _VentasCharState extends State<VentasChar> {
   
   child: const Text('Mensual',
   style: TextStyle(
-  color: Color(0xFF167052),
- fontWeight: FontWeight.bold,
- fontSize: 12,
+  fontWeight: FontWeight.bold,
+  fontSize: 12,
 
   ),
   
@@ -90,7 +88,7 @@ class _VentasCharState extends State<VentasChar> {
     height: ventas[index],
    
    decoration: BoxDecoration(
-    color: Color(0xFF197354),
+    color: Color(0xFF86D1F8),
 
     borderRadius: BorderRadius.only(
       topLeft: Radius.circular(7),
