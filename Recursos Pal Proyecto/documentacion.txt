@@ -30,13 +30,6 @@ Att: DJDA
 
 Por cierto, Acuerdense de ir subiendo info en Trello, no me queden mal con los sprint, pueden aregar tambien Tarjetas.
 
-// Iconos 
-leading: const Icon(
-  Icons.pets,
-  size: 40,
-  color: Color(0xFF1E3A5F),
-),
-
 # Links Cupertino pa ver si lo implementamos
 
 https://api.flutter.dev/flutter/cupertino/CupertinoSlidingSegmentedControl-class.html

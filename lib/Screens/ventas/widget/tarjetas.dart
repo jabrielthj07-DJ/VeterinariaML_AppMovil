@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
-class TarjetaProduct extends StatelessWidget {
-  const TarjetaProduct({super.key});
+class Tarjetaventa extends StatelessWidget {
+  const Tarjetaventa({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(255, 134, 209, 247),
-      
+      color: const Color.fromARGB(255, 255, 255, 255),      
       child: ListTile(
 
 leading: const Icon(
-  Icons.pets_rounded,
+  Icons.price_change_outlined,
   size: 35,
   color: Color(0xFF1E3A5F),
 ),
 
-        title: Text('Shampoo para perros',
+        title: Text('venta V-001',
         
         style: TextStyle(
         color: const Color.fromARGB(155, 18, 52, 79),
@@ -25,8 +24,9 @@ leading: const Icon(
         fontWeight: FontWeight.bold,
         ),
         ),
-
-        subtitle: Text('Stock: 15',
+      
+        subtitle: Text('Cantidad de productos: 4',
+        
 
         style: TextStyle(
         color: const Color.fromARGB(168, 10, 125, 58),
@@ -35,7 +35,7 @@ leading: const Icon(
         ),
         ),
         
-        trailing: Text('\C\$180',
+        trailing: Text('Total: \C\$200',
 
         style: TextStyle(
         color: const Color.fromARGB(155, 18, 52, 79),

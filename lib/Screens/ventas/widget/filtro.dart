@@ -11,6 +11,14 @@ class Filtro extends StatefulWidget {
 class _FiltroState extends State<Filtro> {
   int? _value = 1;
 
+  final List<String> filtros = [ 
+    'Hoy', 
+    'Ayer', 
+    'semanal',
+    'Mensual',
+    
+    ];
+
   @override
   Widget build(BuildContext context) {
 
@@ -19,12 +27,11 @@ class _FiltroState extends State<Filtro> {
           mainAxisAlignment: .center,
 
           children: <Widget>[
-            Wrap(
-              spacing: 10.0, //entre ellos
-              children: List<Widget>.generate(3, (int index) {
+            Wrap( //pasa a other line for yes acaso xd
+              spacing: 3.0, //entre ellos
+              children: List<Widget>.generate(filtros.length, (int index) {
                 return ChoiceChip(
-                  label: Text('Stock'
-                  ),
+                  label: Text(filtros[index]),
                   selected: _value == index,
                   onSelected: (bool selected) {
                     setState(() {
@@ -34,7 +41,7 @@ class _FiltroState extends State<Filtro> {
                     });
                   },
                 );
-              }).toList(),
+              })
             ),
           ],
     );

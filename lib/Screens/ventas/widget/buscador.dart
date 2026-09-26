@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class BuscadorProducto extends StatelessWidget {
-  const BuscadorProducto({super.key});
+class BuscadorVenta extends StatelessWidget {
+  const BuscadorVenta({super.key});
 
   @override
   Widget build(BuildContext context) {
     return  SearchBar(
       
-      hintText: 'Buscar producto',
+      hintText: 'Buscar Venta',
        backgroundColor: const WidgetStatePropertyAll(
-        Color.fromARGB(223, 235, 239, 241),
+        Color.fromARGB(247, 245, 251, 254),
       ),
     );
   }
