@@ -20,14 +20,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: RutasNavegacion.principal, // luego cambiar to a como es 
+      initialRoute: RutasNavegacion.perfil, // luego cambiar to a como es 
       routes: {
         //RutasNavegacion.login: (context) => const loginScreen(),  // revisar 
         //RutasNavegacion.inicio: (context) => const InicioScreen(),
         RutasNavegacion.principal: (context) => const PrincipalScreen(),
         RutasNavegacion.inventario: (context) => const InventarioScreen(),
         //RutasNavegacion.ventas: (context) => const VentasScreen(),
-        //RutasNavegacion.perfil: (context) => const PerfilScreen(),
+        RutasNavegacion.perfil: (context) => const PerfilScreen(),
       },
     );
   }
