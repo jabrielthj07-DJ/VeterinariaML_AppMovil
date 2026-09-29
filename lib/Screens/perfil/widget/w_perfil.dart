@@ -23,6 +23,11 @@ class _WPerfilState extends State<WPerfil>
 
     final TextEditingController telefonoController =
     TextEditingController(text: '505-9509-8928');
+    
+    final TextEditingController contrasenaController =
+    TextEditingController(text: '************');
+
+    final String administrador = 'Administrador';
 
 
   @override
@@ -30,6 +35,8 @@ class _WPerfilState extends State<WPerfil>
   {
     nombreController.dispose();
     correoController.dispose();
+    contrasenaController.dispose();
+    telefonoController.dispose();
     super.dispose();
   }
 
@@ -75,10 +82,20 @@ class _WPerfilState extends State<WPerfil>
 
                 TextField
                 (
+                  controller: contrasenaController,
+                  decoration: const InputDecoration
+                  (
+                    labelText: 'Contraseña',
+                    prefixIcon: Icon(Icons.lock_outline),
+                  ),
+                ),
+
+                TextField
+                (
                   controller: telefonoController,
                   decoration: const InputDecoration
                   (
-                    labelText: 'Correo',
+                    labelText: 'Telefono',
                     prefixIcon: Icon(Icons.phone),
                   ),
                 ),
@@ -95,10 +112,6 @@ class _WPerfilState extends State<WPerfil>
               {
                 Navigator.pop(context);
               },
-              style: ElevatedButton.styleFrom 
-              (
-                foregroundColor: const Color.fromARGB(255, 7, 97, 143), 
-              ),
               child: const Text('Cancelar'),
             ),
 
@@ -115,7 +128,7 @@ class _WPerfilState extends State<WPerfil>
                   const SnackBar
                   (
                     content: Text('Perfil actualizado'),
-                  ),         
+                  ),
                 );
               },
               child: const Text('Guardar'),
@@ -143,13 +156,11 @@ class _WPerfilState extends State<WPerfil>
 
             const CircleAvatar
             (
-              backgroundColor: Color.fromARGB(255, 116, 197, 238),
               radius: 55,
               child: Icon
               (
                 Icons.person,
                 size: 70,
-               color: Color.fromARGB(255, 7, 97, 143),
               ),
             ),
 
@@ -168,9 +179,9 @@ class _WPerfilState extends State<WPerfil>
 
             const SizedBox(height: 4),
 
-            const Text
+            Text
             (
-              'Cajero',
+              administrador,
 
               style: TextStyle
               (
@@ -184,12 +195,6 @@ class _WPerfilState extends State<WPerfil>
             ElevatedButton.icon
             (
               onPressed: editarPerfil,
-
-              style: ElevatedButton.styleFrom 
-              (
-                foregroundColor: const Color.fromARGB(255, 7, 97, 143), 
-              ),
-
               icon: const Icon(Icons.edit),
               label: const Text('Editar perfil'),
             ),
@@ -202,6 +207,19 @@ class _WPerfilState extends State<WPerfil>
               (
                 children:
                 [
+
+                  SizedBox(height: 10),
+
+                  Text(
+                    'Información de la cuenta',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const Divider(height: 10),
+
                   ListTile
                   (
                     leading: const Icon(Icons.person_outline),
@@ -226,7 +244,7 @@ class _WPerfilState extends State<WPerfil>
 
                   ListTile
                   (
-                    leading: const Icon(Icons.phone),
+                    leading: const Icon(Icons.phone_android_outlined),
 
                     title: const Text('Telefono'),
 
@@ -235,13 +253,24 @@ class _WPerfilState extends State<WPerfil>
 
                   const Divider(height: 1),
 
-                  const ListTile
+                  ListTile
                   (
-                    leading: Icon(Icons.lock_outline),
+                    leading: Icon(Icons.group_outlined),
 
-                    title: Text('Contraseña'),
+                    title: Text('Rol asignado'),
 
-                    subtitle: Text('**********'),
+                    subtitle: Text(administrador),
+                  ),
+
+                  const Divider(height: 1),
+
+                  ListTile
+                  (
+                    leading: const Icon(Icons.lock_outline),
+
+                    title: const Text('Contraseña'),
+
+                    subtitle: Text(contrasenaController.text),
                   ),
                 ],
               ),
