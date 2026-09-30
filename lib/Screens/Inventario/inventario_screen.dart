@@ -13,10 +13,12 @@ class InventarioScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
   appBar: AppBar (
-       
-        title: const Text('                          Estado de Existencias',
+        backgroundColor: const Color.fromARGB(255, 24, 82, 107),
+        foregroundColor: Colors.white,
+        centerTitle: true, // Centra the TT
+        title: const Text('Estado de Existencias',
         style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79),
+        color: Colors.white,
         fontFamily: 'sans-serif',
         fontSize: 18,
         fontWeight: FontWeight.bold,
@@ -29,7 +31,7 @@ class InventarioScreen extends StatelessWidget {
 
         const SizedBox(height: 14),
         const BuscadorProducto(),
-        const SizedBox(height: 8),
+        const SizedBox(height: 13),
         const Filtro(),
         const SizedBox(height: 8),
         const TarjetaProduct(), //p1 prueba

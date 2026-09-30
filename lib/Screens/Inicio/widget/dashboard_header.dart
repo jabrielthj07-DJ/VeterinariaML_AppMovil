@@ -15,7 +15,15 @@ class DashboardHeader extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(24, 25, 24, 22),
       decoration: const BoxDecoration(
-        color: Color(0xFF0D5B43),
+        // Indexado Por DJ
+        gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(255, 24, 82, 107),  
+          Color.fromARGB(255, 98, 178, 209), 
+        ],
+      ),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(28),
           bottomRight: Radius.circular(28),
@@ -25,7 +33,7 @@ class DashboardHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text(
                 'Martes 12 de agosto 2026',
@@ -33,18 +41,6 @@ class DashboardHeader extends StatelessWidget {
                   color: Colors.white70,
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white12,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.notifications_none,
-                  color: Colors.white,
-                  size: 22,
                 ),
               ),
             ],

@@ -24,8 +24,25 @@ class App_Veterinaria extends StatelessWidget {
       seedColor: const Color.fromARGB(255, 134, 209, 247),
       brightness: Brightness.light,
     ),
-  ),
   
+  textTheme: const TextTheme(
+  titleLarge: TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  ),
+  titleMedium: TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  ),
+  bodyLarge: TextStyle(
+    fontSize: 16,
+  ),
+  bodyMedium: TextStyle(
+    fontSize: 14,
+  ),
+),
+        ), 
+        
       initialRoute: RutasNavegacion.principal,
       routes: {
         //RutasNavegacion.login: (context) => const LoginScreen(),  // revisar 

@@ -18,11 +18,22 @@ class EstadisticaCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
+    
       decoration: BoxDecoration(
-        color: const Color(0xFF2D755D),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.white.withOpacity(0.15)
+        
+         // Indexado Por DJ
+        gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(255, 24, 82, 107),  
+          Color.fromARGB(255, 98, 178, 209), 
+        ],
         ),
+        borderRadius: BorderRadius.circular(18), // Va dentro de BoxDecoration
+      border: Border.all(
+        color: Colors.white.withOpacity(0.15), // Borde blanco translúcido
+      ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
