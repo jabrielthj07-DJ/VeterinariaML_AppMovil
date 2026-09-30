@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'widget/w_perfil.dart';
-
-class PerfilScreen extends StatelessWidget
+class ConfiScreen extends StatelessWidget
 {
-  const PerfilScreen
+  const ConfiScreen
   (
     {
       super.key,
@@ -19,10 +17,9 @@ class PerfilScreen extends StatelessWidget
       appBar: AppBar
       (
         centerTitle: true,
-        title: const Text('Mi Perfil'),
+        title: const Text('Perfil De Usuario'),
       ),
-      body: const WPerfil(),
+      body: const ConfiScreen(),
     );
   }
 }
-

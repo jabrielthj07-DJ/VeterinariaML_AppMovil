@@ -7,3 +7,4 @@ class RutasNavegacion {
   static const String perfil = '/Perfil';
   static const String configuracion = '/configuracion';
 }
+
