@@ -8,6 +8,7 @@ import './Screens/principal_Screen/principalScreen.dart';
 import './Screens/ventas/ventas_screen.dart';
 import 'Screens/perfil/perfil_screen.dart';
 import 'Screens/Inicio/inicio_screem.dart';
+import 'Screens/configuracion/confi_screen.dart';
 
 void main() {
   runApp(const App_Veterinaria());
@@ -20,29 +21,47 @@ class App_Veterinaria extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
+          // Menu navegcion o segmentaciones
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color.fromARGB(255, 134, 209, 247),
       brightness: Brightness.light,
     ),
   
+  // Fuentes
   textTheme: const TextTheme(
-  titleLarge: TextStyle(
+  titleLarge: TextStyle(  // lo vamos a ocupar pa h1 por ejemplo txt principales
     fontSize: 24,
+    fontFamily: 'sans-serif',
     fontWeight: FontWeight.bold,
+     color: Colors.white, 
   ),
-  titleMedium: TextStyle(
+  titleMedium: TextStyle(  // subtitulos como h2 o h3 en html
     fontSize: 18,
-    fontWeight: FontWeight.w600,
+    fontFamily: 'sans-serif',
+    fontWeight: FontWeight.bold,
+     color: Colors.white, 
   ),
-  bodyLarge: TextStyle(
+  bodyLarge: TextStyle( // txt importante tipo h1 pero es h4 o h5
     fontSize: 16,
+    fontFamily: 'sans-serif',
+     color: Colors.white, 
   ),
-  bodyMedium: TextStyle(
+  bodyMedium: TextStyle( // txt tipo h6 o p
     fontSize: 14,
+    fontFamily: 'sans-serif',
+     color: Colors.white, 
   ),
 ),
+
+// Header
+appBarTheme: const AppBarTheme(
+  backgroundColor: Color(0xFF1E3A5F),
+  foregroundColor: Colors.white,
+  centerTitle: true,
+),
+
         ), 
-        
+
       initialRoute: RutasNavegacion.principal,
       routes: {
         //RutasNavegacion.login: (context) => const LoginScreen(),  // revisar 
@@ -51,6 +70,7 @@ class App_Veterinaria extends StatelessWidget {
         RutasNavegacion.inventario: (context) => const InventarioScreen(),
         RutasNavegacion.ventas: (context) => const VentasScreen(),
         RutasNavegacion.perfil: (context) => const PerfilScreen(),
+         RutasNavegacion.configuracion: (context) => const ConfiguracionScreen(),
       },
     );
   }

@@ -13,16 +13,9 @@ class InventarioScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
   appBar: AppBar (
-        backgroundColor: const Color.fromARGB(255, 24, 82, 107),
-        foregroundColor: Colors.white,
         centerTitle: true, // Centra the TT
-        title: const Text('Estado de Existencias',
-        style: TextStyle(
-        color: Colors.white,
-        fontFamily: 'sans-serif',
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        ),
+        title: Text('Estado de Existencias',
+          style: Theme.of(context).textTheme.titleLarge,
       ),
     ),
 

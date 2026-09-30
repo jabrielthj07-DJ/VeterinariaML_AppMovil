@@ -19,7 +19,9 @@ class PerfilScreen extends StatelessWidget
       appBar: AppBar
       (
         centerTitle: true,
-        title: const Text('Mi Perfil'),
+        title:  Text('Mi Perfil',
+         style: Theme.of(context).textTheme.titleLarge,
+         ),
       ),
       body: const WPerfil(),
     );

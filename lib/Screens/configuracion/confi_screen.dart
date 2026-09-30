@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ConfiScreen extends StatelessWidget
+class ConfiguracionScreen extends StatelessWidget
 {
-  const ConfiScreen
+  const ConfiguracionScreen
   (
     {
       super.key,
@@ -17,9 +17,16 @@ class ConfiScreen extends StatelessWidget
       appBar: AppBar
       (
         centerTitle: true,
-        title: const Text('Perfil De Usuario'),
+        title: const Text('Configuracion'),
       ),
-      body: const ConfiScreen(),
+
+    body: const Center(
+  child: Text('Configuración'),
+),
+
+// Cuando agregues los widgets
+
+      // body: const ConfiguracionScreen(),
     );
   }
 }

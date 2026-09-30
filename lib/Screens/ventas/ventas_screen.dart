@@ -5,6 +5,9 @@ import './widget/tarjetas.dart';
 import './widget/buscador.dart';
 import './widget/filtro.dart';
 
+// Temporal mientras el dashboard
+import './widget/temporal/ventas_chart.dart';
+import'./widget/temporal/tendencia_agosto.dart';
 class VentasScreen extends StatefulWidget {
   const VentasScreen({super.key});
 
@@ -20,16 +23,9 @@ class _VentasScreenState extends State<VentasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
   appBar: AppBar (
-      backgroundColor: const Color.fromARGB(255, 24, 82, 107),
-      foregroundColor: Colors.white,
       centerTitle: true, // Centra the title
-        title: const Text('Analisis de Ventas',
-        style: TextStyle(
-        color: Colors.white, 
-        fontFamily: 'sans-serif',
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        ),
+        title: Text('Analisis de Ventas',
+         style: Theme.of(context).textTheme.titleLarge,
       ),
     ),
 
@@ -60,8 +56,16 @@ class _VentasScreenState extends State<VentasScreen> {
 
         const SizedBox(height: 8),
        
-        if (vistaSeleccionada == 0)
-        const SizedBox() // Aqui recordar agregar power bi Reporte, acordarse que esta en trelo dise;o de figma
+        if (vistaSeleccionada == 0) 
+        Column(
+    children: const [
+      VentasChar(),
+      SizedBox(height: 8),
+      TendenciaAgosto(),
+
+     // Sol de prueba despues power bi
+    ],
+  )
         else
 
        Column(
