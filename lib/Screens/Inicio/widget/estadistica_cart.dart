@@ -20,20 +20,10 @@ class EstadisticaCart extends StatelessWidget {
       padding: const EdgeInsets.all(16),
     
       decoration: BoxDecoration(
-        
-         // Indexado Por DJ
-        gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Color.fromARGB(255, 24, 82, 107),  
-          Color.fromARGB(255, 98, 178, 209), 
-        ],
+        color: Colors.white.withOpacity(0.12),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.15)
         ),
-        borderRadius: BorderRadius.circular(18), // Va dentro de BoxDecoration
-      border: Border.all(
-        color: Colors.white.withOpacity(0.15), // Borde blanco translúcido
-      ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,8 +50,8 @@ class EstadisticaCart extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
               color: alerta
-                  ? Colors.redAccent.withOpacity(0.8)
-                  : Colors.orange.withOpacity(0.8),
+                  ? Colors.redAccent.withValues(alpha: 0.8)
+                  : Colors.orange.withValues(alpha: 0.8),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(

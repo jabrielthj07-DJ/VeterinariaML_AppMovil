@@ -15,15 +15,14 @@ class DashboardHeader extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(24, 25, 24, 22),
       decoration: const BoxDecoration(
-        // Indexado Por DJ
         gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Color.fromARGB(255, 24, 82, 107),  
-          Color.fromARGB(255, 98, 178, 209), 
-        ],
-      ),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF174B5B),
+            Color(0xFF7BD0F3),
+          ],
+        ),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(28),
           bottomRight: Radius.circular(28),
