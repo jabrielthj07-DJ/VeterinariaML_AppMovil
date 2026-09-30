@@ -9,7 +9,7 @@ class BuscadorProducto extends StatelessWidget {
       
       hintText: 'Buscar producto',
        backgroundColor: const WidgetStatePropertyAll(
-        Color.fromARGB(223, 235, 239, 241),
+        Color.fromARGB(255, 255, 255, 255),
       ),
     );
   }

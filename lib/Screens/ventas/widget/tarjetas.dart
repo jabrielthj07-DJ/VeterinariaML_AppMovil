@@ -29,7 +29,7 @@ leading: const Icon(
         
 
         style: TextStyle(
-        color: const Color.fromARGB(168, 10, 125, 58),
+        color: const Color.fromARGB(155, 18, 52, 79), 
         fontFamily: 'sans-serif',
         fontSize: 12,
         ),
@@ -38,7 +38,7 @@ leading: const Icon(
         trailing: Text('Total: \C\$550',
 
         style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79),
+        color: const Color.fromARGB(168, 10, 125, 58),
         fontFamily: 'sans-serif',
         fontSize: 14,
         fontWeight: FontWeight.bold,

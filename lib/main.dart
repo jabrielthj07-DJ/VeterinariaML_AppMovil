@@ -19,6 +19,13 @@ class App_Veterinaria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: const Color.fromARGB(255, 134, 209, 247),
+      brightness: Brightness.light,
+    ),
+  ),
+  
       initialRoute: RutasNavegacion.principal,
       routes: {
         //RutasNavegacion.login: (context) => const LoginScreen(),  // revisar 

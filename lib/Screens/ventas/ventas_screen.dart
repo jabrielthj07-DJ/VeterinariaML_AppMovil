@@ -20,11 +20,11 @@ class _VentasScreenState extends State<VentasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
   appBar: AppBar (
-      backgroundColor: const Color(0xFF087A4B),
+      backgroundColor: const Color.fromARGB(201, 69, 159, 204),
       foregroundColor: Colors.white,
         title: const Text('                     Analisis de Ventas',
         style: TextStyle(
-        color: Color.fromARGB(255, 247, 250, 252),
+        color: Color.fromARGB(215, 45, 46, 46), // Probando celeste
         fontFamily: 'sans-serif',
         fontSize: 18,
         fontWeight: FontWeight.bold,
