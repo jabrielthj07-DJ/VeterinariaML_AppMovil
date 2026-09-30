@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:veterinaria_ml_movil/Screens/Inicio/widget/w_inicio.dart';
 import './Core/rutas_navegacion.dart';
 
 // Pantallas de Interfaces
@@ -21,12 +22,20 @@ class App_Veterinaria extends StatelessWidget {
     return MaterialApp(
       initialRoute: RutasNavegacion.principal,
       routes: {
+<<<<<<< Updated upstream
         //RutasNavegacion.login: (context) => const LoginScreen(),  // revisar 
         RutasNavegacion.inicio: (context) => const InicioScreen(),
         RutasNavegacion.principal: (context) => const PrincipalScreen(),
         RutasNavegacion.inventario: (context) => const InventarioScreen(),
         RutasNavegacion.ventas: (context) => const VentasScreen(),
         RutasNavegacion.perfil: (context) => const PerfilScreen(),
+=======
+        RutasNavegacion.login: (context) => loginScreen(),
+        // RutasNavegacion.inicio: (context) => const InicioScreen(),
+        //RutasNavegacion.inventario: (context) => const InventarioScreen(),
+        //RutasNavegacion.ventas: (context) => const VentasScreen(),
+        //RutasNavegacion.perfil: (context) => const PerfilScreen(),
+>>>>>>> Stashed changes
       },
     );
   }
