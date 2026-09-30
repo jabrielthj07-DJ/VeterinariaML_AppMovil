@@ -50,16 +50,20 @@ class _WPerfilState extends State<WPerfil> {
               children: [
                 TextField(
                   controller: nombreController,
+                  style: const TextStyle(
+                  color: Color.fromARGB(255, 70, 72, 73),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'Nombre',
                     prefixIcon: Icon(Icons.person_outline),
                   ),
                 ),
 
-                const SizedBox(height: 12),
-
                 TextField(
                   controller: correoController,
+                  style: const TextStyle(
+                  color: Color.fromARGB(255, 70, 72, 73),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'Correo',
                     prefixIcon: Icon(Icons.email_outlined),
@@ -68,6 +72,9 @@ class _WPerfilState extends State<WPerfil> {
 
                 TextField(
                   controller: contrasenaController,
+                  style: const TextStyle(
+                  color: Color.fromARGB(255, 70, 72, 73),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'Contraseña',
                     prefixIcon: Icon(Icons.lock_outline),
@@ -76,6 +83,9 @@ class _WPerfilState extends State<WPerfil> {
 
                 TextField(
                   controller: telefonoController,
+                  style: const TextStyle(
+                  color: Color.fromARGB(255, 70, 72, 73),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'Telefono',
                     prefixIcon: Icon(Icons.phone),
