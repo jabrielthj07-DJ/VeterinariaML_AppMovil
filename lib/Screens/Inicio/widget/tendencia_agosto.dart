@@ -38,7 +38,6 @@ class _TendenciaAgostoState extends State<TendenciaAgosto> {
               const Text(
                 'Tendencia de agosto',
                 style: TextStyle(
-                  color: Color(0xFF164F3C),
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,7 +45,6 @@ class _TendenciaAgostoState extends State<TendenciaAgosto> {
               const Text(
                 '+14% vs julio',
                 style: TextStyle(
-                  color: Color(0xFF2E8B62),
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),

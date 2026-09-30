@@ -14,7 +14,7 @@ class InventarioScreen extends StatelessWidget {
     return Scaffold(
   appBar: AppBar (
        
-        title: const Text('                Inventario',
+        title: const Text('                          Estado de Existencias',
         style: TextStyle(
         color: const Color.fromARGB(155, 18, 52, 79),
         fontFamily: 'sans-serif',
@@ -26,16 +26,22 @@ class InventarioScreen extends StatelessWidget {
 
       body: Column(
       children: [
+
         const SizedBox(height: 14),
         const BuscadorProducto(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
+        const Filtro(),
+        const SizedBox(height: 8),
         const TarjetaProduct(), //p1 prueba
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const TarjetaProduct(), //p2
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const TarjetaProduct(),//p3
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         const TarjetaProduct(),//p4
+        const SizedBox(height: 8,),
+        const TarjetaProduct(),//p5
+
       ],
       )
     );
