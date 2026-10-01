@@ -44,12 +44,12 @@ class App_Veterinaria extends StatelessWidget {
   bodyLarge: TextStyle( // txt importante tipo h1 pero es h4 o h5
     fontSize: 16,
     fontFamily: 'sans-serif',
-     color: Colors.white, 
+     color: Color.fromARGB(255, 0, 0, 0), 
   ),
   bodyMedium: TextStyle( // txt tipo h6 o p
     fontSize: 14,
     fontFamily: 'sans-serif',
-     color: Colors.white, 
+     color: Color.fromARGB(255, 40, 37, 37), 
   ),
 ),
 
