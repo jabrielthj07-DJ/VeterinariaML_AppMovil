@@ -6,10 +6,10 @@ class BuscadorVenta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SearchBar(
-      
+
       hintText: 'Buscar Venta',
        backgroundColor: const WidgetStatePropertyAll(
-        Color.fromARGB(247, 245, 251, 254),
+        Color.fromARGB(255, 255, 255, 255),
       ),
     );
   }

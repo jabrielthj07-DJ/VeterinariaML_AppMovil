@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/Screens/Inicio/widget/w_inicio.dart';
+//import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
+import 'package:veterinaria_ml_movil/Screens/principal_Screen/principalScreen.dart';
 
 // Definimos la pantalla estrictamente como StatelessWidget
 class loginScreen extends StatelessWidget {
@@ -35,36 +36,12 @@ class loginScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: size.height,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF7EC8FF),
-                    Color(0xFFB8E6FF),
-                    Color(0xFFEAF8FF),
-                  ],
-                  stops: [0.1, 0.5, 1.0],
-                ),
-              ),
-            ),
-
-            Positioned(
-              top: 80,
-              left: 30,
-              child: Opacity(
-                opacity: 0.12,
-                child: Icon(Icons.pets, size: 50, color: Colors.blue),
-              ),
-            ),
-
-            Positioned(
-              top: 180,
-              right: 30,
-              child: Opacity(
-                opacity: 0.12,
-                child: Icon(Icons.pets, size: 40, color: Colors.blue),
-              ),
+              color: const Color.fromARGB(
+                255,
+                134,
+                209,
+                247,
+              ).withValues(alpha: 0.25),
             ),
 
             Positioned(
@@ -140,6 +117,7 @@ class loginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
@@ -232,8 +210,8 @@ class loginScreen extends StatelessWidget {
                             String email = _emailController.text.trim();
                             String password = _passwordController.text;
 
-                            const String gmailCorrecto = "ingehernan@gmail.com";
-                            const String passwordCorrecta = "jon130806";
+                            const String gmailCorrecto = "admin@gmail.com";
+                            const String passwordCorrecta = "12345678";
 
                             if (email == gmailCorrecto &&
                                 password == passwordCorrecta) {
@@ -250,12 +228,13 @@ class loginScreen extends StatelessWidget {
                                   ),
                                 ),
                               );
-
-                              Navigator.pushReplacement(
+                              Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const InicioScreen(),
+                                  builder: (context) => const PrincipalScreen(),
                                 ),
+                                (route) =>
+                                    false, // Elimina la pantalla de Login del historial
                               );
                             } else {
                               print('Datos incorrectos');
@@ -315,8 +294,6 @@ class loginScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-<<<<<<< Updated upstream
-=======
                           // const Text(
                           //   'Cuidamos a quienes\nte dan felicidad',
                           //   textAlign: TextAlign.center,
@@ -328,7 +305,6 @@ class loginScreen extends StatelessWidget {
                           //   ),
                           // ),
                           // const SizedBox(height: 8),
->>>>>>> Stashed changes
                           Row(
                             children: [
                               Container(

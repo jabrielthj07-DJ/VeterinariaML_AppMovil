@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
+import 'widget/w_confi.dart';
 
-class ConfiScreen extends StatelessWidget
-{
-  const ConfiScreen
-  (
-    {
-      super.key,
-    }
-  );
+class ConfiguracionScreen extends StatelessWidget {
+  const ConfiguracionScreen({
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold
-    (
-      appBar: AppBar
-      (
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
         centerTitle: true,
-        title: const Text('Perfil De Usuario'),
+        title: const Text('Configuracion'),
       ),
-      body: const ConfiScreen(),
+      body: const WConfi(),
     );
   }
 }
