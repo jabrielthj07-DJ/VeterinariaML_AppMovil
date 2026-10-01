@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/Screens/Inicio/widget/accesos_rapido.dart';
-
 import 'widget/dashboard_header.dart';
 import 'widget/estadistica_cart.dart';
 import 'widget/tendencia_agosto.dart';
@@ -97,7 +95,7 @@ class _InicioScreenState extends State<InicioScreen> {
               const SizedBox(height: 20),
               const ProductoMasVendidos(),
               const SizedBox(height: 18,),
-              const AccesosRapido(),
+             
             ]),
           ),
         ),
