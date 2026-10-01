@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
 
 // Definimos la pantalla estrictamente como StatelessWidget
 class loginScreen extends StatelessWidget {
@@ -31,7 +32,12 @@ class loginScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: size.height,
-              color: const Color.fromARGB(255, 134, 209, 247).withValues(alpha: 0.25),
+              color: const Color.fromARGB(
+                255,
+                134,
+                209,
+                247,
+              ).withValues(alpha: 0.25),
             ),
 
             // Column(
@@ -74,6 +80,7 @@ class loginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
@@ -165,8 +172,8 @@ class loginScreen extends StatelessWidget {
                             String email = _emailController.text.trim();
                             String password = _passwordController.text;
 
-                            const String gmailCorrecto = "ingehernan@gmail.com";
-                            const String passwordCorrecta = "jon130806";
+                            const String gmailCorrecto = "admin@gmail.com";
+                            const String passwordCorrecta = "12345678";
 
                             if (email == gmailCorrecto &&
                                 password == passwordCorrecta) {
@@ -182,6 +189,14 @@ class loginScreen extends StatelessWidget {
                                     177,
                                   ),
                                 ),
+                              );
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const InicioScreen(),
+                                ),
+                                (route) =>
+                                    false, // Elimina la pantalla de Login del historial
                               );
                             } else {
                               print('Datos incorrectos');
