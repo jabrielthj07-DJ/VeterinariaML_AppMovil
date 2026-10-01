@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
 import 'package:veterinaria_ml_movil/Screens/principal_Screen/principalScreen.dart';
+
 // Definimos la pantalla estrictamente como StatelessWidget
 class loginScreen extends StatelessWidget {
   loginScreen({super.key});
