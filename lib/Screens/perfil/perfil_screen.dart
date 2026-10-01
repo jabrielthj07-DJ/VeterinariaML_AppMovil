@@ -16,13 +16,14 @@ class PerfilScreen extends StatelessWidget
   {
     return Scaffold
     (
-      appBar: AppBar
-      (
-        centerTitle: true,
-        title:  Text('Mi Perfil',
-         style: Theme.of(context).textTheme.titleLarge,
-         ),
-      ),
+      // appBar: AppBar
+      // (
+      //   centerTitle: true,
+      //   title:  Text('Mi Perfil',
+      //    style: Theme.of(context).textTheme.titleLarge,
+      //    ),
+      // ),
+      
       body: const WPerfil(),
     );
   }

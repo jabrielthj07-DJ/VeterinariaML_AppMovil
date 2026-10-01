@@ -90,13 +90,14 @@ class _InicioScreenState extends State<InicioScreen> {
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               const SizedBox(height: 0),
-              const TendenciaAgosto(),
-              const SizedBox(height: 20),
-               const VentasChar(),
+              // const TendenciaAgosto(),
+              // const SizedBox(height: 20),
+              //  const VentasChar(),
+                const AccesosRapido(),
               const SizedBox(height: 20),
               const ProductoMasVendidos(),
               const SizedBox(height: 20),
-              const AccesosRapido(),
+            
 
              
             ]),

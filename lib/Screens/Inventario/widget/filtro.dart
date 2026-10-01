@@ -23,7 +23,11 @@ class _FiltroState extends State<Filtro> {
               spacing: 10.0, //entre ellos
               children: List<Widget>.generate(3, (int index) {
                 return ChoiceChip(
-                  label: Text('Stock'
+                  label: Text(index == 0
+                                ? 'Todos'
+                                : index == 1
+                                ? 'Stock bajo'
+                                : 'Agotados',
                   ),
                   selected: _value == index,
                   onSelected: (bool selected) {

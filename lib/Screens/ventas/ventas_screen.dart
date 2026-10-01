@@ -22,15 +22,43 @@ class _VentasScreenState extends State<VentasScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  appBar: AppBar (
-      centerTitle: true, // Centra the title
-        title: Text('Analisis de Ventas',
-         style: Theme.of(context).textTheme.titleLarge,
-      ),
-    ),
+  // appBar: AppBar (
+  //     centerTitle: true, // Centra the title
+  //       title: Text('Analisis de Ventas',
+  //        style: Theme.of(context).textTheme.titleLarge,
+  //     ),
+  //   ),
 
       body: Column(
       children: [
+
+          Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(20),
+  decoration: const BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xFF174B5B),
+        Color(0xFF7BD0F3),
+      ],
+    ),
+  ),
+  child: const Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Ventas',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ],
+  ),
+),
 
         const SizedBox(height: 14),
             
