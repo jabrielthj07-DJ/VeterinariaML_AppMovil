@@ -22,11 +22,12 @@ class loginScreen extends StatelessWidget {
               width: double.infinity,
               height: size.height,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/fondo_veterinaria.jpg.png'),
-                  fit: BoxFit.cover,
-                  alignment: Alignment(0, -1.2),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xff154455), Color(0xff22596B)],
                 ),
+                // alignment: Alignment(0, -1.2),
               ),
             ),
 
@@ -41,30 +42,146 @@ class loginScreen extends StatelessWidget {
               ).withValues(alpha: 0.25),
             ),
 
-            // Column(
-            //   children: [
-            //     const SizedBox(height: 40),
+            Positioned(
+              top: 40,
+              left: 20,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 35,
+                color: Colors.white.withOpacity(0.08),
+              ),
+            ),
 
-            //     const Text(
-            //       'Bienvenido a Veterinaria M&L',
-            //       textAlign: TextAlign.center,
-            //       style: TextStyle(
-            //         fontSize: 28,
-            //         fontWeight: FontWeight.bold,
-            //         color: Colors.white,
-            //         shadows: [Shadow(color: Colors.black26, blurRadius: 10)],
-            //       ),
-            //     ),
-            //   ],
-            // ),
+            Positioned(
+              top: 90,
+              right: 40,
+              child: Transform.rotate(
+                angle: 0.5,
+                child: Icon(
+                  Icons.pets_rounded,
+                  size: 60,
+                  color: Colors.white.withOpacity(0.06),
+                ),
+              ),
+            ),
+
+            Positioned(
+              top: 220,
+              left: 15,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 80,
+                color: Colors.white.withOpacity(0.05),
+              ),
+            ),
+
+            Positioned(
+              top: 300,
+              right: 30,
+              child: Transform.rotate(
+                angle: -0.6,
+                child: Icon(
+                  Icons.pets_rounded,
+                  size: 45,
+                  color: Colors.white.withOpacity(0.07),
+                ),
+              ),
+            ),
+
+            Positioned(
+              top: 520,
+              left: 25,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 55,
+                color: Colors.white.withOpacity(0.05),
+              ),
+            ),
+
+            Positioned(
+              top: 680,
+              right: 20,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 70,
+                color: Colors.white.withOpacity(0.05),
+              ),
+            ),
+
+            Positioned(
+              bottom: -20,
+              left: -20,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 130,
+                color: Colors.white.withOpacity(0.18),
+              ),
+            ),
+
+            Positioned(
+              bottom: 80,
+              left: 90,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 50,
+                color: Colors.white.withOpacity(0.10),
+              ),
+            ),
+
+            Positioned(
+              bottom: 140,
+              left: 40,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 30,
+                color: Colors.white.withOpacity(0.09),
+              ),
+            ),
+
+            Positioned(
+              bottom: -10,
+              right: -20,
+              child: Transform.rotate(
+                angle: 0.4,
+                child: Icon(
+                  Icons.pets_rounded,
+                  size: 120,
+                  color: Colors.white.withOpacity(0.18),
+                ),
+              ),
+            ),
+
+            Positioned(
+              bottom: 90,
+              right: 80,
+              child: Icon(
+                Icons.pets_rounded,
+                size: 40,
+                color: Colors.white.withOpacity(0.10),
+              ),
+            ),
+
+            Positioned(
+              bottom: 230,
+              right: 15,
+              child: Transform.rotate(
+                angle: -0.5,
+                child: Icon(
+                  Icons.pets_rounded,
+                  size: 70,
+                  color: Colors.white.withOpacity(0.05),
+                ),
+              ),
+            ),
+
             const SizedBox(height: 20),
 
             Column(
               children: [
                 const SizedBox(height: 50), // Espacio superior inicial
                 Container(
-                  width: 140,
-                  height: 140,
+                  width: 160,
+                  height: 160,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 255, 255, 255),
                     shape: BoxShape.circle,
@@ -86,10 +203,9 @@ class loginScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: Image.asset(
-                      'assets/logo_veterinaria.png.png',
+                      'lib/Screens/login/image/logo_veterinaria.png',
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
-                        // Respaldo visual si la ruta falla
                         return const Icon(
                           Icons.pets,
                           color: Colors.green,
@@ -110,10 +226,11 @@ class loginScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontStyle: FontStyle.italic,
-                        color: Color.fromARGB(255, 30, 21, 17),
+                        color: Colors.white70,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+                    const SizedBox(height: 50),
                   ],
                 ),
 
@@ -135,20 +252,33 @@ class loginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Login',
+                        'Bienvenido',
                         style: TextStyle(
-                          fontSize: size.width * 0.07,
+                          // fontSize: size.width * 0.07,
+                          fontSize: 18,
+
                           fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 17, 22, 25),
                         ),
                       ),
+
                       const SizedBox(height: 10),
 
                       TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: 'Correo electrónico',
-                          prefixIcon: Icon(Icons.email_outlined),
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                            color: Color.fromARGB(255, 19, 27, 31),
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFF4F9FC),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            borderSide: BorderSide.none,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -156,10 +286,22 @@ class loginScreen extends StatelessWidget {
                       TextField(
                         controller: _passwordController,
                         obscureText: true,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: 'Contraseña',
-                          prefixIcon: Icon(Icons.lock_clock_outlined),
-                          suffixIcon: Icon(Icons.visibility_off_outlined),
+                          prefixIcon: const Icon(
+                            Icons.lock_outline_rounded,
+                            color: Color.fromARGB(255, 24, 28, 30),
+                          ),
+                          suffixIcon: const Icon(
+                            Icons.visibility_off_outlined,
+                            color: Colors.grey,
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFF4F9FC),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            borderSide: BorderSide.none,
+                          ),
                         ),
                       ),
 
@@ -257,17 +399,6 @@ class loginScreen extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          // const Text(
-                          //   'Cuidamos a quienes\nte dan felicidad',
-                          //   textAlign: TextAlign.center,
-                          //   style: TextStyle(
-                          //     fontSize: 18,
-                          //     fontStyle: FontStyle.italic,
-                          //     color: Color.fromARGB(255, 30, 21, 17),
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 8),
                           Row(
                             children: [
                               Container(
@@ -280,24 +411,8 @@ class loginScreen extends StatelessWidget {
                                   224,
                                 ).withValues(alpha: 0.5),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Icon(
-                                  Icons.pets,
-                                  color: Color.fromARGB(255, 11, 158, 211),
-                                  size: 14,
-                                ),
-                              ),
-                              Container(
-                                width: 40,
-                                height: 1,
-                                color: const Color.fromARGB(
-                                  255,
-                                  8,
-                                  211,
-                                  225,
-                                ).withValues(alpha: 0.5),
-                              ),
+
+                              // Huellas
                             ],
                           ),
                           const SizedBox(height: 8),
@@ -306,14 +421,14 @@ class loginScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black87,
+                              color: Color.fromARGB(255, 186, 198, 204),
                             ),
                           ),
                           const Text(
                             'Masatepe, Nicaragua',
                             style: TextStyle(
                               fontSize: 12,
-                              color: Colors.black54,
+                              color: Color.fromARGB(255, 186, 198, 204),
                             ),
                           ),
                         ],
