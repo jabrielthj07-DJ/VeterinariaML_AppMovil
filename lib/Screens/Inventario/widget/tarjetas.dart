@@ -6,7 +6,7 @@ class TarjetaProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(255, 134, 209, 247),
+      color: const Color.fromARGB(255, 255, 255, 255),
       
       child: ListTile(
 
@@ -29,7 +29,7 @@ leading: const Icon(
         subtitle: Text('Stock: 15',
 
         style: TextStyle(
-        color: const Color.fromARGB(168, 10, 125, 58),
+        color: const Color.fromARGB(155, 18, 52, 79),
         fontFamily: 'sans-serif',
         fontSize: 12,
         ),
@@ -38,7 +38,7 @@ leading: const Icon(
         trailing: Text('\C\$180',
 
         style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79),
+        color: const Color.fromARGB(168, 10, 125, 58),
         fontFamily: 'sans-serif',
         fontSize: 14,
         fontWeight: FontWeight.bold,

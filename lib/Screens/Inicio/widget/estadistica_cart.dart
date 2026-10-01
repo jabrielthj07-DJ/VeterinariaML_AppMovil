@@ -18,10 +18,11 @@ class EstadisticaCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
+    
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.12),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.white.withOpacity(0.15)
+        border: Border.all(color: Colors.white.withValues(alpha: 0.15)
         ),
       ),
       child: Column(
@@ -49,8 +50,8 @@ class EstadisticaCart extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
               color: alerta
-                  ? Colors.redAccent.withOpacity(0.8)
-                  : Colors.orange.withOpacity(0.8),
+                  ? Colors.redAccent.withValues(alpha: 0.8)
+                  : Colors.orange.withValues(alpha: 0.8),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(

@@ -5,6 +5,7 @@ import '../Inicio/inicio_screem.dart';
 import '../ventas/ventas_screen.dart';
 import '../perfil/perfil_screen.dart';
 import '../../Widgets/menu.dart';
+import '../configuracion/confi_screen.dart';
 
 class PrincipalScreen extends StatefulWidget {
   const PrincipalScreen({super.key});
@@ -21,7 +22,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
     VentasScreen(),
     InventarioScreen(),
     PerfilScreen(),
-    //configuracionScreen(),
+    ConfiguracionScreen(),
   ];
 
   @override

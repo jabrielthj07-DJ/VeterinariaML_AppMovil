@@ -5,21 +5,27 @@ import './widget/tarjetas.dart';
 import './widget/buscador.dart';
 import './widget/filtro.dart';
 
-class VentasScreen extends StatelessWidget {
+// Temporal mientras el dashboard
+import './widget/temporal/ventas_chart.dart';
+import'./widget/temporal/tendencia_agosto.dart';
+class VentasScreen extends StatefulWidget {
   const VentasScreen({super.key});
+
+   @override
+  State<VentasScreen> createState() => _VentasScreenState();
+}
+
+class _VentasScreenState extends State<VentasScreen> {
+
+  int vistaSeleccionada = 0; // Acordarse q colas y hay dos btn here
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
   appBar: AppBar (
-       
-        title: const Text('                           Historial Ventas',
-        style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79),
-        fontFamily: 'sans-serif',
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        ),
+      centerTitle: true, // Centra the title
+        title: Text('Analisis de Ventas',
+         style: Theme.of(context).textTheme.titleLarge,
       ),
     ),
 
@@ -27,20 +33,57 @@ class VentasScreen extends StatelessWidget {
       children: [
 
         const SizedBox(height: 14),
-        const BuscadorVenta(),
-        const SizedBox(height: 8),
-        const Filtro(),
-        const SizedBox(height: 8),
-        const Tarjetaventa(), //p1 prueba
-        const SizedBox(height: 8),
-        const Tarjetaventa(), //p2
-        const SizedBox(height: 8),
-        const Tarjetaventa(),//p3
-        const SizedBox(height: 8),
-        const Tarjetaventa(),//p4
-        const SizedBox(height: 8,),
-        const Tarjetaventa(),//p5
+            
+      SegmentedButton<int>(
+      segments: const [
+        ButtonSegment(
+          value: 0,
+          label: Text('Reporte'),
+        ),
+        ButtonSegment(
+          value: 1,
+          label: Text('Historial'),
+        ),
+      ],
+      selected: {vistaSeleccionada},
+      onSelectionChanged: (Set<int> seleccion) {
+        setState(() {
+          vistaSeleccionada = seleccion.first;
+        });
+      },
+    ),
 
+
+        const SizedBox(height: 8),
+       
+        if (vistaSeleccionada == 0) 
+        Column(
+    children: const [
+      VentasChar(),
+      SizedBox(height: 8),
+      TendenciaAgosto(),
+
+     // Sol de prueba despues power bi
+    ],
+  )
+        else
+
+       Column(
+    children: [
+      const BuscadorVenta(),
+      const SizedBox(height: 8),
+      const Filtro(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+      const Tarjetaventa(),
+      const SizedBox(height: 8),
+    ],
+  ),
       ],
       )
     );
