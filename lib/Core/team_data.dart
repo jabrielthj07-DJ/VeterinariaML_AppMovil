@@ -24,12 +24,12 @@ class TemaApp {
       bodyLarge: TextStyle(
         fontSize: 16,
         fontFamily: 'sans-serif',
-        color: Colors.white,
+        color: Color.fromARGB(255, 19, 19, 19),
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
         fontFamily: 'sans-serif',
-        color: Colors.white,
+        color: Color.fromARGB(255, 0, 0, 0),
       ),
     ),
     appBarTheme: const AppBarTheme(
@@ -50,23 +50,23 @@ class TemaApp {
         fontSize: 24,
         fontFamily: 'sans-serif',
         fontWeight: FontWeight.bold,
-        color: Colors.white,
+        color: Color.fromARGB(255, 40, 39, 39),
       ),
       titleMedium: TextStyle(
         fontSize: 18,
         fontFamily: 'sans-serif',
         fontWeight: FontWeight.bold,
-        color: Colors.white,
+        color: Color.fromARGB(255, 40, 39, 39),
       ),
       bodyLarge: TextStyle(
         fontSize: 16,
         fontFamily: 'sans-serif',
-        color: Colors.white,
+        color: Color.fromARGB(255, 40, 39, 39),
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
         fontFamily: 'sans-serif',
-        color: Colors.white,
+        color: Color.fromARGB(255, 40, 39, 39),
       ),
     ),
     appBarTheme: const AppBarTheme(

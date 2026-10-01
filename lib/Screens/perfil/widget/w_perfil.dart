@@ -175,8 +175,6 @@ class _WPerfilState extends State<WPerfil> {
                       'Información de la cuenta',
                       style: TextStyle(
                         fontSize: 17,
-                        color: const Color.fromARGB(255, 29, 29, 29),
-
                       ),
                     ),
 
