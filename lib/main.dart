@@ -5,7 +5,7 @@ import './Core/rutas_navegacion.dart';
 // Pantallas de Interfaces
 import './Screens/Inventario/inventario_screen.dart';
 import './Screens/principal_Screen/principalScreen.dart';
-import './Screens/login/login_Screen.dart';
+
 import './Screens/ventas/ventas_screen.dart';
 import 'Screens/perfil/perfil_screen.dart';
 import 'Screens/Inicio/inicio_screem.dart';
