@@ -4,7 +4,7 @@ import './Core/rutas_navegacion.dart';
 // Pantallas de Interfaces
 import './Screens/Inventario/inventario_screen.dart';
 import './Screens/principal_Screen/principalScreen.dart';
-//import './Screens/login/login_Screen.dart';
+import './Screens/login/widget/w_login.dart';
 import './Screens/ventas/ventas_screen.dart';
 import 'Screens/perfil/perfil_screen.dart';
 import 'Screens/Inicio/inicio_screem.dart';
@@ -71,9 +71,9 @@ appBarTheme: const AppBarTheme(
 
         ), 
 
-      initialRoute: RutasNavegacion.principal,
+      initialRoute: RutasNavegacion.login,
       routes: {
-        //RutasNavegacion.login: (context) => const loginScreen(),  
+        RutasNavegacion.login: (context) => loginScreen(),  
         RutasNavegacion.inicio: (context) => const InicioScreen(),
         RutasNavegacion.principal: (context) => const PrincipalScreen(),
         RutasNavegacion.inventario: (context) => const InventarioScreen(),
