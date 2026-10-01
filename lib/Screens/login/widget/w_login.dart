@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
-
+//import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
+import 'package:veterinaria_ml_movil/Screens/principal_Screen/principalScreen.dart';
 // Definimos la pantalla estrictamente como StatelessWidget
 class loginScreen extends StatelessWidget {
   loginScreen({super.key});
@@ -193,7 +193,7 @@ class loginScreen extends StatelessWidget {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const InicioScreen(),
+                                  builder: (context) => const PrincipalScreen(),
                                 ),
                                 (route) =>
                                     false, // Elimina la pantalla de Login del historial
