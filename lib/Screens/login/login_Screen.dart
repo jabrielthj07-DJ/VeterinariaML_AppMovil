@@ -1,16 +1,14 @@
 // import 'package:flutter/material.dart';
-// import './widget/w_login.dart';
+// import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
 
 // class LoginScreen extends StatelessWidget {
-//   const loginScreen({super.key});
+//   LoginScreen({super.key});
+
+//   final TextEditingController _emailController = TextEditingController();
+//   final TextEditingController _passwordController = TextEditingController();
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       // debugShowCheckedModeBanner: false,
-//       title: 'LoginApp',
-//       initialRoute: 'login',
-//       routes: {'login': (context) => loginScreen()},
-//     );
+//     return Scaffold(body: Center(child: Text('Pantalla Login')));
 //   }
 // }
