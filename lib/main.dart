@@ -23,6 +23,15 @@ class App_Veterinaria extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: RutasNavegacion.login,
+      routes: {
+       RutasNavegacion.login: (context) => loginScreen(), 
+        RutasNavegacion.inicio: (context) => const InicioScreen(),
+        RutasNavegacion.principal: (context) => const PrincipalScreen(),
+        RutasNavegacion.inventario: (context) => const InventarioScreen(),
+        RutasNavegacion.ventas: (context) => const VentasScreen(),
+        RutasNavegacion.perfil: (context) => const PerfilScreen(),
 
     //Ejecuta los cambios del tema global para aplicar en todas las pantallas
     return ValueListenableBuilder<ThemeMode>(
@@ -39,14 +48,13 @@ class App_Veterinaria extends StatelessWidget {
 
           routes: {
 
-            RutasNavegacion.login: (context) => loginScreen(),  // revisar
+            RutasNavegacion.login: (context) => loginScreen(), 
             RutasNavegacion.inicio: (context) => const InicioScreen(),
             RutasNavegacion.principal: (context) => const PrincipalScreen(),
             RutasNavegacion.inventario: (context) => const InventarioScreen(),
             RutasNavegacion.ventas: (context) => const VentasScreen(),
             RutasNavegacion.perfil: (context) => const PerfilScreen(),
-            RutasNavegacion.configuracion: (context) =>
-                const ConfiguracionScreen(),
+            RutasNavegacion.configuracion: (context) => const ConfiguracionScreen(),
           },
         );
       },

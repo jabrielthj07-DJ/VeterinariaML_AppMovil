@@ -22,14 +22,17 @@ class loginScreen extends StatelessWidget {
               width: double.infinity,
               height: size.height,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/fondo_veterinaria.jpg.png'),
-                  fit: BoxFit.cover,
-                  alignment: Alignment(0, -1.2),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFFA7D8FF),
+                    Color(0xFFD6EEFF),
+                    Color(0xFFF5FCFF),
+                  ],
                 ),
               ),
             ),
-
             Container(
               width: double.infinity,
               height: size.height,
@@ -41,22 +44,55 @@ class loginScreen extends StatelessWidget {
               ).withValues(alpha: 0.25),
             ),
 
-            // Column(
-            //   children: [
-            //     const SizedBox(height: 40),
+            Positioned(
+              top: 350,
+              left: 40,
+              child: Opacity(
+                opacity: 0.10,
+                child: Icon(Icons.pets, size: 60, color: Colors.blue),
+              ),
+            ),
 
-            //     const Text(
-            //       'Bienvenido a Veterinaria M&L',
-            //       textAlign: TextAlign.center,
-            //       style: TextStyle(
-            //         fontSize: 28,
-            //         fontWeight: FontWeight.bold,
-            //         color: Colors.white,
-            //         shadows: [Shadow(color: Colors.black26, blurRadius: 10)],
-            //       ),
+            Positioned(
+              bottom: 250,
+              right: 20,
+              child: Opacity(
+                opacity: 0.15,
+                child: Icon(Icons.pets, size: 45, color: Colors.blue),
+              ),
+            ),
+
+            // Positioned(
+            //   bottom: 100,
+            //   left: 30,
+            //   child: Opacity(
+            //     opacity: 0.10,
+            //     child: Icon(
+            //       Icons.person_3_rounded,
+            //       size: 70,
+            //       color: const Color.fromARGB(255, 32, 85, 130),
             //     ),
-            //   ],
+            //   ),
             // ),
+
+            // Positioned(
+            //   bottom: 50,
+            //   right: 50,
+            //   child: Opacity(
+            //     opacity: 0.12,
+            //     child: Icon(
+            //       Icons.pets,
+            //       size: 55,
+            //       color: const Color.fromARGB(255, 17, 95, 160),
+            //     ),
+            //   ),
+            // ),
+            Container(
+              width: double.infinity,
+              height: size.height,
+              color: const Color.fromARGB(255, 134, 209, 247).withValues(alpha: 0.25),
+            ),
+
             const SizedBox(height: 20),
 
             Column(
@@ -86,7 +122,8 @@ class loginScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: Image.asset(
-                      'assets/logo_veterinaria.png.png',
+                      ('lib/Screens/login/image/Logo.png'),
+
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         // Respaldo visual si la ruta falla
@@ -100,7 +137,7 @@ class loginScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 60),
 
                 Column(
                   children: [
@@ -108,7 +145,7 @@ class loginScreen extends StatelessWidget {
                       'Cuidamos a quienes \n te dan felicidad',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontStyle: FontStyle.italic,
                         color: Color.fromARGB(255, 30, 21, 17),
                         fontWeight: FontWeight.w500,
@@ -135,7 +172,7 @@ class loginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Login',
+                        'Bienvenido',
                         style: TextStyle(
                           fontSize: size.width * 0.07,
                           fontWeight: FontWeight.bold,
@@ -261,7 +298,7 @@ class loginScreen extends StatelessWidget {
                           //   'Cuidamos a quienes\nte dan felicidad',
                           //   textAlign: TextAlign.center,
                           //   style: TextStyle(
-                          //     fontSize: 18,
+                          //     fontSize: 12,
                           //     fontStyle: FontStyle.italic,
                           //     color: Color.fromARGB(255, 30, 21, 17),
                           //     fontWeight: FontWeight.w500,
@@ -335,6 +372,27 @@ class loginScreen extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+//Este codigo es de prueba
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Veterinaria M&L - Home'),
+        backgroundColor: const Color.fromARGB(255, 134, 209, 247),
+      ),
+      body: const Center(
+        child: Text(
+          '¡Bienvenido al Inicio de la Veterinaria!',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
     );
