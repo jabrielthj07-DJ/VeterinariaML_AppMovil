@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../Core/team_data.dart';
+import '../../../../Core/Routes/team_data.dart';
 
 class WConfi extends StatefulWidget {
   const WConfi({super.key});

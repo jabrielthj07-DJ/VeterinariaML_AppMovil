@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 // Widgets
-import './widget/tarjetas.dart';
-import './widget/buscador.dart';
-import './widget/filtro.dart';
+import 'widget/tarjetas.dart';
+import 'widget/buscador.dart';
+import 'widget/filtro.dart';
 
 // Temporal mientras el dashboard
-import './widget/temporal/ventas_chart.dart';
-import'./widget/temporal/tendencia_agosto.dart';
+import 'widget/temporal/ventas_chart.dart';
+import'widget/temporal/tendencia_agosto.dart';
 class VentasScreen extends StatefulWidget {
   const VentasScreen({super.key});
 

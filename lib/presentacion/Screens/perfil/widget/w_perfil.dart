@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../Widgets/boton.dart';
-import 'package:veterinaria_ml_movil/Screens/login/widget/w_login.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
 
 class WPerfil extends StatefulWidget {
   const WPerfil({super.key});
