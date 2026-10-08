@@ -15,15 +15,7 @@ class PerfilScreen extends StatelessWidget
   Widget build(BuildContext context)
   {
     return Scaffold
-    (
-      // appBar: AppBar
-      // (
-      //   centerTitle: true,
-      //   title:  Text('Mi Perfil',
-      //    style: Theme.of(context).textTheme.titleLarge,
-      //    ),
-      // ),
-      
+    ( 
       body: const WPerfil(),
     );
   }
