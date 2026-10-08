@@ -33,8 +33,6 @@ class _FiltroState extends State<Filtro> {
                   onSelected: (bool selected) {
                     setState(() {
                       _value = selected ? index : null;
-
-            
                     });
                   },
                 );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/Screens/Inicio/widget/accesos_rapido.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/Inicio/widget/accesos_rapido.dart';
 import 'widget/dashboard_header.dart';
 import 'widget/estadistica_cart.dart';
-import 'widget/tendencia_agosto.dart';
-import 'widget/ventas_chart.dart';
+//import 'widget/tendencia_agosto.dart'; Pa mientras no porque las tengo en mi intefaz xd, att:DJ
+//import 'widget/ventas_chart.dart';
 import 'widget/producto_mas_vendidos.dart';
 
 class InicioScreen extends StatefulWidget {

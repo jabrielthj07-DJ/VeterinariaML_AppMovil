@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // Widgets
-import './widget/tarjetas.dart';
-import './widget/buscador.dart';
-import './widget/filtro.dart';
+import 'widget/tarjetas.dart';
+import 'widget/buscador.dart';
+import 'widget/filtro.dart';
 
 
 class InventarioScreen extends StatelessWidget {
