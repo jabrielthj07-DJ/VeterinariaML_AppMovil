@@ -93,10 +93,11 @@ class _InicioScreenState extends State<InicioScreen> {
               // const TendenciaAgosto(),
               // const SizedBox(height: 20),
               //  const VentasChar(),
-                const AccesosRapido(),
+                
               const SizedBox(height: 20),
               const ProductoMasVendidos(),
               const SizedBox(height: 20),
+              const AccesosRapido(),
             
 
              
