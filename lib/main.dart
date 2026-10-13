@@ -3,16 +3,6 @@ import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.d
 import 'Core/Routes/rutas_navegacion.dart';
  
 // Pantallas de Interfaces
-<<<<<<< HEAD
-import './Screens/Inventario/inventario_screen.dart';
-import './Screens/principal_Screen/principalScreen.dart';
-
-import './Screens/ventas/ventas_screen.dart';
-import 'Screens/perfil/perfil_screen.dart';
-import 'Screens/Inicio/inicio_screem.dart';
-import 'Screens/configuracion/confi_screen.dart';
-
-=======
 import 'presentacion/Screens/Inventario/inventario_screen.dart';
 import 'presentacion/Screens/principal_Screen/principalScreen.dart';
 import 'presentacion/Screens/ventas/ventas_screen.dart';
@@ -20,7 +10,6 @@ import 'presentacion/Screens/perfil/perfil_screen.dart';
 import 'presentacion/Screens/Inicio/inicio_screem.dart';
 import 'presentacion/Screens/configuracion/confi_screen.dart';
  
->>>>>>> develop
 // Tema global
 import 'Core/Routes/team_data.dart';
  
