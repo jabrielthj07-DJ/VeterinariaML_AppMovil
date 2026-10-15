@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
 import 'Core/Routes/rutas_navegacion.dart';
- 
+import 'package:provider/provider.dart';
+
+// Providers
+import './presentacion/providers/configProvider.dart';
+import './presentacion/providers/inicioProvider.dart';
+import './presentacion/providers/ventaProvider.dart';
+import './presentacion/providers/principalProvider.dart';
+import './presentacion/providers/perfilProvider.dart';
+import './presentacion/providers/inventarioProvider.dart';
+
 // Pantallas de Interfaces
 import 'presentacion/Screens/Inventario/inventario_screen.dart';
 import 'presentacion/Screens/principal_Screen/principalScreen.dart';
@@ -22,33 +31,40 @@ class App_Veterinaria extends StatelessWidget {
  
   @override
   Widget build(BuildContext context) {
- 
-    //Ejecuta los cambios del tema global para aplicar en todas las pantallas
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: TemaApp.tema,
-      builder: (context, temaActual, child) {
- 
-        return MaterialApp(
- 
-          theme: TemaApp.temaClaro,
-          darkTheme: TemaApp.temaOscuro,
-          themeMode: temaActual,
- 
-          initialRoute: RutasNavegacion.login,
- 
-          routes: {
- 
-            RutasNavegacion.login: (context) =>  loginScreen(),  // revisar
-            RutasNavegacion.inicio: (context) => const InicioScreen(),
-            RutasNavegacion.principal: (context) => const PrincipalScreen(),
-            RutasNavegacion.inventario: (context) => const InventarioScreen(),
-            RutasNavegacion.ventas: (context) => const VentasScreen(),
-            RutasNavegacion.perfil: (context) => const PerfilScreen(),
-            RutasNavegacion.configuracion: (context) =>
-                const ConfiguracionScreen(),
-          },
-        );
-      },
+    return MultiProvider(
+      
+      providers: [
+        ChangeNotifierProvider(create: (context) => InventarioProvider()),
+        ChangeNotifierProvider(create: (context) => PerfilProvider()),
+        ChangeNotifierProvider(create: (context) => ConfigProvider()),
+        ChangeNotifierProvider(create: (context) => VentaProvider()),
+        ChangeNotifierProvider(create: (context) => PrincipalProvider()),
+        ChangeNotifierProvider(create: (context) => InicioProvider()),
+      ],
+
+      child: ValueListenableBuilder<ThemeMode>(
+        valueListenable: TemaApp.tema,
+        builder: (context, temaActual, child) {
+
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: TemaApp.temaClaro,
+            darkTheme: TemaApp.temaOscuro,
+            themeMode: temaActual,
+
+            initialRoute: RutasNavegacion.login,
+            routes: {
+              RutasNavegacion.login: (context) => loginScreen(),
+              RutasNavegacion.inicio: (context) => const InicioScreen(),
+              RutasNavegacion.principal: (context) => const PrincipalScreen(),
+              RutasNavegacion.inventario: (context) => const InventarioScreen(),
+              RutasNavegacion.ventas: (context) => const VentasScreen(),
+              RutasNavegacion.perfil: (context) => const PerfilScreen(),
+              RutasNavegacion.configuracion: (context) => const ConfiguracionScreen(),
+            },
+          );
+        },
+      ),
     );
   }
 }
