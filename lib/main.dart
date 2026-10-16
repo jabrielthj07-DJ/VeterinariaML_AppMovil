@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
 import 'Core/Routes/rutas_navegacion.dart';
 import 'package:provider/provider.dart';
+// Injection
+import 'Core/di/inyection.dart';
 
 // Providers
 import './presentacion/providers/configProvider.dart';
@@ -23,7 +25,9 @@ import 'presentacion/Screens/configuracion/confi_screen.dart';
 import 'Core/Routes/team_data.dart';
  
 void main() {
+   configurarDependencias();
   runApp(const App_Veterinaria());
+ 
 }
  
 class App_Veterinaria extends StatelessWidget {

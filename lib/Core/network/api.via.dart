@@ -3,22 +3,45 @@ import 'dart:convert';
 import 'package:http/http.dart' as http; // paaa instalarlo usa un flutter pub add http y te lo instala
 import '../constants/api.dart';
 
-import '../error/api_consultas.dart'; // modificar esto
+import '../error/api_consultas.dart'; 
 
 class ApiClient {
   final _client = http.Client();
 
+  Future<dynamic> get(String path, {Map<String, String>? query,String? token,}) async {
 
-Future<dynamic> get( String path, { Map<String, String>? query, }) async {
+    final uri = Uri.parse('${ApiConstant.bsUrl}/$path')
+        .replace(queryParameters: query);
 
- final uri = Uri.parse('${ApiConstant.bsUrl}/$path')
-    .replace(queryParameters: query);
+    final response = await _client.get( uri, headers: {
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
 
-  final response = await _client.get(uri);
+    ValidacionesApiu.validar(response.statusCode);
 
-// preguntar q si agrego un if pa los errores o como lo llamo si por const o por clase
+    if (response.statusCode == 204 || response.body.isEmpty) {
+      return null;
+    }
 
-  return jsonDecode(response.body);
-}
-  
+    return jsonDecode(response.body);
+  }
+
+// Oe este es solo pal login
+  Future<dynamic> post( String path,Map<String, dynamic> datos,) async {
+
+    final uri = Uri.parse('${ApiConstant.bsUrl}/$path');
+
+    final response = await _client.post( uri, headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(datos),
+    );
+
+    ValidacionesApiu.validar(response.statusCode); // Cualquier consulta buscatr carpeta error
+
+    if (response.body.isEmpty) {
+      return null;
+    }
+
+    return jsonDecode(response.body);
+  }
 }
