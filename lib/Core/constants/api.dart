@@ -1,5 +1,4 @@
 class ApiConstant {
-static const String bsUrl = '';
+static const String bsUrl = 'https://10.0.2.2:7030/api'; //prueba local
 }
 
-// Preguntar que si es con despliegue la url o localhost

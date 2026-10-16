@@ -28,15 +28,19 @@ class ApiClient {
   }
 
 // Oe este es solo pal login
-  Future<dynamic> post( String path,Map<String, dynamic> datos,) async {
-
+  Future<dynamic> post(
+    String path,
+    Map<String, dynamic> datos,
+  ) async {
     final uri = Uri.parse('${ApiConstant.bsUrl}/$path');
 
-    final response = await _client.post( uri, headers: {'Content-Type': 'application/json'},
+    final response = await _client.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
       body: jsonEncode(datos),
     );
 
-    ValidacionesApiu.validar(response.statusCode); // Cualquier consulta buscatr carpeta error
+    ValidacionesApiu.validar(response.statusCode);
 
     if (response.body.isEmpty) {
       return null;

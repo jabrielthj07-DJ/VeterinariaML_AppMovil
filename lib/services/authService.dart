@@ -1,26 +1,21 @@
+
 import '../Core/network/api.via.dart';
 
 class AuthService {
-  final ApiClient _client;
+  final ApiClient _api;
 
-  AuthService(this._client);
+  AuthService(this._api);
 
-  Future<Map<String, dynamic>> login(
-    String correo,
-    String clave,
-  ) async {
-    final respuesta = await _client.post(
-      'api/Login/login',
+  Future<Map<String, dynamic>> iniciarSesion(String correo, String clave,) async { 
+   
+    final respuesta = await _api.post(
+      'Login/login',
       {
-        'Correo': correo,
-        'Clave': clave,
+        'correo': correo,
+        'clave': clave,
       },
     );
 
-    if (respuesta is! Map<String, dynamic>) {
-      throw Exception('Respuesta de login inválida.');
-    }
-
-    return respuesta;
+    return Map<String, dynamic>.from(respuesta);
   }
 }
