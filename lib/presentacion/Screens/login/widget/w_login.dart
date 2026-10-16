@@ -1,3 +1,6 @@
+import '../../../../Core/di/inyection.dart';
+import '../../../../services/authService.dart';
+
 import 'package:flutter/material.dart';
 //import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
 import 'package:veterinaria_ml_movil/presentacion/Screens/principal_Screen/principalScreen.dart';
@@ -311,54 +314,66 @@ class loginScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {
-                            String email = _emailController.text.trim();
-                            String password = _passwordController.text;
+                          onPressed: () async {
+  // AGREGADO: obtenemos los datos escritos por el usuario
+  String email = _emailController.text.trim();
+  String password = _passwordController.text;
 
-                            const String gmailCorrecto = "admin@gmail.com";
-                            const String passwordCorrecta = "12345678";
+  // AGREGADO: verificamos que no estén vacíos
+  if (email.isEmpty || password.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Escribí tu correo y contraseña'),
+      ),
+    );
+    return;
+  }
 
-                            if (email == gmailCorrecto &&
-                                password == passwordCorrecta) {
-                              print('¡Acceso concedido!');
+  try {
+    // AGREGADO: llamamos al servicio que consulta la API
+    final auth = getIt<AuthService>();
 
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('¡Inicio de sesión correcto!'),
-                                  backgroundColor: Color.fromARGB(
-                                    255,
-                                    14,
-                                    175,
-                                    177,
-                                  ),
-                                ),
-                              );
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const PrincipalScreen(),
-                                ),
-                                (route) =>
-                                    false, // Elimina la pantalla de Login del historial
-                              );
-                            } else {
-                              print('Datos incorrectos');
+    final respuesta = await auth.iniciarSesion(
+      email,
+      password,
+    );
 
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    'Correo o contraseña incorrectos. Inténtalo de nuevo.',
-                                  ),
-                                  backgroundColor: Color.fromARGB(
-                                    255,
-                                    3,
-                                    97,
-                                    137,
-                                  ),
-                                ),
-                              );
-                            }
-                          },
+    // AGREGADO: comprobamos que la API devuelva un token
+    if (respuesta['Token'] == null) {
+      throw Exception('La API no devolvió el token');
+    }
+
+    // AGREGADO: mostramos el resultado correcto
+    if (!context.mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('¡Inicio de sesión correcto!'),
+        backgroundColor: Colors.green,
+      ),
+    );
+
+    // CONSERVADO: tu navegación original
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PrincipalScreen(),
+      ),
+      (route) => false,
+    );
+
+  } catch (e) {
+    // AGREGADO: mostramos el error que ocurra al consultar la API
+    if (!context.mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('No se pudo iniciar sesión: $e'),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color.fromARGB(
                               255,
