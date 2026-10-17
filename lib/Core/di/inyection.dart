@@ -2,18 +2,86 @@
 import 'package:get_it/get_it.dart';
 
 import '../network/api.via.dart';
+
+// Servicios
 import '../../services/authService.dart';
+import '../../services/inventarioService.dart';
+import '../../services/productoService.dart';
+import '../../services/categoriaService.dart';
+import '../../services/ventaService.dart';
+
+// Repositorios
+import '../../data/repositories/inventarioRepository.dart';
+import '../../data/repositories/productoRepository.dart';
+import '../../data/repositories/categoriaRepository.dart';
+import '../../data/repositories/ventaRepository.dart';
 
 final GetIt getIt = GetIt.instance;
 
 void configurarDependencias() {
-  if (getIt.isRegistered<ApiClient>()) return;
+  // ApiClient
+  if (!getIt.isRegistered<ApiClient>()) {
+    getIt.registerLazySingleton<ApiClient>(
+      () => ApiClient(),
+    );
+  }
 
-  getIt.registerLazySingleton<ApiClient>(
-    () => ApiClient(),
-  );
+  // Servicio de autenticación
+  if (!getIt.isRegistered<AuthService>()) {
+    getIt.registerLazySingleton<AuthService>(
+      () => AuthService(getIt<ApiClient>()),
+    );
+  }
 
-  getIt.registerLazySingleton<AuthService>(
-    () => AuthService(getIt<ApiClient>()),
-  );
+  // Inventario
+  if (!getIt.isRegistered<InventarioService>()) {
+    getIt.registerLazySingleton<InventarioService>(
+      () => InventarioService(getIt<ApiClient>()),
+    );
+  }
+
+  if (!getIt.isRegistered<InventarioRepository>()) {
+    getIt.registerLazySingleton<InventarioRepository>(
+      () => InventarioRepository(getIt<InventarioService>()),
+    );
+  }
+
+  // Productos
+  if (!getIt.isRegistered<ProductoService>()) {
+    getIt.registerLazySingleton<ProductoService>(
+      () => ProductoService(getIt<ApiClient>()),
+    );
+  }
+
+  if (!getIt.isRegistered<ProductoRepository>()) {
+    getIt.registerLazySingleton<ProductoRepository>(
+      () => ProductoRepository(getIt<ProductoService>()),
+    );
+  }
+
+  // Categorías
+  if (!getIt.isRegistered<CategoriaService>()) {
+    getIt.registerLazySingleton<CategoriaService>(
+      () => CategoriaService(getIt<ApiClient>()),
+    );
+  }
+
+  if (!getIt.isRegistered<CategoriaRepository>()) {
+    getIt.registerLazySingleton<CategoriaRepository>(
+      () => CategoriaRepository(getIt<CategoriaService>()),
+    );
+  }
+
+  // Ventas
+  if (!getIt.isRegistered<VentaService>()) {
+    getIt.registerLazySingleton<VentaService>(
+      () => VentaService(getIt<ApiClient>()),
+    );
+  }
+
+  if (!getIt.isRegistered<VentaRepository>()) {
+    getIt.registerLazySingleton<VentaRepository>(
+      () => VentaRepository(getIt<VentaService>()),
+    );
+  }
 }
