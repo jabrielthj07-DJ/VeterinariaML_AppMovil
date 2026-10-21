@@ -26,7 +26,7 @@ class _InicioScreenState extends State<InicioScreen> {
     //    index: _indiceSeleccionado == 0 ? 0 : 1,
           children: [
             _buildDashboard(context),
-           
+          
           ],
         ),
       ),
@@ -92,13 +92,13 @@ class _InicioScreenState extends State<InicioScreen> {
               const SizedBox(height: 0),
               const TendenciaAgosto(),
               const SizedBox(height: 20),
-               const VentasChar(),
+              const VentasChar(),
               const SizedBox(height: 20),
               const ProductoMasVendidos(),
               const SizedBox(height: 20),
               const AccesosRapido(),
 
-             
+            
             ]),
           ),
         ),

@@ -23,7 +23,7 @@ class _TendenciaAgostoState extends State<TendenciaAgosto> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -149,7 +149,7 @@ class TendenciaPainter extends CustomPainter {
       ..close();
     canvas.drawPath(
       area,
-      Paint()..color = const Color(0xFFF59D18).withOpacity(0.12),
+      Paint()..color = const Color(0xFFF59D18).withValues(alpha: 0.12),
     );
     canvas.drawPath(ruta, linea);
 

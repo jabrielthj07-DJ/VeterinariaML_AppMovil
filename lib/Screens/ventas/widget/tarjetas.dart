@@ -35,7 +35,7 @@ leading: const Icon(
         ),
         ),
         
-        trailing: Text('Total: \C\$550',
+        trailing: Text('Total: C\$550',
 
         style: TextStyle(
         color: const Color.fromARGB(168, 10, 125, 58),

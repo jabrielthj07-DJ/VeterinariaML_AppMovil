@@ -35,7 +35,7 @@ leading: const Icon(
         ),
         ),
         
-        trailing: Text('\C\$180',
+        trailing: Text('C\$180',
 
         style: TextStyle(
         color: const Color.fromARGB(168, 10, 125, 58),
