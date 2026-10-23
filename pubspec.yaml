@@ -61,7 +61,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/Screens/login/image/
+    - lib/presentacion/Screens/login/image/logo_veterinaria.png
 
     # esta parte la modifique para el logo
   # To add assets to your application, add an assets section, like this:

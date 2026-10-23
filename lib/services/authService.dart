@@ -1,4 +1,3 @@
-
 import '../Core/network/api.via.dart';
 
 class AuthService {
@@ -6,8 +5,10 @@ class AuthService {
 
   AuthService(this._api);
 
-  Future<Map<String, dynamic>> iniciarSesion(String correo, String clave,) async { 
-   
+  Future<Map<String, dynamic>> iniciarSesion(
+    String correo,
+    String clave,
+  ) async {
     final respuesta = await _api.post(
       'Login/login',
       {

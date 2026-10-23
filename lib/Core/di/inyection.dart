@@ -1,39 +1,31 @@
-
 import 'package:get_it/get_it.dart';
 
 import '../network/api.via.dart';
 
-// Servicios
 import '../../services/authService.dart';
 import '../../services/inventarioService.dart';
 import '../../services/productoService.dart';
 import '../../services/categoriaService.dart';
 import '../../services/ventaService.dart';
 
-// Repositorios
 import '../../data/repositories/inventarioRepository.dart';
 import '../../data/repositories/productoRepository.dart';
 import '../../data/repositories/categoriaRepository.dart';
-import '../../data/repositories/ventaRepository.dart';
+import '../../data/repositories/VentaRepository.dart';
 
 final GetIt getIt = GetIt.instance;
 
 void configurarDependencias() {
-  // ApiClient
   if (!getIt.isRegistered<ApiClient>()) {
-    getIt.registerLazySingleton<ApiClient>(
-      () => ApiClient(),
-    );
+    getIt.registerLazySingleton<ApiClient>(() => ApiClient());
   }
 
-  // Servicio de autenticación
   if (!getIt.isRegistered<AuthService>()) {
     getIt.registerLazySingleton<AuthService>(
       () => AuthService(getIt<ApiClient>()),
     );
   }
 
-  // Inventario
   if (!getIt.isRegistered<InventarioService>()) {
     getIt.registerLazySingleton<InventarioService>(
       () => InventarioService(getIt<ApiClient>()),
@@ -46,7 +38,6 @@ void configurarDependencias() {
     );
   }
 
-  // Productos
   if (!getIt.isRegistered<ProductoService>()) {
     getIt.registerLazySingleton<ProductoService>(
       () => ProductoService(getIt<ApiClient>()),
@@ -59,7 +50,6 @@ void configurarDependencias() {
     );
   }
 
-  // Categorías
   if (!getIt.isRegistered<CategoriaService>()) {
     getIt.registerLazySingleton<CategoriaService>(
       () => CategoriaService(getIt<ApiClient>()),
@@ -72,7 +62,6 @@ void configurarDependencias() {
     );
   }
 
-  // Ventas
   if (!getIt.isRegistered<VentaService>()) {
     getIt.registerLazySingleton<VentaService>(
       () => VentaService(getIt<ApiClient>()),

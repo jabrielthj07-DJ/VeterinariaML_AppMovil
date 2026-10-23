@@ -6,10 +6,10 @@ import 'package:provider/provider.dart';
 import 'Core/di/inyection.dart';
 
 // Providers
-import './presentacion/providers/configProvider.dart';
+import './presentacion/providers/productoProvider.dart';
 import './presentacion/providers/inicioProvider.dart';
 import './presentacion/providers/ventaProvider.dart';
-import './presentacion/providers/principalProvider.dart';
+import 'presentacion/providers/categoriaProvider.dart';
 import './presentacion/providers/perfilProvider.dart';
 import './presentacion/providers/inventarioProvider.dart';
 
@@ -40,9 +40,9 @@ class App_Veterinaria extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => InventarioProvider()),
         ChangeNotifierProvider(create: (context) => PerfilProvider()),
-        ChangeNotifierProvider(create: (context) => ConfigProvider()),
+        ChangeNotifierProvider(create: (context) => ProductoProvider()),
         ChangeNotifierProvider(create: (context) => VentaProvider()),
-        ChangeNotifierProvider(create: (context) => PrincipalProvider()),
+        ChangeNotifierProvider(create: (context) => CategoriaProvider()),
         ChangeNotifierProvider(create: (context) => InicioProvider()),
       ],
 
