@@ -2,53 +2,48 @@ import 'package:flutter/material.dart';
 import 'widget/w_confi.dart';
 
 class ConfiguracionScreen extends StatelessWidget {
-  const ConfiguracionScreen({
-    super.key,
-  });
+  const ConfiguracionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: const Text('Configuracion'),
-      // ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            // AGREGADO: encabezado
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 25,
+              ),
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF174B5B),
+                    Color(0xFF7BD0F3),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: const Text(
+                'Configuración',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
 
-      body: Column(
-  children: [
-    Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF174B5B),
-            Color(0xFF7BD0F3),
+            // AGREGADO: contenido de configuración
+            const Expanded(
+              child: WConfi(),
+            ),
           ],
         ),
       ),
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Configuración',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    ),
-
-    const Expanded(
-      child: WConfi(),
-    ),
-  ],
-),
     );
   }
 }

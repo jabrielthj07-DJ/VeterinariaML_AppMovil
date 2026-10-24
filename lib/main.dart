@@ -1,42 +1,39 @@
+
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
-import 'Core/Routes/rutas_navegacion.dart';
 import 'package:provider/provider.dart';
-// Injection
-import 'Core/di/inyection.dart';
 
-// Providers
-import './presentacion/providers/productoProvider.dart';
-import './presentacion/providers/inicioProvider.dart';
-import './presentacion/providers/ventaProvider.dart';
-import 'presentacion/providers/categoriaProvider.dart';
-import './presentacion/providers/perfilProvider.dart';
-import './presentacion/providers/inventarioProvider.dart';
+import 'package:veterinaria_ml_movil/Core/Routes/team_data.dart'
+    as team_data;
+import 'package:veterinaria_ml_movil/Core/Routes/rutas_navegacion.dart';
+import 'package:veterinaria_ml_movil/Core/di/inyection.dart';
 
-// Pantallas de Interfaces
-import 'presentacion/Screens/Inventario/inventario_screen.dart';
-import 'presentacion/Screens/principal_Screen/principalScreen.dart';
-import 'presentacion/Screens/ventas/ventas_screen.dart';
-import 'presentacion/Screens/perfil/perfil_screen.dart';
-import 'presentacion/Screens/Inicio/inicio_screem.dart';
-import 'presentacion/Screens/configuracion/confi_screen.dart';
- 
-// Tema global
-import 'Core/Routes/team_data.dart';
- 
+import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/Inventario/inventario_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/principal_Screen/principalScreen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/ventas/ventas_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/perfil/perfil_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/Inicio/inicio_screem.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/configuracion/confi_screen.dart';
+
+import 'package:veterinaria_ml_movil/presentacion/providers/productoProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/inicioProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/ventaProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/categoriaProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/perfilProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/inventarioProvider.dart';
+
 void main() {
-   configurarDependencias();
+  WidgetsFlutterBinding.ensureInitialized();
+  configurarDependencias();
   runApp(const App_Veterinaria());
- 
 }
- 
+
 class App_Veterinaria extends StatelessWidget {
   const App_Veterinaria({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      
       providers: [
         ChangeNotifierProvider(create: (context) => InventarioProvider()),
         ChangeNotifierProvider(create: (context) => PerfilProvider()),
@@ -45,17 +42,14 @@ class App_Veterinaria extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CategoriaProvider()),
         ChangeNotifierProvider(create: (context) => InicioProvider()),
       ],
-
       child: ValueListenableBuilder<ThemeMode>(
-        valueListenable: TemaApp.tema,
+        valueListenable: team_data.TemaApp.tema,
         builder: (context, temaActual, child) {
-
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: TemaApp.temaClaro,
-            darkTheme: TemaApp.temaOscuro,
+            theme: team_data.TemaApp.temaClaro,
+            darkTheme: team_data.TemaApp.temaOscuro,
             themeMode: temaActual,
-
             initialRoute: RutasNavegacion.login,
             routes: {
               RutasNavegacion.login: (context) => loginScreen(),
