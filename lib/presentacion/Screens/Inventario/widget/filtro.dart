@@ -1,53 +1,28 @@
 import 'package:flutter/material.dart';
 
-// Mejorar y hacerlo que cambie el nombre, o tengan nombres individuales
-class Filtro extends StatefulWidget {
-  const Filtro ({super.key});
+class Filtro extends StatelessWidget {
+  final int seleccionado;
+  final ValueChanged<int> onCambiar;
 
-  @override
-  State<Filtro> createState() => _FiltroState();
-}
-
-class _FiltroState extends State<Filtro> {
-  int? _value = 1;
+  const Filtro({
+    super.key,
+    required this.seleccionado,
+    required this.onCambiar,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final opciones = ['Todos', 'Stock bajo', 'Agotados'];
 
-    return Row(
-          crossAxisAlignment: .start,
-          mainAxisAlignment: .center,
-
-          children: <Widget>[
-            Wrap(
-              spacing: 10.0, //entre ellos
-              children: List<Widget>.generate(3, (int index) {
-                return ChoiceChip(
-                  label: Text(index == 0
-                                ? 'Todos'
-                                : index == 1
-                                ? 'Stock bajo'
-                                : 'Agotados',
-                  ),
-                  selected: _value == index,
-                  onSelected: (bool selected) {
-                    setState(() {
-                      _value = selected ? index : null;
-                    });
-                  },
-                );
-              }).toList(),
-            ),
-          ],
+    return Wrap(
+      spacing: 10,
+      children: List.generate(opciones.length, (index) {
+        return ChoiceChip(
+          label: Text(opciones[index]),
+          selected: seleccionado == index,
+          onSelected: (_) => onCambiar(index),
+        );
+      }),
     );
   }
 }
-
-//https://api.flutter.dev/flutter/material/FilterChip-class.html
-
-// Filtro pero por seleccion multiple
-
-// usar este para inventario 
-
-// https://api.flutter.dev/flutter/material/ChoiceChip-class.html
-

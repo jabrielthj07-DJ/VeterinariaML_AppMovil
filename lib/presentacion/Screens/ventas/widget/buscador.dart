@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 class BuscadorVenta extends StatelessWidget {
-  const BuscadorVenta({super.key});
+  final ValueChanged<String> onBuscar;
+
+  const BuscadorVenta({super.key, required this.onBuscar});
 
   @override
   Widget build(BuildContext context) {
-    return  SearchBar(
-
-      hintText: 'Buscar Venta',
-       backgroundColor: const WidgetStatePropertyAll(
-        Color.fromARGB(255, 255, 255, 255),
-      ),
+    return SearchBar(
+      hintText: 'Buscar venta',
+      leading: const Icon(Icons.search),
+      backgroundColor: const WidgetStatePropertyAll(Colors.white),
+      onChanged: onBuscar,
     );
   }
 }
-
-// https://api.flutter.dev/flutter/material/SearchBar-class.html
