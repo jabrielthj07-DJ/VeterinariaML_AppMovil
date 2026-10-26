@@ -33,19 +33,6 @@ class TarjetaProduct extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-<<<<<<< HEAD
-        ),
-        
-        trailing: Text('C\$180',
-
-        style: TextStyle(
-        color: const Color.fromARGB(168, 10, 125, 58),
-        fontFamily: 'sans-serif',
-        fontSize: 14,
-        fontWeight: FontWeight.bold,
-        ),),
-=======
->>>>>>> develop
       ),
     );
   }

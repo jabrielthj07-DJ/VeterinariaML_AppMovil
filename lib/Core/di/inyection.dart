@@ -1,21 +1,15 @@
 import 'package:get_it/get_it.dart';
 
 import '../network/api.via.dart';
-<<<<<<< HEAD
-import '../../services/authService.dart';
-=======
-
 import '../../services/authService.dart';
 import '../../services/inventarioService.dart';
 import '../../services/productoService.dart';
 import '../../services/categoriaService.dart';
 import '../../services/ventaService.dart';
-
 import '../../data/repositories/inventarioRepository.dart';
 import '../../data/repositories/productoRepository.dart';
 import '../../data/repositories/categoriaRepository.dart';
 import '../../data/repositories/VentaRepository.dart';
->>>>>>> develop
 
 final GetIt getIt = GetIt.instance;
 
@@ -29,8 +23,6 @@ void configurarDependencias() {
       () => AuthService(getIt<ApiClient>()),
     );
   }
-<<<<<<< HEAD
-=======
 
   if (!getIt.isRegistered<InventarioService>()) {
     getIt.registerLazySingleton<InventarioService>(
@@ -79,5 +71,4 @@ void configurarDependencias() {
       () => VentaRepository(getIt<VentaService>()),
     );
   }
->>>>>>> develop
 }
