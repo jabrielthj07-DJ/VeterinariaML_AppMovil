@@ -1,0 +1,80 @@
+trigger:
+  - develop # Despliegue continuo automático al hacer push a develop
+
+pool:
+  vmImage: 'ubuntu-latest' # Ubuntu compila Flutter Web mucho más rápido
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+# ==========================================
+# 1. ETAPA DE COMPILACIÓN (CI)
+# ==========================================
+- stage: Build
+  displayName: 'Compilación Flutter Web'
+  jobs:
+  - job: BuildJob
+    displayName: 'Build y Empaquetado'
+    steps:
+    - script: |
+        git clone https://github.com/flutter/flutter.git -b stable --depth 1 $(Agent.ToolsDirectory)/flutter
+        echo "##vso[task.prependpath]$(Agent.ToolsDirectory)/flutter/bin"
+      displayName: 'Instalar Flutter SDK (Stable)'
+
+    - script: |
+        flutter --version
+        flutter pub get
+        flutter build web --release
+      displayName: 'Compilar Flutter Web en Release'
+
+    # Asegurar que el archivo web.config esté presente en build/web para App Service en Windows (IIS)
+    - script: |
+        if [ -f web/web.config ]; then
+          cp web/web.config build/web/web.config
+          echo "web.config copiado a build/web/"
+        fi
+      displayName: 'Verificar web.config para IIS'
+
+    - task: ArchiveFiles@2
+      displayName: 'Comprimir artefactos web en ZIP'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/web'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/app-web.zip'
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publicar Artefacto de Compilación'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+
+# ==========================================
+# 2. ETAPA DE DESPLIEGUE (CD)
+# ==========================================
+- stage: Deploy
+  displayName: 'Despliegue a Azure App Service'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - job: DeployJob
+    displayName: 'Desplegar en Azure'
+    steps:
+    - task: DownloadBuildArtifacts@0
+      displayName: 'Descargar Artefactos'
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'drop'
+        downloadPath: '$(System.ArtifactsDirectory)'
+
+    - task: AzureWebApp@1
+      displayName: 'Desplegar en Azure App Service'
+      inputs:
+        azureSubscription: 'azureSubscription' # Verifica que coincida con tu Service Connection en Azure DevOps
+        appType: 'webApp'
+        appName: 'App-deploy-ML-Movil-Eatus2' # Nombre exacto de tu App Service en Azure
+        package: '$(System.ArtifactsDirectory)/drop/app-web.zip'
