@@ -39,8 +39,12 @@ class ApiClient {
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(datos),
     );
-
-    ValidacionesApiu.validar(response.statusCode);
+    // Prueba pa ver el error
+if (response.statusCode < 200 || response.statusCode >= 300) {
+  throw Exception(
+    'Error HTTP ${response.statusCode}: ${response.body}',
+  );
+}
 
     if (response.body.isEmpty) {
       return null;

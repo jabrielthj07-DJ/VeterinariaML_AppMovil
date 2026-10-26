@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
+import '../../../../data/models/inventario_model.dart';
 
 class TarjetaProduct extends StatelessWidget {
-  const TarjetaProduct({super.key});
+  final InventarioModel producto;
+
+  const TarjetaProduct({super.key, required this.producto});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(255, 255, 255, 255),
-      
+      color: Colors.white,
       child: ListTile(
-
-leading: const Icon(
-  Icons.pets_rounded,
-  size: 35,
-  color: Color(0xFF1E3A5F),
-),
-
-        title: Text('Shampoo para perros',
-        
-        style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79),
-        fontFamily: 'sans-serif',
-        fontSize: 15,
-        fontWeight: FontWeight.bold,
+        leading: const Icon(
+          Icons.pets_rounded,
+          size: 35,
+          color: Color(0xFF1E3A5F),
         ),
+        title: Text(
+          producto.nombreProducto?.isNotEmpty == true
+              ? producto.nombreProducto!
+              : producto.descripcion,
+          style: const TextStyle(
+            color: Color(0xFF1E3A5F),
+            fontWeight: FontWeight.bold,
+          ),
         ),
-
-        subtitle: Text('Stock: 15',
-
-        style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79),
-        fontFamily: 'sans-serif',
-        fontSize: 12,
+        subtitle: Text('Stock: ${producto.stock}'),
+        trailing: Text(
+          'C\$${producto.precio.toStringAsFixed(2)}',
+          style: const TextStyle(
+            color: Color(0xFF087A4B),
+            fontWeight: FontWeight.bold,
+          ),
         ),
+<<<<<<< HEAD
         ),
         
         trailing: Text('C\$180',
@@ -43,16 +44,9 @@ leading: const Icon(
         fontSize: 14,
         fontWeight: FontWeight.bold,
         ),),
+=======
+>>>>>>> develop
       ),
     );
   }
 }
-
-
-
-// Divider class
-//https://api.flutter.dev/flutter/material/Divider-class.html
-
-// Listview este preguntar si pa cuando este conectada la api
-//https://api.flutter.dev/flutter/widgets/ListView-class.html?utm_source=chatgpt.com
-

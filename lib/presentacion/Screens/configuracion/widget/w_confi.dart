@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../Core/Routes/team_data.dart';
 
 class WConfi extends StatefulWidget {
@@ -16,55 +15,46 @@ class _WConfiState extends State<WConfi> {
     switch (tema) {
       case ThemeMode.light:
         return 'Claro';
-
       case ThemeMode.dark:
         return 'Oscuro';
-
       case ThemeMode.system:
         return 'Sistema';
     }
   }
 
+  // MODIFICADO: método único para cambiar el tema
   void seleccionarTema() {
     showDialog(
       context: context,
-      builder: (context) {
+      builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Modo de tema'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioListTile<ThemeMode>(
-                title: const Text('Claro'),
-                value: ThemeMode.light,
-                groupValue: TemaApp.tema.value,
-                onChanged: (valor) {
-                  TemaApp.tema.value = valor!;
-                  Navigator.pop(context);
-                  setState(() {});
-                },
-              ),
-              RadioListTile<ThemeMode>(
-                title: const Text('Oscuro'),
-                value: ThemeMode.dark,
-                groupValue: TemaApp.tema.value,
-                onChanged: (valor) {
-                  TemaApp.tema.value = valor!;
-                  Navigator.pop(context);
-                  setState(() {});
-                },
-              ),
-              RadioListTile<ThemeMode>(
-                title: const Text('Sistema'),
-                value: ThemeMode.system,
-                groupValue: TemaApp.tema.value,
-                onChanged: (valor) {
-                  TemaApp.tema.value = valor!;
-                  Navigator.pop(context);
-                  setState(() {});
-                },
-              ),
-            ],
+          content: RadioGroup<ThemeMode>(
+            groupValue: TemaApp.tema.value,
+            onChanged: (valor) {
+              if (valor == null) return;
+
+              TemaApp.tema.value = valor;
+              Navigator.pop(dialogContext);
+              setState(() {});
+            },
+            child: const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RadioListTile<ThemeMode>(
+                  title: Text('Claro'),
+                  value: ThemeMode.light,
+                ),
+                RadioListTile<ThemeMode>(
+                  title: Text('Oscuro'),
+                  value: ThemeMode.dark,
+                ),
+                RadioListTile<ThemeMode>(
+                  title: Text('Sistema'),
+                  value: ThemeMode.system,
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -76,11 +66,10 @@ class _WConfiState extends State<WConfi> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        const Text(
+        Text(
           'Apariencia',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-
         const SizedBox(height: 10),
 
         ListTile(
@@ -93,11 +82,10 @@ class _WConfiState extends State<WConfi> {
 
         const Divider(),
 
-        const Text(
+        Text(
           'Notificaciones',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-
         const SizedBox(height: 10),
 
         ListTile(
@@ -115,27 +103,24 @@ class _WConfiState extends State<WConfi> {
 
         const Divider(),
 
-        const Text(
+        Text(
           'Preferencias',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-
         const SizedBox(height: 10),
 
-        ListTile(
-          leading: const Icon(Icons.language_outlined),
-          title: const Text('Idioma'),
-          subtitle: const Text('Español'),
-          trailing: const Icon(Icons.chevron_right),
+        const ListTile(
+          leading: Icon(Icons.language_outlined),
+          title: Text('Idioma'),
+          subtitle: Text('Español'),
         ),
 
         const Divider(),
 
-        const Text(
+        Text(
           'Información',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-
         const SizedBox(height: 10),
 
         ListTile(
@@ -145,7 +130,7 @@ class _WConfiState extends State<WConfi> {
           onTap: () {
             showDialog(
               context: context,
-              builder: (context) {
+              builder: (dialogContext) {
                 return AlertDialog(
                   title: const Text('Acerca de la aplicación'),
                   content: const Column(
@@ -168,8 +153,7 @@ class _WConfiState extends State<WConfi> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
-
+                        Navigator.pop(dialogContext);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -182,9 +166,7 @@ class _WConfiState extends State<WConfi> {
                       child: const Text('Ver licencias'),
                     ),
                     TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                      onPressed: () => Navigator.pop(dialogContext),
                       child: const Text('Cerrar'),
                     ),
                   ],

@@ -1,4 +1,5 @@
 import '../../../../Core/di/inyection.dart';
+import '../../../../Core/constants/sesionToken.dart';
 import '../../../../services/authService.dart';
 
 import 'package:flutter/material.dart';
@@ -315,6 +316,8 @@ class loginScreen extends StatelessWidget {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () async {
+
+                            
   // AGREGADO: obtenemos los datos escritos por el usuario
   String email = _emailController.text.trim();
   String password = _passwordController.text;
@@ -337,11 +340,15 @@ class loginScreen extends StatelessWidget {
       email,
       password,
     );
+// MODIFICADO: el backend devuelve token en minúscula
+final String? token = respuesta['token']?.toString();
 
-    // AGREGADO: comprobamos que la API devuelva un token
-    if (respuesta['Token'] == null) {
-      throw Exception('La API no devolvió el token');
-    }
+if (token == null || token.isEmpty) {
+  throw Exception('La API no devolvió el token');
+}
+
+// AGREGADO: guardamos el token para las consultas posteriores
+TokenSesion.token = token;
 
     // AGREGADO: mostramos el resultado correcto
     if (!context.mounted) return;

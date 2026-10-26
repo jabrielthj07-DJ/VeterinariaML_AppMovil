@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
+import '../../../../data/models/venta_model.dart';
 
 class Tarjetaventa extends StatelessWidget {
-  const Tarjetaventa({super.key});
+  final VentaModel venta;
+
+  const Tarjetaventa({super.key, required this.venta});
 
   @override
   Widget build(BuildContext context) {
+    final cantidad = venta.detalles.fold<int>(
+      0,
+      (total, detalle) => total + detalle.cantidad,
+    );
+
     return Card(
-      color: const Color.fromARGB(255, 255, 255, 255),      
+      color: Colors.white,
       child: ListTile(
-
-leading: const Icon(
-  Icons.price_change_outlined,
-  size: 35,
-  color: Color(0xFF1E3A5F),
-),
-
-        title: Text('venta V-001',
-        
-        style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79),
-        fontFamily: 'sans-serif',
-        fontSize: 15,
-        fontWeight: FontWeight.bold,
+        leading: const Icon(
+          Icons.price_change_outlined,
+          size: 35,
+          color: Color(0xFF1E3A5F),
         ),
+        title: Text(
+          'Venta V-${venta.idVenta}',
+          style: const TextStyle(
+            color: Color(0xFF1E3A5F),
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      
-        subtitle: Text('Cantidad de productos: 4',
-        
-
-        style: TextStyle(
-        color: const Color.fromARGB(155, 18, 52, 79), 
-        fontFamily: 'sans-serif',
-        fontSize: 12,
+        subtitle: Text('Cantidad de productos: $cantidad'),
+        trailing: Text(
+          'C\$${venta.total.toStringAsFixed(2)}',
+          style: const TextStyle(
+            color: Color(0xFF087A4B),
+            fontWeight: FontWeight.bold,
+          ),
         ),
+<<<<<<< HEAD
         ),
         
         trailing: Text('Total: C\$550',
@@ -45,53 +49,48 @@ leading: const Icon(
 
         
         ),),
+=======
+>>>>>>> develop
         onTap: () {
           showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('Detalle de venta'),
-        content: const Column(
-  mainAxisSize: MainAxisSize.min,
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Text('Fecha: 26/09/2026'),
-    Text('Hora: 10:35 AM'),
-    Text('Cantidad de productos: 4'),
-    SizedBox(height: 12),
-    Text(
-      'Productos',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    SizedBox(height: 6),
-    Text('Shampoo para perros - C\$180'),
-    Text('Collar para perro - C\$120'),
-    Text('Alimento para perros - C\$250'),
-    SizedBox(height: 12),
-    Text(
-      'Total: C\$550',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-  ],
-),
-      );
-    },
-  );
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Venta V-${venta.idVenta}'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Fecha: ${venta.fechaVenta.day}/${venta.fechaVenta.month}/${venta.fechaVenta.year}',
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Productos',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 6),
+                  ...venta.detalles.map(
+                    (detalle) => Text(
+                      '${detalle.nombreProducto} x${detalle.cantidad} - C\$${detalle.precioUnitario.toStringAsFixed(2)}',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Total: C\$${venta.total.toStringAsFixed(2)}',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Cerrar'),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
   }
 }
-
-
-
-// Divider class
-//https://api.flutter.dev/flutter/material/Divider-class.html
-
-// Listview este preguntar si pa cuando este conectada la api
-//https://api.flutter.dev/flutter/widgets/ListView-class.html?utm_source=chatgpt.com
-
