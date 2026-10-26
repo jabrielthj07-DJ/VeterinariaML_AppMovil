@@ -1,82 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/Screens/login/widget/w_login.dart';
-import './Core/rutas_navegacion.dart';
-
-// Pantallas de Interfaces
-import './Screens/Inventario/inventario_screen.dart';
-import './Screens/principal_Screen/principalScreen.dart';
-import './Screens/ventas/ventas_screen.dart';
-import 'Screens/perfil/perfil_screen.dart';
-import 'Screens/Inicio/inicio_screem.dart';
-import 'Screens/configuracion/confi_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:veterinaria_ml_movil/Core/Routes/rutas_navegacion.dart';
+import 'package:veterinaria_ml_movil/Core/Routes/team_data.dart';
+import 'package:veterinaria_ml_movil/Core/di/inyection.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/Inicio/inicio_screem.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/Inventario/inventario_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/configuracion/confi_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/perfil/perfil_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/principal_Screen/principalScreen.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/ventas/ventas_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/configProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/inicioProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/inventarioProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/perfilProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/principalProvider.dart';
+import 'package:veterinaria_ml_movil/presentacion/providers/ventaProvider.dart';
 
 void main() {
+  configurarDependencias();
   runApp(const App_Veterinaria());
 }
 
-
 class App_Veterinaria extends StatelessWidget {
-
   const App_Veterinaria({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        // Menu navegcion o segmentaciones
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 134, 209, 247),
-          brightness: Brightness.light,
-        ),
-
-        // Fuentes
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            // lo vamos a ocupar pa h1 por ejemplo txt principales
-            fontSize: 24,
-            fontFamily: 'sans-serif',
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          titleMedium: TextStyle(
-            // subtitulos como h2 o h3 en html
-            fontSize: 18,
-            fontFamily: 'sans-serif',
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          bodyLarge: TextStyle(
-            // txt importante tipo h1 pero es h4 o h5
-            fontSize: 16,
-            fontFamily: 'sans-serif',
-            color: Colors.white,
-          ),
-          bodyMedium: TextStyle(
-            // txt tipo h6 o p
-            fontSize: 14,
-            fontFamily: 'sans-serif',
-            color: Colors.white,
-          ),
-        ),
-
-        // Header
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF1E3A5F),
-          foregroundColor: Colors.white,
-          centerTitle: true,
-        ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => InventarioProvider()),
+        ChangeNotifierProvider(create: (_) => PerfilProvider()),
+        ChangeNotifierProvider(create: (_) => ConfigProvider()),
+        ChangeNotifierProvider(create: (_) => VentaProvider()),
+        ChangeNotifierProvider(create: (_) => PrincipalProvider()),
+        ChangeNotifierProvider(create: (_) => InicioProvider()),
+      ],
+      child: ValueListenableBuilder<ThemeMode>(
+        valueListenable: TemaApp.tema,
+        builder: (context, temaActual, _) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: TemaApp.temaClaro,
+            darkTheme: TemaApp.temaOscuro,
+            themeMode: temaActual,
+            initialRoute: RutasNavegacion.login,
+            routes: {
+              RutasNavegacion.login: (context) => loginScreen(),
+              RutasNavegacion.inicio: (context) => const InicioScreen(),
+              RutasNavegacion.principal: (context) => const PrincipalScreen(),
+              RutasNavegacion.inventario: (context) => const InventarioScreen(),
+              RutasNavegacion.ventas: (context) => const VentasScreen(),
+              RutasNavegacion.perfil: (context) => const PerfilScreen(),
+              RutasNavegacion.configuracion: (context) =>
+                  const ConfiguracionScreen(),
+            },
+          );
+        },
       ),
-
-      initialRoute: RutasNavegacion.login,
-      routes: {
-        RutasNavegacion.login: (context) => loginScreen(),
-        RutasNavegacion.inicio: (context) => const InicioScreen(),
-        RutasNavegacion.principal: (context) => const PrincipalScreen(),
-        RutasNavegacion.inventario: (context) => const InventarioScreen(),
-        RutasNavegacion.ventas: (context) => const VentasScreen(),
-        RutasNavegacion.perfil: (context) => const PerfilScreen(),
-        RutasNavegacion.configuracion: (context) => const ConfiguracionScreen(),
-      },
     );
   }
 }
