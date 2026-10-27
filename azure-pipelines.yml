@@ -1,0 +1,79 @@
+trigger:
+  - develop
+ 
+pool:
+  vmImage: 'windows-2022'
+ 
+variables:
+  buildConfiguration: 'Release'
+ 
+stages:
+# ==========================================
+# 1. ETAPA DE COMPILACIÓN (CI)
+# ==========================================
+- stage: Build
+  displayName: 'Compilación Flutter Web'
+  jobs:
+  - job: BuildJob
+    displayName: 'Build y Empaquetado'
+    steps:
+    - powershell: |
+        git clone https://github.com/flutter/flutter.git -b stable --depth 1 $env:AGENT_TOOLSDIRECTORY\flutter
+        Write-Host "##vso[task.prependpath]$env:AGENT_TOOLSDIRECTORY\flutter\bin"
+      displayName: 'Instalar Flutter SDK (Stable)'
+ 
+    - powershell: |
+        flutter --version
+        flutter pub get
+        flutter build web --release --no-tree-shake-icons
+      displayName: 'Compilar Flutter Web en Release'
+ 
+    - powershell: |
+        if (Test-Path "web\web.config") {
+          Copy-Item "web\web.config" -Destination "build\web\web.config" -Force
+          Write-Host "web.config copiado a build\web\"
+        }
+      displayName: 'Verificar web.config para IIS'
+ 
+    - task: ArchiveFiles@2
+      displayName: 'Comprimir artefactos web en ZIP'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/web'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/app-web.zip'
+        replaceExistingArchive: true
+ 
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publicar Artefacto de Compilación'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+ 
+# ==========================================
+# 2. ETAPA DE DESPLIEGUE (CD)
+# ==========================================
+- stage: Deploy
+  displayName: 'Despliegue a Azure App Service'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - job: DeployJob
+    displayName: 'Desplegar en Azure'
+    steps:
+    - task: DownloadBuildArtifacts@0
+      displayName: 'Descargar Artefactos'
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'drop'
+        downloadPath: '$(System.ArtifactsDirectory)'
+ 
+    - task: AzureWebApp@1
+      displayName: 'Desplegar en Azure App Service'
+      inputs:
+        azureSubscription: 'ConecctionApp' # Verifica que coincida con tu Service Connection en Azure DevOps
+        appType: 'webApp'
+        appName: 'AplicaciónMovilFinal' # Tu App Service exacto de Azure
+        package: '$(System.ArtifactsDirectory)/drop/app-web.zip'
