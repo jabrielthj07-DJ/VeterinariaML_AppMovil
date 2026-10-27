@@ -2,7 +2,9 @@
     <application
         android:label="veterinaria_ml_movil"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"> <!-- Permite el tráfico HTTP sin cifrar, pa poder hacer practicas con local -->
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
