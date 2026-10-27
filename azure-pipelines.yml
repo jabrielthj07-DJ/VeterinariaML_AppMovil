@@ -73,7 +73,7 @@ stages:
     - task: AzureWebApp@1
       displayName: 'Desplegar en Azure App Service'
       inputs:
-        azureSubscription: 'azureSubscription' # Verifica que coincida con tu Service Connection en Azure DevOps
+        azureSubscription: 'ConecctionApp' # Verifica que coincida con tu Service Connection en Azure DevOps
         appType: 'webApp'
         appName: 'AplicaciónMovilFinal' # Tu App Service exacto de Azure
         package: '$(System.ArtifactsDirectory)/drop/app-web.zip'
