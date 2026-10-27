@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Inventario/inventario_screen.dart';
-import '../Inicio/inicio_screem.dart';
+import '../inventario/inventario_screen.dart';
+import '../inicio/inicio_screem.dart';
 import '../ventas/ventas_screen.dart';
 import '../perfil/perfil_screen.dart';
 import '../../Widgets/menu.dart';
