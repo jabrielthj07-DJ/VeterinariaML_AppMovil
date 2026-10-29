@@ -27,29 +27,79 @@ class ApiClient {
     return jsonDecode(response.body);
   }
 
-// Oe este es solo pal login
-  Future<dynamic> post(
-    String path,
-    Map<String, dynamic> datos,
-  ) async {
-    final uri = Uri.parse('${ApiConstant.bsUrl}/$path');
+// Borra de aqui si acaso es solo pa ver el error de inicio de sesion
 
-    final response = await _client.post(
-      uri,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(datos),
-    );
-    // Prueba pa ver el error
-if (response.statusCode < 200 || response.statusCode >= 300) {
-  throw Exception(
-    'Error HTTP ${response.statusCode}: ${response.body}',
+// post l
+Future<dynamic> post(
+String path,
+Map<String, dynamic> datos,
+) async {
+final uri = Uri.parse('${ApiConstant.bsUrl}/$path');
+
+try {
+  //  muestra la URL solicitada
+  print('URL SOLICITADA: $uri');
+
+  final response = await _client.post(
+    uri,
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: jsonEncode(datos),
   );
-}
 
-    if (response.body.isEmpty) {
-      return null;
-    }
+  //  muestra la respuesta del servidor
+  print('ESTADO HTTP: ${response.statusCode}');
+  print('RESPUESTA API: ${response.body}');
 
-    return jsonDecode(response.body);
+  if (response.statusCode < 200 ||
+      response.statusCode >= 300) {
+    throw Exception(
+      'Error HTTP ${response.statusCode}: ${response.body}',
+    );
   }
+
+  if (response.body.isEmpty) {
+    return null;
+  }
+
+  return jsonDecode(response.body);
+} catch (e) {
+  // captura errores de conexión
+  print('ERROR COMPLETO DE CONEXIÓN/API: $e');
+  rethrow;
 }
+
+}
+}
+
+
+
+// // Oe este es solo pal login
+//   Future<dynamic> post(
+//     String path,
+//     Map<String, dynamic> datos,
+//   ) async {
+//     final uri = Uri.parse('${ApiConstant.bsUrl}/$path');
+    
+
+//     final response = await _client.post(
+//       uri,
+//       headers: {'Content-Type': 'application/json'},
+//       body: jsonEncode(datos),
+//     );
+//     // Prueba pa ver el error
+// if (response.statusCode < 200 || response.statusCode >= 300) {
+//   throw Exception(
+//     'Error HTTP ${response.statusCode}: ${response.body}',
+//   );
+// }
+
+//     if (response.body.isEmpty) {
+//       return null;
+//     }
+
+//     return jsonDecode(response.body);
+//   }
+// }

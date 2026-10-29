@@ -1,4 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- pa´ q permita que Flutter acceda a Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:label="veterinaria_ml_movil"
         android:name="${applicationName}"
