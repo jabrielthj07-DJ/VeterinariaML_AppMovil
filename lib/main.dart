@@ -2,18 +2,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:veterinaria_ml_movil/Core/Routes/team_data.dart'
+import 'package:veterinaria_ml_movil/Core/routes/team_data.dart'
     as team_data;
-import 'package:veterinaria_ml_movil/Core/Routes/rutas_navegacion.dart';
+import 'package:veterinaria_ml_movil/Core/routes/rutas_navegacion.dart';
 import 'package:veterinaria_ml_movil/Core/di/inyection.dart';
 
-import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/Inventario/inventario_screen.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/principal_Screen/principalScreen.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/ventas/ventas_screen.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/perfil/perfil_screen.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/Inicio/inicio_screem.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/configuracion/confi_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/login/widget/w_login.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/inventario/inventario_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/principal_Screen/principalScreen.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/ventas/ventas_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/perfil/perfil_screen.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/inicio/inicio_screem.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/configuracion/confi_screen.dart';
 
 import 'package:veterinaria_ml_movil/presentacion/providers/productoProvider.dart';
 import 'package:veterinaria_ml_movil/presentacion/providers/inicioProvider.dart';
