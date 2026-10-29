@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/presentacion/Screens/Inicio/widget/accesos_rapido.dart';
+import 'package:veterinaria_ml_movil/presentacion/screens/inicio/widget/accesos_rapido.dart';
 import 'widget/dashboard_header.dart';
 import 'widget/estadistica_cart.dart';
 //import 'widget/tendencia_agosto.dart'; Pa mientras no porque las tengo en mi intefaz xd, att:DJ
