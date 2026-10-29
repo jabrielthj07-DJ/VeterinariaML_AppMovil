@@ -60,6 +60,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+
   assets:
     - lib/presentacion/Screens/login/image/logo_veterinaria.png
 

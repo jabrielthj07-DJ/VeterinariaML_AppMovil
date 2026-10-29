@@ -11,7 +11,7 @@ class _VentasCharState extends State<VentasChar> {
   final List<double> ventas = [65, 90, 75, 110, 100, 135];
   final List<String> meses = ['Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago'];
   
-  @override
+  
   @override
   Widget build(BuildContext context) {
   return Container(

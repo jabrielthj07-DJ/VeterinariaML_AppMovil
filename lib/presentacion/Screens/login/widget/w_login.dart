@@ -206,19 +206,21 @@ class loginScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: Image.asset(
-                      'lib/Screens/login/image/logo_veterinaria.png',
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.pets,
-                          color: Colors.green,
-                          size: 80,
-                        );
-                      },
-                    ),
-                  ),
-                ),
+// ruta real del logo
+                    child: 
+Image.asset(
+  'lib/presentacion/Screens/login/image/logo_veterinaria.png',
+  fit: BoxFit.contain,
+  errorBuilder: (context, error, stackTrace) {
+    return const Icon(
+      Icons.pets,
+      color: Colors.green,
+      size: 80,
+    );
+  },
+),
+),
+),
 
                 const SizedBox(height: 30),
 
