@@ -1,15 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:veterinaria_ml_movil/presentacion/providers/ventaProvider.dart';
-import 'package:veterinaria_ml_movil/Core/constants/sesionToken.dart';
-
+import '../../../../Core/constants/sesionToken.dart';
+import '../../../presentacion/providers/ventaProvider.dart';
 import 'widget/tarjetas.dart';
 import 'widget/buscador.dart';
 import 'widget/filtro.dart';
-
-import 'widget/temporal/ventas_chart.dart';
-import 'widget/temporal/tendencia_agosto.dart';
 
 class VentasScreen extends StatefulWidget {
   const VentasScreen({super.key});
@@ -19,15 +16,21 @@ class VentasScreen extends StatefulWidget {
 }
 
 class _VentasScreenState extends State<VentasScreen> {
-  int vistaSeleccionada = 0;
-  int filtroSeleccionado = 0;
   String busqueda = '';
+  int filtroSeleccionado = 0;
+
+  final List<String> filtros = [
+    'Todas',
+    'Hoy',
+    'Ayer',
+    'Semanal',
+    'Mensual',
+  ];
 
   @override
   void initState() {
     super.initState();
 
-    // AGREGADO: cargar las ventas al abrir la pantalla
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final token = TokenSesion.token;
 
@@ -40,35 +43,39 @@ class _VentasScreenState extends State<VentasScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<VentaProvider>();
+    final todasLasVentas = provider.ventas;
 
-    // AGREGADO: buscar y filtrar las ventas
-    final ventas = provider.ventas.where((venta) {
+    final ahora = DateTime.now();
+    final hoy = DateTime(ahora.year, ahora.month, ahora.day);
+    final ayer = hoy.subtract(const Duration(days: 1));
+
+    final ventasFiltradas = todasLasVentas.where((venta) {
       final coincideBusqueda =
-          'V-${venta.idVenta}'.toLowerCase().contains(busqueda.toLowerCase());
+          'V-${venta.idVenta}'.toLowerCase().contains(
+                busqueda.toLowerCase(),
+              );
 
-      final fecha = venta.fechaVenta;
-      final ahora = DateTime.now();
-
-      final hoy = DateTime(ahora.year, ahora.month, ahora.day);
-      final ayer = hoy.subtract(const Duration(days: 1));
-      final fechaVenta = DateTime(fecha.year, fecha.month, fecha.day);
+      final fecha = DateTime(
+        venta.fechaVenta.year,
+        venta.fechaVenta.month,
+        venta.fechaVenta.day,
+      );
 
       bool coincideFecha;
 
       switch (filtroSeleccionado) {
-        case 0:
-          coincideFecha = fechaVenta == hoy;
-          break;
         case 1:
-          coincideFecha = fechaVenta == ayer;
+          coincideFecha = fecha == hoy;
           break;
         case 2:
-          coincideFecha = !fechaVenta.isBefore(
-                hoy.subtract(const Duration(days: 6)),
-              ) &&
-              !fechaVenta.isAfter(hoy);
+          coincideFecha = fecha == ayer;
           break;
         case 3:
+          coincideFecha =
+              !fecha.isBefore(hoy.subtract(const Duration(days: 6))) &&
+              !fecha.isAfter(hoy);
+          break;
+        case 4:
           coincideFecha =
               fecha.year == ahora.year && fecha.month == ahora.month;
           break;
@@ -79,122 +86,222 @@ class _VentasScreenState extends State<VentasScreen> {
       return coincideBusqueda && coincideFecha;
     }).toList();
 
+    final totalVendido = todasLasVentas.fold<double>(
+      0,
+      (total, venta) => total + venta.total,
+    );
+
+    final cantidadVentas = todasLasVentas.length;
+
+    final ticketPromedio = cantidadVentas == 0
+        ? 0.0
+        : totalVendido / cantidadVentas;
+
     return Scaffold(
-      body: Column(
-        children: [
-          // Encabezado original
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(20),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFF174B5B),
-                  Color(0xFF7BD0F3),
+      backgroundColor: const Color(0xFFF9FAFB),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(22),
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF1E3A5F),
+                    Color(0xFF2563EB),
+                  ],
+                ),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(22),
+                  bottomRight: Radius.circular(22),
+                ),
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Ventas',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Historial y seguimiento de ventas',
+                    style: TextStyle(color: Colors.white70),
+                  ),
                 ],
               ),
             ),
-            child: const Text(
-              'Ventas',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
 
-          const SizedBox(height: 14),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  final token = TokenSesion.token;
+                  if (token != null && token.isNotEmpty) {
+                    await context.read<VentaProvider>().cargarVentas(token);
+                  }
+                },
+                child: ListView(
+                  padding: const EdgeInsets.all(16),
+                  children: [
+                    const Text(
+                      'Resumen de ventas',
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF1E3A5F),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
 
-          // Cambiar entre Reporte e Historial
-          SegmentedButton<int>(
-            segments: const [
-              ButtonSegment(value: 0, label: Text('Reporte')),
-              ButtonSegment(value: 1, label: Text('Historial')),
-            ],
-            selected: {vistaSeleccionada},
-            onSelectionChanged: (seleccion) {
-              setState(() {
-                vistaSeleccionada = seleccion.first;
-              });
-            },
-          ),
+                    Row(
+                      children: [
+                        _indicador(
+                          'Total vendido',
+                          'C\$${totalVendido.toStringAsFixed(2)}',
+                          Icons.attach_money,
+                        ),
+                        const SizedBox(width: 8),
+                        _indicador(
+                          'Transacciones',
+                          '$cantidadVentas',
+                          Icons.receipt_long,
+                        ),
+                        const SizedBox(width: 8),
+                        _indicador(
+                          'Ticket promedio',
+                          'C\$${ticketPromedio.toStringAsFixed(2)}',
+                          Icons.analytics_outlined,
+                        ),
+                      ],
+                    ),
 
-          const SizedBox(height: 8),
+                    const SizedBox(height: 22),
 
-          // Contenido de cada pestaña
-          Expanded(
-            child: vistaSeleccionada == 0
-                ? ListView(
-                    padding: const EdgeInsets.all(12),
-                    children: const [
-                      VentasChar(),
-                      SizedBox(height: 8),
-                      TendenciaAgosto(),
-                    ],
-                  )
-                : Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: BuscadorVenta(
-                          onBuscar: (texto) {
-                            setState(() => busqueda = texto);
-                          },
+                    BuscadorVenta(
+                      onChanged: (valor) {
+                        setState(() => busqueda = valor);
+                      },
+                    ),
+
+                    const SizedBox(height: 15),
+
+                    Filtro(
+                      opciones: filtros,
+                      seleccionado: filtroSeleccionado,
+                      onSeleccionado: (valor) {
+                        setState(() => filtroSeleccionado = valor);
+                      },
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Historial de ventas',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF1E3A5F),
+                          ),
+                        ),
+                        Text('${ventasFiltradas.length} registros'),
+                      ],
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    if (provider.cargando && todasLasVentas.isEmpty)
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(30),
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    else if (provider.error != null &&
+                        todasLasVentas.isEmpty)
+                      _mensaje(
+                        'Error al cargar ventas:\n${provider.error}',
+                        Icons.error_outline,
+                      )
+                    else if (ventasFiltradas.isEmpty)
+                      _mensaje(
+                        'No se encontraron ventas.',
+                        Icons.receipt_long_outlined,
+                      )
+                    else
+                      ...ventasFiltradas.map(
+                        (venta) => Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Tarjetaventa(venta: venta),
                         ),
                       ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-                      const SizedBox(height: 8),
+  Widget _indicador(String titulo, String valor, IconData icono) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.grey.shade200),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icono, color: const Color(0xFF2563EB), size: 21),
+            const SizedBox(height: 9),
+            Text(
+              valor,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1E3A5F),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              titulo,
+              maxLines: 2,
+              style: const TextStyle(
+                fontSize: 10,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-                      Filtro(
-                        seleccionado: filtroSeleccionado,
-                        onCambiar: (valor) {
-                          setState(() => filtroSeleccionado = valor);
-                        },
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      Expanded(
-                        child: provider.cargando
-                            ? const Center(
-                                child: CircularProgressIndicator(),
-                              )
-                            : provider.error != null
-                                ? Center(child: Text(provider.error!))
-                                : RefreshIndicator(
-                                    onRefresh: () async {
-                                      final token = TokenSesion.token;
-                                      if (token != null && token.isNotEmpty) {
-                                        await provider.cargarVentas(token);
-                                      }
-                                    },
-                                    child: ventas.isEmpty
-                                        ? ListView(
-                                            children: const [
-                                              SizedBox(height: 100),
-                                              Center(
-                                                child: Text(
-                                                  'No hay ventas para mostrar',
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        : ListView.builder(
-                                            padding: const EdgeInsets.all(12),
-                                            itemCount: ventas.length,
-                                            itemBuilder: (context, index) {
-                                              return Tarjetaventa(
-                                                venta: ventas[index],
-                                              );
-                                            },
-                                          ),
-                                  ),
-                      ),
-                    ],
-                  ),
+  Widget _mensaje(String mensaje, IconData icono) {
+    return Padding(
+      padding: const EdgeInsets.all(25),
+      child: Column(
+        children: [
+          Icon(icono, size: 40, color: Colors.grey),
+          const SizedBox(height: 10),
+          Text(
+            mensaje,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.grey),
           ),
         ],
       ),
