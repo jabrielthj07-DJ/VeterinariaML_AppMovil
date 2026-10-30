@@ -28,6 +28,16 @@ stages:
         flutter build web --release --no-tree-shake-icons
       displayName: 'Compilar Flutter Web en Release'
 
+    - powershell: |
+        $archivo = "$(System.DefaultWorkingDirectory)/build/web/web.config"
+        if (Test-Path $archivo) {
+          Remove-Item $archivo -Force
+          Write-Host "web.config eliminado del artefacto Flutter Web."
+        } else {
+          Write-Host "web.config no existe en build/web."
+        }
+      displayName: 'Eliminar web.config del artefacto'
+
       
  
     - task: ArchiveFiles@2

@@ -10,7 +10,7 @@ class TarjetaProduct extends StatelessWidget {
     required this.producto,
   });
 
-  // AGREGADO: Mostrar detalle del producto
+  // Mostrar detalle del producto
   void _mostrarDetalle(BuildContext context) {
     final nombre = producto.nombreProducto?.isNotEmpty == true
         ? producto.nombreProducto!
