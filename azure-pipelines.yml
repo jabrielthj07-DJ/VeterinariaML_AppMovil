@@ -27,23 +27,8 @@ stages:
         flutter pub get
         flutter build web --release --no-tree-shake-icons
       displayName: 'Compilar Flutter Web en Release'
- 
-    - powershell: |
-        if (Test-Path "web\web.config") {
-          Copy-Item "web\web.config" -Destination "build\web\web.config" -Force
-          Write-Host "web.config copiado a build\web\"
-        }
-      displayName: 'Verificar web.config para IIS'
 
       
-    - powershell: |
-        if (!(Test-Path "build\web\web.config")) {
-          throw "ERROR: web.config no existe en build\web"
-        }
-
-        Write-Host "web.config encontrado correctamente"
-      displayName: 'Validar configuración IIS'
-
  
     - task: ArchiveFiles@2
       displayName: 'Comprimir artefactos web en ZIP'
