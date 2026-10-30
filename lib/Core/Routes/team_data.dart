@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TemaApp {
-  // AGREGADO: tema seleccionado globalmente
+  // tema seleccionado globalmente
   static final ValueNotifier<ThemeMode> tema =
       ValueNotifier<ThemeMode>(ThemeMode.system);
 
-  // AGREGADO: colores de la aplicación
+  // colores de la aplicación
   static const Color azul = Color(0xFF1E3A5F);
   static const Color verde = Color(0xFF087A4B);
   static const Color celeste = Color(0xFF7BD0F3);
 
-  // AGREGADO: tema claro
+  // tema claro
   static final ThemeData temaClaro = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -82,7 +82,7 @@ class TemaApp {
     ),
   );
 
-  // AGREGADO: tema oscuro
+  //  tema oscuro
   static final ThemeData temaOscuro = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,

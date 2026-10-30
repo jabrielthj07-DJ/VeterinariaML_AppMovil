@@ -219,7 +219,7 @@ Image.asset(
     );
   },
 ),
-),
+                  ),
 ),
 
                 const SizedBox(height: 30),
@@ -276,9 +276,9 @@ Image.asset(
                         decoration: InputDecoration(
                           hintText: 'Correo electrónico',
                           prefixIcon: const Icon(
-                            Icons.email_outlined,
-                            color: Color.fromARGB(255, 19, 27, 31),
-                          ),
+  Icons.email_outlined,
+  color: Color(0xFF131B1F),
+),
                           filled: true,
                           fillColor: const Color(0xFFF4F9FC),
                           border: OutlineInputBorder(
@@ -294,14 +294,14 @@ Image.asset(
                         obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'Contraseña',
-                          prefixIcon: const Icon(
-                            Icons.lock_outline_rounded,
-                            color: Color.fromARGB(255, 24, 28, 30),
-                          ),
+                        prefixIcon: const Icon(
+  Icons.lock_outline_rounded,
+  color: Color(0xFF181C1E),
+),
                           suffixIcon: const Icon(
-                            Icons.visibility_off_outlined,
-                            color: Colors.grey,
-                          ),
+  Icons.visibility_off_outlined,
+  color: Colors.grey,
+),
                           filled: true,
                           fillColor: const Color(0xFFF4F9FC),
                           border: OutlineInputBorder(
