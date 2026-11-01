@@ -108,8 +108,10 @@ class _VentasScreenState extends State<VentasScreen> {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF1E3A5F),
-                    Color(0xFF2563EB),
+                    // Color(0xFF1E3A5F),
+                    // Color(0xFF2563EB),
+                     Color(0xFF174B5B),
+                    Color(0xFF7BD0F3),
                   ],
                 ),
                 borderRadius: BorderRadius.only(

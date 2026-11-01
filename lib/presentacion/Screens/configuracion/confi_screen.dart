@@ -7,37 +7,44 @@ class ConfiguracionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: const Color(0xFFF9FAFB),
       body: SafeArea(
         child: Column(
           children: [
-            // AGREGADO: encabezado
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 25,
-              ),
+              padding: const EdgeInsets.all(22),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF174B5B),
+                    // Color(0xFF1E3A5F),
+                    // Color(0xFF2563EB),
+                     Color(0xFF174B5B),
                     Color(0xFF7BD0F3),
                   ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(22),
+                  bottomRight: Radius.circular(22),
                 ),
               ),
-              child: const Text(
-                'Configuración',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Inventario',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ), 
+             ],
             ),
+            
+          ),
 
-            // AGREGADO: contenido de configuración
+         
             const Expanded(
               child: WConfi(),
             ),
