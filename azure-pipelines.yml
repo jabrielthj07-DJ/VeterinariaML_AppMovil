@@ -1,5 +1,5 @@
 trigger:
-  - develop
+        - develop
  
 pool:
   vmImage: 'windows-2022'
@@ -27,12 +27,16 @@ stages:
         flutter pub get
         flutter build web --release --no-tree-shake-icons
       displayName: 'Compilar Flutter Web en Release'
- 
+
     - powershell: |
-        if (Test-Path "web\web.config") {
-          Copy-Item "web\web.config" -Destination "build\web\web.config" -Force
-          Write-Host "web.config copiado a build\web\"
+        $archivo = "$(System.DefaultWorkingDirectory)/build/web/web.config"
+        if (Test-Path $archivo) {
+          Remove-Item $archivo -Force
+          Write-Host "web.config eliminado del artefacto Flutter Web."
+        } else {
+          Write-Host "web.config no existe en build/web."
         }
+<<<<<<< HEAD
       displayName: 'Verificar web.config para IIS'
 
       
@@ -44,6 +48,11 @@ stages:
         Write-Host "web.config encontrado correctamente"
       displayName: 'Validar configuración IIS'
 
+=======
+      displayName: 'Eliminar web.config del artefacto'
+
+      
+>>>>>>> develop
  
     - task: ArchiveFiles@2
       displayName: 'Comprimir artefactos web en ZIP'

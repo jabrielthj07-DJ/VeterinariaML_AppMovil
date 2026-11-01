@@ -1,10 +1,14 @@
+
 import 'package:flutter/material.dart';
 import '../../../../data/models/venta_model.dart';
 
 class Tarjetaventa extends StatelessWidget {
   final VentaModel venta;
 
-  const Tarjetaventa({super.key, required this.venta});
+  const Tarjetaventa({
+    super.key,
+    required this.venta,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,67 +19,117 @@ class Tarjetaventa extends StatelessWidget {
 
     return Card(
       color: Colors.white,
+      elevation: 1,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: Colors.grey.shade200),
+      ),
       child: ListTile(
-        leading: const Icon(
-          Icons.price_change_outlined,
-          size: 35,
-          color: Color(0xFF1E3A5F),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 8,
+        ),
+        leading: const CircleAvatar(
+          backgroundColor: Color(0xFFE8F0FE),
+          child: Icon(
+            Icons.receipt_long,
+            color: Color(0xFF1E3A5F),
+          ),
         ),
         title: Text(
           'Venta V-${venta.idVenta}',
           style: const TextStyle(
-            color: Color(0xFF1E3A5F),
             fontWeight: FontWeight.bold,
+            color: Color(0xFF1E3A5F),
           ),
         ),
-        subtitle: Text('Cantidad de productos: $cantidad'),
+        subtitle: Text(
+          '$cantidad productos • ${venta.fechaVenta.day}/${venta.fechaVenta.month}/${venta.fechaVenta.year}',
+        ),
         trailing: Text(
           'C\$${venta.total.toStringAsFixed(2)}',
           style: const TextStyle(
             color: Color(0xFF087A4B),
             fontWeight: FontWeight.bold,
+            fontSize: 14,
           ),
         ),
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Venta V-${venta.idVenta}'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
+        onTap: () => _mostrarDetalle(context),
+      ),
+    );
+  }
+
+  void _mostrarDetalle(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Venta V-${venta.idVenta}'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: SingleChildScrollView(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'Fecha: ${venta.fechaVenta.day}/${venta.fechaVenta.month}/${venta.fechaVenta.year}',
                   ),
-                  const SizedBox(height: 10),
+                  const Divider(height: 24),
                   const Text(
-                    'Productos',
+                    'Productos vendidos',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 10),
                   ...venta.detalles.map(
-                    (detalle) => Text(
-                      '${detalle.nombreProducto} x${detalle.cantidad} - C\$${detalle.precioUnitario.toStringAsFixed(2)}',
+                    (detalle) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '${detalle.nombreProducto}\n'
+                              'Cantidad: ${detalle.cantidad}',
+                            ),
+                          ),
+                          Text(
+                            'C\$${detalle.precioUnitario.toStringAsFixed(2)}',
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Total: C\$${venta.total.toStringAsFixed(2)}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  const Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Total:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'C\$${venta.total.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF087A4B),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Cerrar'),
-                ),
-              ],
             ),
-          );
-        },
-      ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cerrar'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

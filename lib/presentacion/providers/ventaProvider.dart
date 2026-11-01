@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../Core/di/inyection.dart';
-import '../../data/repositories/ventaRepository.dart';
+import '../../data/repositories/VentaRepository.dart';
 import '../../data/models/venta_model.dart';
 
 class VentaProvider extends ChangeNotifier {
