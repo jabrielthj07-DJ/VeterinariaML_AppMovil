@@ -132,7 +132,7 @@ class _VentasScreenState extends State<VentasScreen> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    'Historial y seguimiento de ventas',
+                    'Seguimiento de las ventas',
                     style: TextStyle(color: Colors.white70),
                   ),
                 ],
@@ -151,7 +151,7 @@ class _VentasScreenState extends State<VentasScreen> {
                   padding: const EdgeInsets.all(16),
                   children: [
                     const Text(
-                      'Resumen de ventas',
+                      'Reportes Generales de Ventas',
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
@@ -229,12 +229,12 @@ class _VentasScreenState extends State<VentasScreen> {
                     else if (provider.error != null &&
                         todasLasVentas.isEmpty)
                       _mensaje(
-                        'Error al cargar ventas:\n${provider.error}',
+                        'Andas valiendo ver... error provider Dog - V:\n${provider.error}',
                         Icons.error_outline,
                       )
                     else if (ventasFiltradas.isEmpty)
                       _mensaje(
-                        'No se encontraron ventas.',
+                        'No se encontraron ventas...',
                         Icons.receipt_long_outlined,
                       )
                     else
