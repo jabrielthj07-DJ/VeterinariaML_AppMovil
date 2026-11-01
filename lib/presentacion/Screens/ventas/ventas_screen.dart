@@ -169,7 +169,7 @@ class _VentasScreenState extends State<VentasScreen> {
                         ),
                         const SizedBox(width: 8),
                         _indicador(
-                          'Transacciones',
+                          'Ventas Completadas',
                           '$cantidadVentas',
                           Icons.receipt_long,
                         ),
