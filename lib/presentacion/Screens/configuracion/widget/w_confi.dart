@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import '../../../../Core/routes/team_data.dart';
 
@@ -21,40 +22,42 @@ class _WConfiState extends State<WConfi> {
         return 'Sistema';
     }
   }
-
-  // MODIFICADO: método único para cambiar el tema
   void seleccionarTema() {
     showDialog(
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Modo de tema'),
-          content: RadioGroup<ThemeMode>(
-            groupValue: TemaApp.tema.value,
-            onChanged: (valor) {
-              if (valor == null) return;
+          content: ValueListenableBuilder<ThemeMode>(
+            valueListenable: TemaApp.tema,
+            builder: (context, temaActual, child) {
+              return RadioGroup<ThemeMode>(
+                groupValue: temaActual,
+                onChanged: (valor) {
+                  if (valor == null) return;
 
-              TemaApp.tema.value = valor;
-              Navigator.pop(dialogContext);
-              setState(() {});
+                  TemaApp.tema.value = valor;
+                  Navigator.pop(dialogContext);
+                },
+                child: const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    RadioListTile<ThemeMode>(
+                      title: Text('Claro'),
+                      value: ThemeMode.light,
+                    ),
+                    RadioListTile<ThemeMode>(
+                      title: Text('Oscuro'),
+                      value: ThemeMode.dark,
+                    ),
+                    RadioListTile<ThemeMode>(
+                      title: Text('Sistema'),
+                      value: ThemeMode.system,
+                    ),
+                  ],
+                ),
+              );
             },
-            child: const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                RadioListTile<ThemeMode>(
-                  title: Text('Claro'),
-                  value: ThemeMode.light,
-                ),
-                RadioListTile<ThemeMode>(
-                  title: Text('Oscuro'),
-                  value: ThemeMode.dark,
-                ),
-                RadioListTile<ThemeMode>(
-                  title: Text('Sistema'),
-                  value: ThemeMode.system,
-                ),
-              ],
-            ),
           ),
         );
       },
@@ -71,13 +74,17 @@ class _WConfiState extends State<WConfi> {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 10),
-
-        ListTile(
-          leading: const Icon(Icons.dark_mode_outlined),
-          title: const Text('Modo de tema'),
-          subtitle: Text(nombreTema(TemaApp.tema.value)),
-          trailing: const Icon(Icons.chevron_right),
-          onTap: seleccionarTema,
+        ValueListenableBuilder<ThemeMode>(
+          valueListenable: TemaApp.tema,
+          builder: (context, temaActual, child) {
+            return ListTile(
+              leading: const Icon(Icons.dark_mode_outlined),
+              title: const Text('Modo de tema'),
+              subtitle: Text(nombreTema(temaActual)),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: seleccionarTema,
+            );
+          },
         ),
 
         const Divider(),

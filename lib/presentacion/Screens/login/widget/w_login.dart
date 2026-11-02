@@ -285,7 +285,7 @@ class loginScreen extends StatelessWidget {
                             color: Color.fromARGB(255, 19, 27, 31),
                           ),
                           filled: true,
-                          fillColor: const Color.fromARGB(255, 17, 18, 18),
+                          fillColor: const Color(0xFFF4F9FC),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
                             borderSide: BorderSide.none,
