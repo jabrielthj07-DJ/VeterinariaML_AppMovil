@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TemaApp {
-  // AGREGADO: tema seleccionado globalmente
+  //  tema seleccionado globalmente
   static final ValueNotifier<ThemeMode> tema =
       ValueNotifier<ThemeMode>(ThemeMode.system);
 
-  // AGREGADO: colores de la aplicación
+  //  colores de la aplicación
   static const Color azul = Color(0xFF1E3A5F);
   static const Color verde = Color(0xFF087A4B);
   static const Color celeste = Color(0xFF7BD0F3);
 
-  // AGREGADO: tema claro
+  // tema claro
   static final ThemeData temaClaro = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -40,7 +40,7 @@ class TemaApp {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: azul,
+        backgroundColor: const Color.fromARGB(255, 69, 133, 216),
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -64,25 +64,25 @@ class TemaApp {
       titleLarge: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
-        color: azul,
+        color: Color.fromARGB(233, 13, 14, 13),
       ),
       titleMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
-        color: azul,
+        color: Color.fromARGB(233, 13, 14, 13), // agregado pa prueba 
       ),
       bodyLarge: TextStyle(
         fontSize: 16,
-        color: Color(0xFF131313),
+        color: Color.fromARGB(233, 13, 14, 13),
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
-        color: Color(0xFF333333),
+        color: Color.fromARGB(233, 13, 14, 13),
       ),
     ),
   );
 
-  // AGREGADO: tema oscuro
+  //  tema oscuro
   static final ThemeData temaOscuro = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
@@ -109,7 +109,7 @@ class TemaApp {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: azul,
+        backgroundColor: Color.fromARGB(255, 69, 133, 216),
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -130,14 +130,21 @@ class TemaApp {
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 24,
+         color: Color.fromARGB(233, 13, 14, 13), // agregado pa prueba 
         fontWeight: FontWeight.bold,
       ),
       titleMedium: TextStyle(
         fontSize: 18,
+         color: Color.fromARGB(233, 13, 14, 13), // agregado pa prueba
         fontWeight: FontWeight.bold,
       ),
-      bodyLarge: TextStyle(fontSize: 16),
-      bodyMedium: TextStyle(fontSize: 14),
+      bodyLarge: TextStyle(
+        fontSize: 16 ,
+       color: Color.fromARGB(233, 13, 14, 13),), 
+      bodyMedium: TextStyle(
+        fontSize: 14,
+         color: Color.fromARGB(233, 13, 14, 13),
+         ),
     ),
   );
 }

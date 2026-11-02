@@ -271,6 +271,13 @@ class loginScreen extends StatelessWidget {
                       TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
+
+                        style: const TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+  ),
+
+
                         decoration: InputDecoration(
                           hintText: 'Correo electrónico',
                           prefixIcon: const Icon(
@@ -278,7 +285,7 @@ class loginScreen extends StatelessWidget {
                             color: Color.fromARGB(255, 19, 27, 31),
                           ),
                           filled: true,
-                          fillColor: const Color(0xFFF4F9FC),
+                          fillColor: const Color.fromARGB(255, 17, 18, 18),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
                             borderSide: BorderSide.none,
@@ -290,6 +297,13 @@ class loginScreen extends StatelessWidget {
                       TextField(
                         controller: _passwordController,
                         obscureText: true,
+
+                         style: const TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+  ),
+
+
                         decoration: InputDecoration(
                           hintText: 'Contraseña',
                           prefixIcon: const Icon(
@@ -318,11 +332,11 @@ class loginScreen extends StatelessWidget {
                           onPressed: () async {
 
                             
-  // AGREGADO: obtenemos los datos escritos por el usuario
+  // obtenemos los datos escritos por el usuario
   String email = _emailController.text.trim();
   String password = _passwordController.text;
 
-  // AGREGADO: verificamos que no estén vacíos
+  // verificamos que no estén vacíos
   if (email.isEmpty || password.isEmpty) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -333,24 +347,24 @@ class loginScreen extends StatelessWidget {
   }
 
   try {
-    // AGREGADO: llamamos al servicio que consulta la API
+    // llamamos al servicio que consulta la API
     final auth = getIt<AuthService>();
 
     final respuesta = await auth.iniciarSesion(
       email,
       password,
     );
-// MODIFICADO: el backend devuelve token en minúscula
+//  el backend devuelve token en minúscula
 final String? token = respuesta['token']?.toString();
 
 if (token == null || token.isEmpty) {
   throw Exception('La API no devolvió el token');
 }
 
-// AGREGADO: guardamos el token para las consultas posteriores
+//  guardamos el token para las consultas posteriores
 TokenSesion.token = token;
 
-    // AGREGADO: mostramos el resultado correcto
+    // mostramos el resultado correcto
     if (!context.mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -360,7 +374,7 @@ TokenSesion.token = token;
       ),
     );
 
-    // CONSERVADO: tu navegación original
+    // tu navegación original
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
@@ -370,7 +384,7 @@ TokenSesion.token = token;
     );
 
   } catch (e) {
-    // AGREGADO: mostramos el error que ocurra al consultar la API
+    //  mostramos el error que ocurra al consultar la API
     if (!context.mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
