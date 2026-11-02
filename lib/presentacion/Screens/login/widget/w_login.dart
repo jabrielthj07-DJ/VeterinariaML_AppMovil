@@ -396,12 +396,7 @@ TokenSesion.token = token;
   }
 },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(
-                              255,
-                              134,
-                              209,
-                              247,
-                            ),
+                            backgroundColor: const Color.fromRGBO(134, 209, 247, 1),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),

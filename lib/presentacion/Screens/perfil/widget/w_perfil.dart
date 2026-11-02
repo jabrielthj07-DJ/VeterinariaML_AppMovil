@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:veterinaria_ml_movil/presentacion/screens/login/widget/w_login.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
 
 class WPerfil extends StatefulWidget {
   const WPerfil({super.key});
@@ -10,13 +9,21 @@ class WPerfil extends StatefulWidget {
 }
 
 class _WPerfilState extends State<WPerfil> {
+  final TextEditingController nombreController = TextEditingController(
+    text: 'Darell Jimenez',
+  );
 
-  static const Color azul = Color(0xFF174B5B);
-  static const Color celeste = Color(0xFF7BD0F3);
+  final TextEditingController correoController = TextEditingController(
+    text: 'jimenez@correo.com',
+  );
 
-  final nombreController = TextEditingController(text: 'Axel Lopez');
-  final correoController = TextEditingController(text: 'axellopez@gmail.com');
-  final telefonoController = TextEditingController(text: '505-9509-8928');
+  final TextEditingController telefonoController = TextEditingController(
+    text: '505-9509-8928',
+  );
+
+  final TextEditingController contrasenaController = TextEditingController(
+    text: '************',
+  );
 
   final String administrador = 'Administrador';
 
@@ -24,6 +31,7 @@ class _WPerfilState extends State<WPerfil> {
   void dispose() {
     nombreController.dispose();
     correoController.dispose();
+    contrasenaController.dispose();
     telefonoController.dispose();
     super.dispose();
   }
@@ -31,49 +39,83 @@ class _WPerfilState extends State<WPerfil> {
   void editarPerfil() {
     showDialog(
       context: context,
-      builder: (dialogContext) {
+      builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.white,
-          title: const Text(
-            'Editar perfil',
-            style: TextStyle(color: azul),
-          ),
+          title: const Text('Editar perfil'),
+          
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
                   controller: nombreController,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(labelText: 'Nombre'),
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 70, 72, 73),
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Nombre',
+                    prefixIcon: Icon(Icons.person_outline),
+                  ),
                 ),
+
+                const SizedBox(height: 5),
+
                 TextField(
                   controller: correoController,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(labelText: 'Correo'),
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 70, 72, 73),
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Correo',
+                    prefixIcon: Icon(Icons.email_outlined),
+                  ),
                 ),
+                const SizedBox(height: 5),
+
+                TextField(
+                  controller: contrasenaController,
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 70, 72, 73),
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Contraseña',
+                    prefixIcon: Icon(Icons.lock_outline),
+                  ),
+                ),
+                const SizedBox(height: 6),
+
                 TextField(
                   controller: telefonoController,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(labelText: 'Teléfono'),
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 70, 72, 73),
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Telefono',
+                    prefixIcon: Icon(Icons.phone),
+                  ),
                 ),
               ],
             ),
           ),
+
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: const Text('Cancelar'),
             ),
+
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 110, 173, 204), // Color de fondo
+                  foregroundColor: Colors.white, // Color del texto
+                ),
               onPressed: () {
                 setState(() {});
-                Navigator.pop(dialogContext);
-
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Perfil actualizado'),
-                  ),
+                  const SnackBar(content: Text('Perfil actualizado')),
                 );
               },
               child: const Text('Guardar'),
@@ -91,132 +133,122 @@ class _WPerfilState extends State<WPerfil> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [azul, celeste],
+          colors: [Color.fromARGB(255, 101, 168, 197), Color(0xFF174B5B)],
         ),
       ),
       child: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           child: Column(
             children: [
-              const SizedBox(height: 20),
-
+              const SizedBox(height: 1.0),
               const CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.person,
-                  size: 65,
-                  color: azul,
-                ),
+                radius: 55,
+                child: Icon(Icons.person, size: 70),
               ),
-
-              const SizedBox(height: 15),
+              const SizedBox(height: 12),
 
               Text(
                 nombreController.text,
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
               ),
 
-              const SizedBox(height: 5),
+              const SizedBox(height: 4),
 
               Text(
                 administrador,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 15,
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 197, 195, 195),
                 ),
               ),
 
               const SizedBox(height: 15),
 
               ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 110, 173, 204), // Color de fondo
+                  foregroundColor: Colors.white, // Color del texto
+                ),
                 onPressed: editarPerfil,
                 icon: const Icon(Icons.edit),
                 label: const Text('Editar perfil'),
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
 
               Card(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Información de la cuenta',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: azul,
-                        ),
-                      ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
 
-                      const Divider(),
+                    Text(
+                      'Información de la cuenta',
+                      style: TextStyle(fontSize: 17),
+                    ),
 
-                      ListTile(
-                        leading: const Icon(Icons.person_outline, color: azul),
-                        title: const Text('Nombre'),
-                        subtitle: Text(
-                          nombreController.text,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ),
+                    const Divider(height: 10),
 
-                      ListTile(
-                        leading: const Icon(Icons.email_outlined, color: azul),
-                        title: const Text('Correo'),
-                        subtitle: Text(
-                          correoController.text,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ),
+                    ListTile(
+                      leading: const Icon(Icons.person_outline),
+                      title: const Text('Nombre'),
+                      subtitle: Text(nombreController.text),
+                    ),
 
-                      ListTile(
-                        leading: const Icon(Icons.phone, color: azul),
-                        title: const Text('Teléfono'),
-                        subtitle: Text(
-                          telefonoController.text,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ),
+                    const Divider(height: 1),
 
-                      ListTile(
-                        leading: const Icon(Icons.admin_panel_settings, color: azul),
-                        title: const Text('Rol asignado'),
-                        subtitle: Text(
-                          administrador,
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ListTile(
+                      leading: const Icon(Icons.email_outlined),
+                      title: const Text('Correo'),
+                      subtitle: Text(correoController.text),
+                    ),
+
+                    const Divider(height: 1),
+
+                    ListTile(
+                      leading: const Icon(Icons.phone_android_outlined),
+                      title: const Text('Telefono'),
+                      subtitle: Text(telefonoController.text),
+                    ),
+
+                    const Divider(height: 1),
+
+                    ListTile(
+                      leading: Icon(Icons.group_outlined),
+                      title: Text('Rol asignado'),
+                      subtitle: Text(administrador),
+                    ),
+
+                    const Divider(height: 1),
+
+                    ListTile(
+                      leading: const Icon(Icons.lock_outline),
+                      title: const Text('Contraseña'),
+                      subtitle: Text(contrasenaController.text),
+                    ),
+                  ],
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
-              ElevatedButton.icon(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:const Color.fromARGB(255, 110, 173, 204), // Color de fondo
+                  foregroundColor: Colors.white, // Color del texto
+                ),
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => loginScreen(),
-                    ),
+                    MaterialPageRoute(builder: (context) => loginScreen()),
                     (route) => false,
                   );
                 },
-                icon: const Icon(Icons.logout),
-                label: const Text('Cerrar sesión'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                ),
+                child: const Text('Cerrar sesión'),
               ),
+
             ],
           ),
         ),
