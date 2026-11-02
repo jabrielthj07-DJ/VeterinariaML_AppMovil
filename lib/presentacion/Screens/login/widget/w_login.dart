@@ -274,7 +274,7 @@ class loginScreen extends StatelessWidget {
 
                         style: const TextStyle(
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 13,
   ),
 
 
@@ -300,7 +300,7 @@ class loginScreen extends StatelessWidget {
 
                          style: const TextStyle(
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 13,
   ),
 
 
