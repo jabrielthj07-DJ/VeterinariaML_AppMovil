@@ -33,8 +33,12 @@ APP Veterinaria M&L es una aplicacion movil diseñada para facilitar la gestion 
 
 Durante el desarrollo se utilizaron herramientas de inteligencia artificial como apoyo:
 
-- **Antigravity:** para revisar codigo, identificar errores y buscar posibles soluciones.
-- **ChatGPT:** para agregar funcionalidades, comprender codigo, encontrar enlaces a documentacion y consultar ejemplos de implementacion.
+- **Antigravity:** 
+para revisar codigo, identificar errores y buscar posibles soluciones.
+
+- **ChatGPT:** 
+para agregar funcionalidades, comprender codigo, encontrar enlaces a documentacion y consultar ejemplos de implementacion. Tambien se utilizo para agilizar el estilo de la pantalla, a que me refiero ?, a Poner instrucciones de copiar el mismo estilo de una pantalla ya existente y pasarla a otra, esto debido a la confucion con llaves y parentesis, mejorando la productividad y aprovechando el tiempo almaximo.
+
 
 ---
 
