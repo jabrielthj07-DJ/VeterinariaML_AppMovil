@@ -12,7 +12,6 @@ class WConfi extends StatefulWidget {
 class _WConfiState extends State<WConfi> {
   bool notificaciones = true;
 
-  // Controladores del formulario
   final _formKey = GlobalKey<FormState>();
 
   final nombreController = TextEditingController();
@@ -23,10 +22,8 @@ class _WConfiState extends State<WConfi> {
   String rolSeleccionado = 'Cajero';
   bool ocultarPassword = true;
 
-  // Lista de usuarios simulados
   final List<Map<String, String>> usuarios = [];
 
-  // Nombre del tema seleccionado
   String nombreTema(ThemeMode tema) {
     switch (tema) {
       case ThemeMode.light:
@@ -38,7 +35,6 @@ class _WConfiState extends State<WConfi> {
     }
   }
 
-  // Seleccionar modo de tema
   void seleccionarTema() {
     showDialog(
       context: context,
@@ -81,7 +77,6 @@ class _WConfiState extends State<WConfi> {
     );
   }
 
-  // Crear nuevo usuario
   void crearUsuario() {
     nombreController.clear();
     correoController.clear();
@@ -104,7 +99,6 @@ class _WConfiState extends State<WConfi> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Nombre completo
                       TextFormField(
                         controller: nombreController,
                         textCapitalization: TextCapitalization.words,
@@ -121,8 +115,6 @@ class _WConfiState extends State<WConfi> {
                       ),
 
                       const SizedBox(height: 12),
-
-                      // Correo electrónico
                       TextFormField(
                         controller: correoController,
                         keyboardType: TextInputType.emailAddress,
@@ -145,8 +137,6 @@ class _WConfiState extends State<WConfi> {
                       ),
 
                       const SizedBox(height: 12),
-
-                      // Teléfono
                       TextFormField(
                         controller: telefonoController,
                         keyboardType: TextInputType.phone,
@@ -164,7 +154,6 @@ class _WConfiState extends State<WConfi> {
 
                       const SizedBox(height: 12),
 
-                      // Rol asignado
                       DropdownButtonFormField<String>(
                         value: rolSeleccionado,
                         decoration: const InputDecoration(
@@ -193,8 +182,6 @@ class _WConfiState extends State<WConfi> {
                       ),
 
                       const SizedBox(height: 12),
-
-                      // Contraseña
                       TextFormField(
                         controller: passwordController,
                         obscureText: ocultarPassword,
@@ -238,8 +225,6 @@ class _WConfiState extends State<WConfi> {
                   },
                   child: const Text('Cancelar'),
                 ),
-
-                // Botón crear usuario
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
@@ -249,8 +234,6 @@ class _WConfiState extends State<WConfi> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       final correo = correoController.text.trim();
-
-                      // Evitar correos repetidos
                       final existe = usuarios.any(
                         (usuario) =>
                             usuario['correo']!.toLowerCase() ==
@@ -267,8 +250,6 @@ class _WConfiState extends State<WConfi> {
                         );
                         return;
                       }
-
-                      // Agregar usuario a la lista temporal
                       setState(() {
                         usuarios.add({
                           'nombre': nombreController.text.trim(),
@@ -297,7 +278,6 @@ class _WConfiState extends State<WConfi> {
     );
   }
 
-  // Mostrar usuarios registrados
   void mostrarUsuarios() {
     showDialog(
       context: context,
@@ -346,7 +326,7 @@ class _WConfiState extends State<WConfi> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        // APARIENCIA
+    
         Text(
           'Apariencia',
           style: Theme.of(context).textTheme.titleMedium,
@@ -369,7 +349,6 @@ class _WConfiState extends State<WConfi> {
 
         const Divider(),
 
-        // NOTIFICACIONES
         Text(
           'Notificaciones',
           style: Theme.of(context).textTheme.titleMedium,
@@ -392,7 +371,6 @@ class _WConfiState extends State<WConfi> {
 
         const Divider(),
 
-        // PREFERENCIAS
         Text(
           'Preferencias',
           style: Theme.of(context).textTheme.titleMedium,
@@ -408,7 +386,6 @@ class _WConfiState extends State<WConfi> {
 
         const Divider(),
 
-        // GESTIÓN DE USUARIOS
         Text(
           'Gestión de usuarios',
           style: Theme.of(context).textTheme.titleMedium,
@@ -435,8 +412,6 @@ class _WConfiState extends State<WConfi> {
         ),
 
         const Divider(),
-
-        // INFORMACIÓN
         Text(
           'Información',
           style: Theme.of(context).textTheme.titleMedium,
@@ -509,8 +484,6 @@ class _WConfiState extends State<WConfi> {
       ],
     );
   }
-
-  // Liberar controladores
   @override
   void dispose() {
     nombreController.dispose();

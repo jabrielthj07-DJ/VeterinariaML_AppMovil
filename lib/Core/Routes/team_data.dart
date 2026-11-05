@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TemaApp {
-  //  tema seleccionado globalmente
+
   static final ValueNotifier<ThemeMode> tema =
       ValueNotifier<ThemeMode>(ThemeMode.system);
 
-  //  colores de la aplicación
   static const Color azul = Color(0xFF1E3A5F);
   static const Color verde = Color(0xFF087A4B);
   static const Color celeste = Color(0xFF7BD0F3);
@@ -69,7 +68,7 @@ class TemaApp {
       titleMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
-        color: Color.fromARGB(233, 13, 14, 13), // agregado pa prueba 
+        color: Color.fromARGB(233, 13, 14, 13), 
       ),
       bodyLarge: TextStyle(
         fontSize: 16,
@@ -130,12 +129,12 @@ class TemaApp {
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 24,
-         color: Color.fromARGB(233, 13, 14, 13), // agregado pa prueba 
+         color: Color.fromARGB(233, 13, 14, 13), 
         fontWeight: FontWeight.bold,
       ),
       titleMedium: TextStyle(
         fontSize: 18,
-         color: Color.fromARGB(233, 13, 14, 13), // agregado pa prueba
+         color: Color.fromARGB(233, 13, 14, 13), 
         fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(
