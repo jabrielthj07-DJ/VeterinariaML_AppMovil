@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 //import 'package:veterinaria_ml_movil/Screens/Inicio/inicio_screem.dart';
 import 'package:veterinaria_ml_movil/presentacion/screens/principal_Screen/principalScreen.dart';
 
-// Definimos la pantalla estrictamente como StatelessWidget
 class loginScreen extends StatelessWidget {
   loginScreen({super.key});
 
@@ -18,7 +17,7 @@ class loginScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F9F6), // Color de fondo claro y limpio
+      backgroundColor: const Color(0xFFF9F9F6), // Color de fondo claro, limpio
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -31,7 +30,6 @@ class loginScreen extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   colors: [Color(0xff154455), Color(0xff22596B)],
                 ),
-                // alignment: Alignment(0, -1.2),
               ),
             ),
 
@@ -182,7 +180,7 @@ class loginScreen extends StatelessWidget {
 
             Column(
               children: [
-                const SizedBox(height: 50), // Espacio superior inicial
+                const SizedBox(height: 50), // Espacio inicial
                 Container(
                   width: 160,
                   height: 160,
@@ -258,9 +256,7 @@ class loginScreen extends StatelessWidget {
                       Text(
                         'Bienvenido',
                         style: TextStyle(
-                          // fontSize: size.width * 0.07,
                           fontSize: 18,
-
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 17, 22, 25),
                         ),
@@ -330,13 +326,10 @@ class loginScreen extends StatelessWidget {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () async {
-
-                            
-  // obtenemos los datos escritos por el usuario
+// Dtos Usuario
   String email = _emailController.text.trim();
   String password = _passwordController.text;
 
-  // verificamos que no estén vacíos
   if (email.isEmpty || password.isEmpty) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -347,24 +340,20 @@ class loginScreen extends StatelessWidget {
   }
 
   try {
-    // llamamos al servicio que consulta la API
     final auth = getIt<AuthService>();
 
     final respuesta = await auth.iniciarSesion(
       email,
       password,
     );
-//  el backend devuelve token en minúscula
 final String? token = respuesta['token']?.toString();
 
 if (token == null || token.isEmpty) {
   throw Exception('La API no devolvió el token');
 }
 
-//  guardamos el token para las consultas posteriores
 TokenSesion.token = token;
 
-    // mostramos el resultado correcto
     if (!context.mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -374,7 +363,6 @@ TokenSesion.token = token;
       ),
     );
 
-    // tu navegación original
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
@@ -384,7 +372,7 @@ TokenSesion.token = token;
     );
 
   } catch (e) {
-    //  mostramos el error que ocurra al consultar la API
+   
     if (!context.mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
