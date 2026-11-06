@@ -1,5 +1,8 @@
 trigger:
-        - develop
+        - develop 
+# Verificar y poner siempre como principal main ya que asi el triger no funciona, ya que uno tiene que entrar en devops
+# y darle run de nuevo al pipeline pa q el develp reconozca o se de cuenta del los cambios hechos en la App de flutter
+
  
 pool:
   vmImage: 'windows-2022'
@@ -8,9 +11,9 @@ variables:
   buildConfiguration: 'Release'
  
 stages:
-# ==========================================
-# 1. ETAPA DE COMPILACIÓN (CI)
-# ==========================================
+
+# 1. ETAPA DE COMPILACIÓN (CI) - Integracion continua
+
 - stage: Build
   displayName: 'Compilación Flutter Web'
   jobs:
@@ -36,23 +39,9 @@ stages:
         } else {
           Write-Host "web.config no existe en build/web."
         }
-<<<<<<< HEAD
-      displayName: 'Verificar web.config para IIS'
-
-      
-    - powershell: |
-        if (!(Test-Path "build\web\web.config")) {
-          throw "ERROR: web.config no existe en build\web"
-        }
-
-        Write-Host "web.config encontrado correctamente"
-      displayName: 'Validar configuración IIS'
-
-=======
       displayName: 'Eliminar web.config del artefacto'
 
       
->>>>>>> develop
  
     - task: ArchiveFiles@2
       displayName: 'Comprimir artefactos web en ZIP'
@@ -69,10 +58,9 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
- 
-# ==========================================
-# 2. ETAPA DE DESPLIEGUE (CD)
-# ==========================================
+
+# 2. ETAPA DE DESPLIEGUE (CD) - Despliegue continuo
+
 - stage: Deploy
   displayName: 'Despliegue a Azure App Service'
   dependsOn: Build
@@ -92,7 +80,7 @@ stages:
     - task: AzureWebApp@1
       displayName: 'Desplegar en Azure App Service'
       inputs:
-        azureSubscription: 'ConecctionApp' # Verifica que coincida con tu Service Connection en Azure DevOps
+        azureSubscription: 'ConecctionApp' # Conexion de appsettings de Azure DevOps
         appType: 'webApp'
-        appName: 'AplicaciónMovilFinal' # Tu App Service exacto de Azure
+        appName: 'AplicaciónMovilFinal' # Nombre de app service creado en Azure
         package: '$(System.ArtifactsDirectory)/drop/app-web.zip'

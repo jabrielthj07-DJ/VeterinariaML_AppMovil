@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 class TemaApp {
+<<<<<<< HEAD
   // tema seleccionado globalmente
   static final ValueNotifier<ThemeMode> tema =
       ValueNotifier<ThemeMode>(ThemeMode.system);
 
   // colores de la aplicación
+=======
+
+  static final ValueNotifier<ThemeMode> tema =
+      ValueNotifier<ThemeMode>(ThemeMode.system);
+
+>>>>>>> develop
   static const Color azul = Color(0xFF1E3A5F);
   static const Color verde = Color(0xFF087A4B);
   static const Color celeste = Color(0xFF7BD0F3);
@@ -40,7 +47,7 @@ class TemaApp {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: azul,
+        backgroundColor: const Color.fromARGB(255, 69, 133, 216),
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -64,20 +71,20 @@ class TemaApp {
       titleLarge: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.bold,
-        color: azul,
+        color: Color.fromARGB(233, 13, 14, 13),
       ),
       titleMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
-        color: azul,
+        color: Color.fromARGB(233, 13, 14, 13), 
       ),
       bodyLarge: TextStyle(
         fontSize: 16,
-        color: Color(0xFF131313),
+        color: Color.fromARGB(233, 13, 14, 13),
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
-        color: Color(0xFF333333),
+        color: Color.fromARGB(233, 13, 14, 13),
       ),
     ),
   );
@@ -109,7 +116,7 @@ class TemaApp {
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: azul,
+        backgroundColor: Color.fromARGB(255, 69, 133, 216),
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -130,14 +137,21 @@ class TemaApp {
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 24,
+         color: Color.fromARGB(233, 13, 14, 13), 
         fontWeight: FontWeight.bold,
       ),
       titleMedium: TextStyle(
         fontSize: 18,
+         color: Color.fromARGB(233, 13, 14, 13), 
         fontWeight: FontWeight.bold,
       ),
-      bodyLarge: TextStyle(fontSize: 16),
-      bodyMedium: TextStyle(fontSize: 14),
+      bodyLarge: TextStyle(
+        fontSize: 16 ,
+       color: Color.fromARGB(233, 13, 14, 13),), 
+      bodyMedium: TextStyle(
+        fontSize: 14,
+         color: Color.fromARGB(233, 13, 14, 13),
+         ),
     ),
   );
 }

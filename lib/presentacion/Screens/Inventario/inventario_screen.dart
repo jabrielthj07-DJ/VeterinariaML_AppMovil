@@ -43,7 +43,7 @@ class _InventarioScreenState extends State<InventarioScreen> {
     }).toList();
 
     return Scaffold(
-   backgroundColor: const Color(0xFFF9FAFB),
+     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [

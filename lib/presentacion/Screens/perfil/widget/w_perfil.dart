@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../Widgets/boton.dart';
-import 'package:veterinaria_ml_movil/presentacion/screens/login/widget/w_login.dart';
+import 'package:veterinaria_ml_movil/presentacion/Screens/login/widget/w_login.dart';
 
 class WPerfil extends StatefulWidget {
   const WPerfil({super.key});
@@ -11,11 +10,11 @@ class WPerfil extends StatefulWidget {
 
 class _WPerfilState extends State<WPerfil> {
   final TextEditingController nombreController = TextEditingController(
-    text: 'Axel Lopez',
+    text: 'Darell Jimenez',
   );
 
   final TextEditingController correoController = TextEditingController(
-    text: 'axellopez@gmail.com',
+    text: 'jimenez@correo.com',
   );
 
   final TextEditingController telefonoController = TextEditingController(
@@ -43,7 +42,7 @@ class _WPerfilState extends State<WPerfil> {
       builder: (context) {
         return AlertDialog(
           title: const Text('Editar perfil'),
-
+          
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -51,7 +50,7 @@ class _WPerfilState extends State<WPerfil> {
                 TextField(
                   controller: nombreController,
                   style: const TextStyle(
-                  color: Color.fromARGB(255, 70, 72, 73),
+                    color: Color.fromARGB(255, 70, 72, 73),
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Nombre',
@@ -59,32 +58,36 @@ class _WPerfilState extends State<WPerfil> {
                   ),
                 ),
 
+                const SizedBox(height: 5),
+
                 TextField(
                   controller: correoController,
                   style: const TextStyle(
-                  color: Color.fromARGB(255, 70, 72, 73),
+                    color: Color.fromARGB(255, 70, 72, 73),
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Correo',
                     prefixIcon: Icon(Icons.email_outlined),
                   ),
                 ),
+                const SizedBox(height: 5),
 
                 TextField(
                   controller: contrasenaController,
                   style: const TextStyle(
-                  color: Color.fromARGB(255, 70, 72, 73),
+                    color: Color.fromARGB(255, 70, 72, 73),
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Contraseña',
                     prefixIcon: Icon(Icons.lock_outline),
                   ),
                 ),
+                const SizedBox(height: 6),
 
                 TextField(
                   controller: telefonoController,
                   style: const TextStyle(
-                  color: Color.fromARGB(255, 70, 72, 73),
+                    color: Color.fromARGB(255, 70, 72, 73),
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Telefono',
@@ -104,6 +107,10 @@ class _WPerfilState extends State<WPerfil> {
             ),
 
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 110, 173, 204), // Color de fondo
+                  foregroundColor: Colors.white, // Color del texto
+                ),
               onPressed: () {
                 setState(() {});
                 Navigator.pop(context);
@@ -126,7 +133,7 @@ class _WPerfilState extends State<WPerfil> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF174B5B), Color(0xFF7BD0F3)],
+          colors: [Color.fromARGB(255, 101, 168, 197), Color(0xFF174B5B)],
         ),
       ),
       child: SafeArea(
@@ -153,12 +160,19 @@ class _WPerfilState extends State<WPerfil> {
 
               Text(
                 administrador,
-                style: TextStyle(fontSize: 15, color: const Color.fromARGB(255, 197, 195, 195)),
+                style: TextStyle(
+                  fontSize: 15,
+                  color: const Color.fromARGB(255, 197, 195, 195),
+                ),
               ),
 
               const SizedBox(height: 15),
 
               ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 110, 173, 204), // Color de fondo
+                  foregroundColor: Colors.white, // Color del texto
+                ),
                 onPressed: editarPerfil,
                 icon: const Icon(Icons.edit),
                 label: const Text('Editar perfil'),
@@ -173,9 +187,7 @@ class _WPerfilState extends State<WPerfil> {
 
                     Text(
                       'Información de la cuenta',
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
+                      style: TextStyle(fontSize: 17),
                     ),
 
                     const Divider(height: 10),
@@ -223,15 +235,20 @@ class _WPerfilState extends State<WPerfil> {
 
               const SizedBox(height: 15),
 
-              Btnclass(
-                text: 'Cerrar sesion',
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:const Color.fromARGB(255, 110, 173, 204), // Color de fondo
+                  foregroundColor: Colors.white, // Color del texto
+                ),
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => loginScreen()),
                     (route) => false,
                   );
                 },
+                child: const Text('Cerrar sesión'),
               ),
+
             ],
           ),
         ),

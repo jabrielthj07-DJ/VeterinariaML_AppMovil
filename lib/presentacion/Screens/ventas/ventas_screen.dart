@@ -98,7 +98,7 @@ class _VentasScreenState extends State<VentasScreen> {
         : totalVendido / cantidadVentas;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB),
+       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -131,10 +131,6 @@ class _VentasScreenState extends State<VentasScreen> {
                     ),
                   ),
                   SizedBox(height: 5),
-                  Text(
-                    'Seguimiento de las ventas',
-                    style: TextStyle(color: Colors.white70),
-                  ),
                 ],
               ),
             ),

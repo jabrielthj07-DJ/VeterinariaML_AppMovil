@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import '../../../../Core/routes/team_data.dart';
 
@@ -11,6 +12,18 @@ class WConfi extends StatefulWidget {
 class _WConfiState extends State<WConfi> {
   bool notificaciones = true;
 
+  final _formKey = GlobalKey<FormState>();
+
+  final nombreController = TextEditingController();
+  final correoController = TextEditingController();
+  final telefonoController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  String rolSeleccionado = 'Cajero';
+  bool ocultarPassword = true;
+
+  final List<Map<String, String>> usuarios = [];
+
   String nombreTema(ThemeMode tema) {
     switch (tema) {
       case ThemeMode.light:
@@ -22,40 +35,287 @@ class _WConfiState extends State<WConfi> {
     }
   }
 
-  // MODIFICADO: método único para cambiar el tema
   void seleccionarTema() {
     showDialog(
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Modo de tema'),
-          content: RadioGroup<ThemeMode>(
-            groupValue: TemaApp.tema.value,
-            onChanged: (valor) {
-              if (valor == null) return;
+          content: ValueListenableBuilder<ThemeMode>(
+            valueListenable: TemaApp.tema,
+            builder: (context, temaActual, child) {
+              return RadioGroup<ThemeMode>(
+                groupValue: temaActual,
+                onChanged: (valor) {
+                  if (valor == null) return;
 
-              TemaApp.tema.value = valor;
-              Navigator.pop(dialogContext);
-              setState(() {});
+                  TemaApp.tema.value = valor;
+                  Navigator.pop(dialogContext);
+                },
+                child: const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    RadioListTile<ThemeMode>(
+                      title: Text('Claro'),
+                      value: ThemeMode.light,
+                    ),
+                    RadioListTile<ThemeMode>(
+                      title: Text('Oscuro'),
+                      value: ThemeMode.dark,
+                    ),
+                    RadioListTile<ThemeMode>(
+                      title: Text('Sistema'),
+                      value: ThemeMode.system,
+                    ),
+                  ],
+                ),
+              );
             },
-            child: const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                RadioListTile<ThemeMode>(
-                  title: Text('Claro'),
-                  value: ThemeMode.light,
+          ),
+        );
+      },
+    );
+  }
+
+  void crearUsuario() {
+    nombreController.clear();
+    correoController.clear();
+    telefonoController.clear();
+    passwordController.clear();
+
+    rolSeleccionado = 'Cajero';
+    ocultarPassword = true;
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              title: const Text('Crear nuevo usuario'),
+              content: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        controller: nombreController,
+                        textCapitalization: TextCapitalization.words,
+                        decoration: const InputDecoration(
+                          labelText: 'Nombre completo',
+                          prefixIcon: Icon(Icons.person_outline),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'Ingrese el nombre completo';
+                          }
+                          return null;
+                        },
+                      ),
+
+                      const SizedBox(height: 12),
+                      TextFormField(
+                        controller: correoController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                          labelText: 'Correo electrónico',
+                          prefixIcon: Icon(Icons.email_outlined),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'Ingrese el correo';
+                          }
+
+                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
+                              .hasMatch(value.trim())) {
+                            return 'Ingrese un correo válido';
+                          }
+
+                          return null;
+                        },
+                      ),
+
+                      const SizedBox(height: 12),
+                      TextFormField(
+                        controller: telefonoController,
+                        keyboardType: TextInputType.phone,
+                        decoration: const InputDecoration(
+                          labelText: 'Teléfono',
+                          prefixIcon: Icon(Icons.phone_android_outlined),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'Ingrese el teléfono';
+                          }
+                          return null;
+                        },
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      DropdownButtonFormField<String>(
+                        value: rolSeleccionado,
+                        decoration: const InputDecoration(
+                          labelText: 'Rol asignado',
+                          prefixIcon: Icon(
+                            Icons.admin_panel_settings_outlined,
+                          ),
+                        ),
+                        items: const [
+                          DropdownMenuItem(
+                            value: 'Administrador',
+                            child: Text('Administrador'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Cajero',
+                            child: Text('Cajero'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          if (value != null) {
+                            setDialogState(() {
+                              rolSeleccionado = value;
+                            });
+                          }
+                        },
+                      ),
+
+                      const SizedBox(height: 12),
+                      TextFormField(
+                        controller: passwordController,
+                        obscureText: ocultarPassword,
+                        decoration: InputDecoration(
+                          labelText: 'Contraseña',
+                          prefixIcon: const Icon(Icons.lock_outline),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              ocultarPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                            onPressed: () {
+                              setDialogState(() {
+                                ocultarPassword = !ocultarPassword;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Ingrese una contraseña';
+                          }
+
+                          if (value.length < 8) {
+                            return 'Mínimo 8 caracteres';
+                          }
+
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                RadioListTile<ThemeMode>(
-                  title: Text('Oscuro'),
-                  value: ThemeMode.dark,
+              ),
+
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(dialogContext);
+                  },
+                  child: const Text('Cancelar'),
                 ),
-                RadioListTile<ThemeMode>(
-                  title: Text('Sistema'),
-                  value: ThemeMode.system,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        const Color.fromARGB(255, 110, 173, 204),
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      final correo = correoController.text.trim();
+                      final existe = usuarios.any(
+                        (usuario) =>
+                            usuario['correo']!.toLowerCase() ==
+                            correo.toLowerCase(),
+                      );
+
+                      if (existe) {
+                        ScaffoldMessenger.of(this.context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Este correo ya está registrado',
+                            ),
+                          ),
+                        );
+                        return;
+                      }
+                      setState(() {
+                        usuarios.add({
+                          'nombre': nombreController.text.trim(),
+                          'correo': correo,
+                          'telefono': telefonoController.text.trim(),
+                          'rol': rolSeleccionado,
+                        });
+                      });
+
+                      Navigator.pop(dialogContext);
+
+                      ScaffoldMessenger.of(this.context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Usuario creado correctamente'),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Crear usuario'),
                 ),
               ],
-            ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void mostrarUsuarios() {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Usuarios registrados'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: usuarios.isEmpty
+                ? const Text('Todavía no hay usuarios registrados.')
+                : ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: usuarios.length,
+                    separatorBuilder: (context, index) =>
+                        const Divider(),
+                    itemBuilder: (context, index) {
+                      final usuario = usuarios[index];
+
+                      return ListTile(
+                        leading: const CircleAvatar(
+                          child: Icon(Icons.person_outline),
+                        ),
+                        title: Text(usuario['nombre']!),
+                        subtitle: Text(
+                          '${usuario['correo']}\n'
+                          '${usuario['rol']} • ${usuario['telefono']}',
+                        ),
+                        isThreeLine: true,
+                      );
+                    },
+                  ),
           ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Cerrar'),
+            ),
+          ],
         );
       },
     );
@@ -66,18 +326,25 @@ class _WConfiState extends State<WConfi> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+    
         Text(
           'Apariencia',
           style: Theme.of(context).textTheme.titleMedium,
         ),
+
         const SizedBox(height: 10),
 
-        ListTile(
-          leading: const Icon(Icons.dark_mode_outlined),
-          title: const Text('Modo de tema'),
-          subtitle: Text(nombreTema(TemaApp.tema.value)),
-          trailing: const Icon(Icons.chevron_right),
-          onTap: seleccionarTema,
+        ValueListenableBuilder<ThemeMode>(
+          valueListenable: TemaApp.tema,
+          builder: (context, temaActual, child) {
+            return ListTile(
+              leading: const Icon(Icons.dark_mode_outlined),
+              title: const Text('Modo de tema'),
+              subtitle: Text(nombreTema(temaActual)),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: seleccionarTema,
+            );
+          },
         ),
 
         const Divider(),
@@ -86,6 +353,7 @@ class _WConfiState extends State<WConfi> {
           'Notificaciones',
           style: Theme.of(context).textTheme.titleMedium,
         ),
+
         const SizedBox(height: 10),
 
         ListTile(
@@ -107,6 +375,7 @@ class _WConfiState extends State<WConfi> {
           'Preferencias',
           style: Theme.of(context).textTheme.titleMedium,
         ),
+
         const SizedBox(height: 10),
 
         const ListTile(
@@ -118,9 +387,36 @@ class _WConfiState extends State<WConfi> {
         const Divider(),
 
         Text(
+          'Gestión de usuarios',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+
+        const SizedBox(height: 10),
+
+        ListTile(
+          leading: const Icon(Icons.person_add_alt_1_outlined),
+          title: const Text('Crear nuevo usuario'),
+          subtitle: const Text(
+            'Registrar un usuario en la aplicación',
+          ),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: crearUsuario,
+        ),
+
+        ListTile(
+          leading: const Icon(Icons.groups_outlined),
+          title: const Text('Usuarios registrados'),
+          subtitle: Text('${usuarios.length} usuarios creados'),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: mostrarUsuarios,
+        ),
+
+        const Divider(),
+        Text(
           'Información',
           style: Theme.of(context).textTheme.titleMedium,
         ),
+
         const SizedBox(height: 10),
 
         ListTile(
@@ -154,6 +450,7 @@ class _WConfiState extends State<WConfi> {
                     TextButton(
                       onPressed: () {
                         Navigator.pop(dialogContext);
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -165,8 +462,11 @@ class _WConfiState extends State<WConfi> {
                       },
                       child: const Text('Ver licencias'),
                     ),
+
                     TextButton(
-                      onPressed: () => Navigator.pop(dialogContext),
+                      onPressed: () {
+                        Navigator.pop(dialogContext);
+                      },
                       child: const Text('Cerrar'),
                     ),
                   ],
@@ -184,4 +484,14 @@ class _WConfiState extends State<WConfi> {
       ],
     );
   }
+  @override
+  void dispose() {
+    nombreController.dispose();
+    correoController.dispose();
+    telefonoController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
 }
+

@@ -27,9 +27,6 @@ class ApiClient {
     return jsonDecode(response.body);
   }
 
-// Borra de aqui si acaso es solo pa ver el error de inicio de sesion
-
-// post l
 Future<dynamic> post(
 String path,
 Map<String, dynamic> datos,
@@ -37,7 +34,7 @@ Map<String, dynamic> datos,
 final uri = Uri.parse('${ApiConstant.bsUrl}/$path');
 
 try {
-  //  muestra la URL solicitada
+  //  muestra la URL 
   print('URL SOLICITADA: $uri');
 
   final response = await _client.post(
@@ -49,7 +46,7 @@ try {
     body: jsonEncode(datos),
   );
 
-  //  muestra la respuesta del servidor
+  //  respuesta del servidor
   print('ESTADO HTTP: ${response.statusCode}');
   print('RESPUESTA API: ${response.body}');
 
@@ -66,40 +63,9 @@ try {
 
   return jsonDecode(response.body);
 } catch (e) {
-  // captura errores de conexión
+  // errores de conexion
   print('ERROR COMPLETO DE CONEXIÓN/API: $e');
   rethrow;
 }
-
 }
 }
-
-
-
-// // Oe este es solo pal login
-//   Future<dynamic> post(
-//     String path,
-//     Map<String, dynamic> datos,
-//   ) async {
-//     final uri = Uri.parse('${ApiConstant.bsUrl}/$path');
-    
-
-//     final response = await _client.post(
-//       uri,
-//       headers: {'Content-Type': 'application/json'},
-//       body: jsonEncode(datos),
-//     );
-//     // Prueba pa ver el error
-// if (response.statusCode < 200 || response.statusCode >= 300) {
-//   throw Exception(
-//     'Error HTTP ${response.statusCode}: ${response.body}',
-//   );
-// }
-
-//     if (response.body.isEmpty) {
-//       return null;
-//     }
-
-//     return jsonDecode(response.body);
-//   }
-// }
